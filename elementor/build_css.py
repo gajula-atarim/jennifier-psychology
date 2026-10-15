@@ -2,7 +2,7 @@
 (decorative waves, pill chips, hover motion, scroll reveal, the breathing exercise)."""
 from pathlib import Path
 
-from svg import (BREATH_W1, BREATH_W2, BREATH_W3, CARD_W1, CARD_W2, CARD_W3, CARE_LINE, CTA_EDGE,
+from svg import (SHORE_W1, SHORE_W2, SHORE_W3, BREATH_W1, BREATH_W2, BREATH_W3, CARD_W1, CARD_W2, CARD_W3, CARE_LINE, CTA_EDGE,
                  GP_MARK, HERO_EDGE, ICE_BELOW, ICE_TIP, PORTRAIT_LINES, SURF_W1, SURF_W2, SURF_W3)
 
 OUT = Path(__file__).resolve().parent.parent / "theme/hello-elementor-child/assets/css/jm-site.css"
@@ -151,6 +151,35 @@ body .elementor-widget.elementor-widget-icon-list .elementor-icon-list-icon+.ele
 .jm-prints svg{display:block;width:24px;height:38px;fill:#9C7A45;opacity:0;animation:jmWalk 8s ease-in-out infinite}
 @keyframes jmWalk{0%{opacity:0;transform:scale(.55)}5%{opacity:.85;transform:scale(1.08)}8%{transform:none}62%{opacity:.85}80%{opacity:0}100%{opacity:0}}
 
+/* Next step: shoreline. One stretch of sand; the steps walk down the beach to the water,
+   where a slow wave laps over the last footprints in time with the walk (8s). */
+.jm-shore{position:relative;overflow:hidden}
+.jm-shore>.e-con-inner{position:static}
+.jm-shore::after{content:"";position:absolute;left:0;right:0;top:-1px;height:clamp(40px,5.5vw,84px);background:CTA_EDGE center top/100% 100% no-repeat;pointer-events:none}
+.jm-shore>.e-con-inner>.elementor-element:not(.jm-shore-water){position:relative;z-index:1}
+.jm-shore .jm-shore-water{position:absolute!important;left:0;right:0;bottom:0;height:230px;margin:0;z-index:0;pointer-events:none}
+.jm-shore .jm-shore-water>*{height:100%}
+.jm-shore-edge{position:absolute;inset:0;overflow:hidden}
+.jm-shore-wet{position:absolute;left:0;right:0;bottom:110px;height:120px;background:linear-gradient(180deg,rgba(156,122,69,0) 0%,rgba(156,122,69,.18) 100%)}
+.jm-shore-prints{position:absolute;bottom:136px;left:72%;display:flex;gap:34px;align-items:center}
+.jm-shore-prints span:nth-child(odd){transform:translateY(-9px) rotate(112deg)}
+.jm-shore-prints span:nth-child(even){transform:translateY(9px) rotate(112deg) scaleX(-1)}
+.jm-shore-prints svg{display:block;width:24px;height:38px;fill:#9C7A45;opacity:0;animation:jmWalk 8s ease-in-out infinite}
+.jm-shore-sea{position:absolute;left:0;right:0;bottom:0;height:175px}
+.jm-shore-lap{position:absolute;left:0;right:0;top:0;bottom:-70px;animation:jmLap 8s ease-in-out infinite}
+.jm-shore-waves{position:absolute;left:0;right:0;top:0;height:64px;background-image:SHORE_W3,SHORE_W2,SHORE_W1;background-size:1200px 100%;background-repeat:repeat-x;animation:jmShoreDrift 2772s linear infinite}
+/* 600px wave period; layers drift one period per 18s / 22s (reversed) / 28s, like the other waves. */
+@keyframes jmShoreDrift{from{background-position:0 0,0 0,0 0}to{background-position:-92400px 0,75600px 0,-59400px 0}}
+.jm-shore-body{position:absolute;left:0;right:0;top:62px;bottom:0;background:linear-gradient(180deg,#8FBFD2 0%,#6FA6BE 45%,#4F8BA6 100%)}
+/* The water rests low, then reaches up over the last prints as they fade (about 2.4-3.8s into each walk). */
+@keyframes jmLap{0%,10%{transform:translateY(56px)}36%,46%{transform:translateY(0)}78%,100%{transform:translateY(56px)}}
+.jm-shore-edge::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:clamp(36px,5vw,72px);background:HERO_EDGE center bottom/100% 100% no-repeat}
+.jm-shore-path .jm-prints{justify-content:flex-start;gap:30px;transform:rotate(7deg);transform-origin:left center}
+@media (max-width:767px){
+ .jm-shore-path .jm-prints{transform:none;justify-content:space-around}
+ .jm-shore-prints{left:50%;transform:translateX(-50%)}
+}
+
 /* Breathe with the ocean */
 .jm-breath-col{position:relative;overflow:hidden}
 .jm-breath-col>.elementor-widget-html{position:absolute!important;inset:0;margin:0}
@@ -191,7 +220,8 @@ body .elementor-widget.elementor-widget-icon-list .elementor-icon-list-icon+.ele
 
 /* Motion preferences */
 @media (prefers-reduced-motion:reduce){
- .jm-rise,.jm-tide,.jm-chips-dark .elementor-icon-list-item,.jm-wave-card::after,.jm-ice-top::after,.jm-breath-waves{animation:none!important}
+ .jm-rise,.jm-tide,.jm-chips-dark .elementor-icon-list-item,.jm-wave-card::after,.jm-ice-top::after,.jm-breath-waves,.jm-shore-waves,.jm-shore-lap{animation:none!important}
+ .jm-shore-prints svg{animation:none;opacity:.85}
  .jm-swap-a{animation:none;opacity:1}.jm-swap-b{animation:none;opacity:0}
  .jm-prints svg{animation:none;opacity:.85}
  .jm-card,.jm-tile,.jm-card .elementor-widget-icon svg,.jm-wave-card::after,.jm-stop,.jm-stone .elementor-heading-title,.jm-stop-arrow{transition:none}
@@ -204,7 +234,7 @@ TOKENS = {
     "ICE_TIP": ICE_TIP, "ICE_BELOW": ICE_BELOW, "CARE_LINE": CARE_LINE,
     "CARD_W1": CARD_W1, "CARD_W2": CARD_W2, "CARD_W3": CARD_W3,
     "SURF_W1": SURF_W1, "SURF_W2": SURF_W2, "SURF_W3": SURF_W3,
-    "BREATH_W1": BREATH_W1, "BREATH_W2": BREATH_W2, "BREATH_W3": BREATH_W3,
+    "BREATH_W1": BREATH_W1, "SHORE_W1": SHORE_W1, "SHORE_W2": SHORE_W2, "SHORE_W3": SHORE_W3, "BREATH_W2": BREATH_W2, "BREATH_W3": BREATH_W3,
 }
 
 

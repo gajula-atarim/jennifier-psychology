@@ -66,3 +66,8 @@ CARE_LINE = data_uri(
     "C 40 220 40 230 24 250 C 8 270 8 280 24 300 C 40 320 40 330 24 350 C 8 370 8 380 24 400 C 40 420 40 430 24 450 "
     "C 8 470 8 480 24 500' fill='none' stroke='#6A8CA3' stroke-width='2.5' stroke-linecap='round' "
     "stroke-dasharray='1 9' vector-effect='non-scaling-stroke'/></svg>")
+
+# Shoreline: sea-foam waves lapping onto the sand.
+SHORE_W1 = _wave((40, 8, 72), "#EEF5F7", 0.95)   # foam at the waterline
+SHORE_W2 = _wave((58, 30, 90), "#BBD8E3", 1)
+SHORE_W3 = _wave((76, 54, 100), "#8FBFD2", 1)
