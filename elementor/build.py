@@ -378,18 +378,6 @@ def footprints(start):
             + "".join(f"<span>{FOOTPRINT.format(d=start + i * 0.45)}</span>" for i in range(4)) + "</div>")
 
 
-SHORE_HTML = (
-    '<div class="jm-shore-edge" aria-hidden="true">'
-    '<div class="jm-shore-wet"></div>'
-    '<div class="jm-shore-prints">'
-    + "".join(f"<span>{FOOTPRINT.format(d=5.4 + i * 0.45)}</span>" for i in range(2))
-    + '</div>'
-    '<div class="jm-shore-sea"><div class="jm-shore-lap">'
-    '<div class="jm-shore-waves"></div><div class="jm-shore-body"></div>'
-    '</div></div>'
-    '</div>'
-)
-
 BREATH_HTML = (
     '<div class="jm-breath is-running" aria-hidden="true">'
     '<div class="jm-breath-words">'
@@ -749,8 +737,7 @@ def referrers():
 
 
 def next_steps():
-    """Shoreline steps: one stretch of sand, the three steps walking down the beach towards the
-    water, a trail of footprints leading each one, and a wave lapping over the last prints."""
+    """One stretch of sand: the three steps walk down the beach, each led by a trail of footprints."""
     steps = [("01", "Reach out", "Phone, email or send an enquiry. A referral is optional if you are attending as a private client."),
              ("02", "A short chat", "A free 15-minute consultation to talk about what you are looking for and whether we are a good fit."),
              ("03", "Your first session", "Together we build a safe, collaborative plan. Every journey is unique, and we review progress together along the way.")]
@@ -769,8 +756,7 @@ def next_steps():
     ], 640)
     path = container("start-path", step_els, row=True, gap_=gap(36, 48), cls="jm-shore-path",
                      flex_direction_mobile="column", flex_wrap="nowrap")
-    shore = html("start-shore", SHORE_HTML, cls="jm-shore-water")
-    return section("next-steps", [head, path, shore], pad=dims(136, 24, 250, 24), gap_=44,
+    return section("next-steps", [head, path], pad=dims(104, 24), gap_=44,
                    cls="jm-shore jm-tide", **sand_bg())
 
 
