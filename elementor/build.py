@@ -320,7 +320,7 @@ def icon_list(name, items, *, inline=False, size=15, color=INK, hover=None, fami
 
 
 def image(name, key, *, width=None, height=None, url=None, cls="", fit=None, **extra):
-    s = {"image": media(key), "image_size": "full"}
+    s = {"image": media(key), "image_size": "full", "align": "start"}
     if width:
         s["width"] = px(width)
     if height:
