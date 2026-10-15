@@ -20,12 +20,12 @@ h1.elementor-heading-title,h2.elementor-heading-title,h3.elementor-heading-title
 .elementor-widget-text-editor a{color:inherit;text-decoration:none}
 .elementor-widget-text-editor strong{font-weight:700}
 .jm-caption strong{color:#12323F;font-weight:700}
-.elementor-button{transition:background-color .2s,color .2s,border-color .2s}
+.elementor-button{transition:background-color .2s,color .2s}
 .jm-textlink .elementor-button:hover .elementor-button-text,.jm-textlink .elementor-button:focus-visible .elementor-button-text{text-decoration:underline;text-underline-offset:4px}
 
 /* Header */
 .jm-topbar a{color:#EBE7DB}.jm-topbar a:hover{color:#DDAA33}
-.jm-nav a.hfe-menu-item{border-radius:999px;min-height:44px;display:inline-flex!important;align-items:center;white-space:nowrap;box-sizing:border-box;transition:background-color .2s,color .2s}
+.jm-nav a.hfe-menu-item{border-radius:999px;min-height:44px;display:inline-flex!important;align-items:center;white-space:nowrap;box-sizing:border-box;transition:none}
 .jm-nav .hfe-nav-menu{gap:2px}
 @media (max-width:1024px){
  .jm-nav{width:100%}
@@ -62,11 +62,15 @@ h1.elementor-heading-title,h2.elementor-heading-title,h3.elementor-heading-title
 .jm-wave-card>.elementor-element,.jm-wave-card>.e-con-inner{position:relative;z-index:1}
 .jm-wave-card::after{content:"";position:absolute;left:0;right:0;bottom:0;height:96px;pointer-events:none;
  background-image:CARD_W3,CARD_W2,CARD_W1;background-size:200% 100%;background-repeat:repeat-x;
- animation:jmWaves 44s linear infinite;transition:height .5s ease}
+ animation:jmCardWaves 4080s linear infinite;transition:height .5s ease}
 .jm-wave-card:hover::after{height:122px}
 .jm-wave-sm::after{height:66px}.jm-wave-sm:hover::after{height:82px}
-.jm-wave-lg::after{height:110px}.jm-wave-lg:hover::after{height:110px}
-@keyframes jmWaves{from{background-position:0 0,0 0,0 0}to{background-position:200% 0,-100% 0,100% 0}}
+.jm-wave-lg::after{height:110px}.jm-wave-lg:hover::after{height:122px}
+/* Each layer drifts one wave period per its design duration (back 48s, middle 40s reversed, front 34s);
+   4080s is their least common multiple, so the loop is seamless. */
+@keyframes jmCardWaves{from{background-position:0 0,0 0,0 0}to{background-position:12000% 0,-10200% 0,8500% 0}}
+/* Same for the surface and breathing waves: 28s, 22s reversed, 18s (LCM 2772s). */
+@keyframes jmWaves{from{background-position:0 0,0 0,0 0}to{background-position:15400% 0,-12600% 0,9900% 0}}
 
 /* Scroll reveal */
 @keyframes jmTide{from{transform:translateY(16px);opacity:.6}to{transform:none;opacity:1}}
@@ -92,8 +96,8 @@ h1.elementor-heading-title,h2.elementor-heading-title,h3.elementor-heading-title
  background-size:200% 64px,200% 64px,200% 64px,300px 68px;
  background-repeat:repeat-x,repeat-x,repeat-x,no-repeat;
  background-position:0 100%,0 100%,0 100%,50% calc(100% - 30px);
- animation:jmSurface 28s linear infinite}
-@keyframes jmSurface{to{background-position:200% 100%,-100% 100%,100% 100%,50% calc(100% - 30px)}}
+ animation:jmSurface 2772s linear infinite}
+@keyframes jmSurface{to{background-position:15400% 100%,-12600% 100%,9900% 100%,50% calc(100% - 30px)}}
 .jm-ice-top>.elementor-element{position:relative;z-index:1}
 .jm-ice-bottom{position:relative}
 .jm-ice-bottom::after{content:"";position:absolute;left:12%;top:0;width:76%;height:92%;background:ICE_BELOW center/100% 100% no-repeat;pointer-events:none}
@@ -151,7 +155,7 @@ h1.elementor-heading-title,h2.elementor-heading-title,h3.elementor-heading-title
 .jm-breath-words .jm-b-idle{font-size:30px;color:#DCE8EE;opacity:0}
 .jm-breath-sea{position:absolute;left:0;right:0;bottom:0;height:78%;overflow:hidden}
 .jm-breath-rise{position:absolute;left:0;right:0;top:0;bottom:-40%;animation:jmBreathe 10s ease-in-out infinite}
-.jm-breath-waves{position:absolute;left:0;right:0;top:0;height:60%;background-image:BREATH_W3,BREATH_W2,BREATH_W1;background-size:200% 100%;background-repeat:repeat-x;animation:jmWaves 22s linear infinite}
+.jm-breath-waves{position:absolute;left:0;right:0;top:0;height:60%;background-image:BREATH_W3,BREATH_W2,BREATH_W1;background-size:200% 100%;background-repeat:repeat-x;animation:jmWaves 2772s linear infinite}
 .jm-breath-body{position:absolute;left:0;right:0;top:calc(60% - 2px);bottom:0;background:#7EB1CB;opacity:.55}
 @keyframes jmBreathe{0%{transform:translateY(62%)}40%{transform:translateY(0)}100%{transform:translateY(62%)}}
 .jm-b-in{animation:jmBIn 10s linear infinite}
@@ -178,8 +182,7 @@ h1.elementor-heading-title,h2.elementor-heading-title,h3.elementor-heading-title
 
 /* Motion preferences */
 @media (prefers-reduced-motion:reduce){
- .jm-hero-msg,.jm-rise,.jm-tide,.jm-chips-dark .elementor-icon-list-item,.jm-wave-card::after,.jm-ice-top::after,.jm-breath-waves,.jm-breath-rise,.jm-b-in,.jm-b-out{animation:none!important}
- .jm-hero-msg{opacity:1}
+ .jm-rise,.jm-tide,.jm-chips-dark .elementor-icon-list-item,.jm-wave-card::after,.jm-ice-top::after,.jm-breath-waves{animation:none!important}
  .jm-swap-a{animation:none;opacity:1}.jm-swap-b{animation:none;opacity:0}
  .jm-prints svg{animation:none;opacity:.85}
  .jm-card,.jm-tile,.jm-card .elementor-widget-icon svg,.jm-wave-card::after,.jm-stop,.jm-stone .elementor-heading-title,.jm-stop-arrow{transition:none}
