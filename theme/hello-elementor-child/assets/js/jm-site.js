@@ -30,11 +30,28 @@
 			}
 		}
 
+		// Restart the wave and both words on the same frame, so every start
+		// begins with a full "Breathe in" as the wave rises.
+		var phased = breath.querySelectorAll( '.jm-breath-rise, .jm-b-in, .jm-b-out' );
+		function restart() {
+			phased.forEach( function ( el ) {
+				el.style.animation = 'none';
+			} );
+			void breath.offsetWidth;
+			phased.forEach( function ( el ) {
+				el.style.animation = '';
+			} );
+		}
+
 		set( ! reduceMotion );
 
 		button.addEventListener( 'click', function ( event ) {
 			event.preventDefault();
-			set( ! breath.classList.contains( 'is-running' ) );
+			var start = ! breath.classList.contains( 'is-running' );
+			if ( start ) {
+				restart();
+			}
+			set( start );
 		} );
 		button.addEventListener( 'keydown', function ( event ) {
 			if ( ' ' === event.key || 'Enter' === event.key ) {

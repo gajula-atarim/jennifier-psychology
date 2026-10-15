@@ -149,11 +149,14 @@ h1.elementor-heading-title,h2.elementor-heading-title,h3.elementor-heading-title
 .jm-breath-waves{position:absolute;left:0;right:0;top:0;height:60%;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2880 120' preserveAspectRatio='none'%3E%3Cpath d='M0 88 C240 66 480 66 720 88 C960 110 1200 110 1440 88 C1680 66 1920 66 2160 88 C2400 110 2640 110 2880 88 V120 H0 Z' fill='%237EB1CB' fill-opacity='0.55'/%3E%3C/svg%3E"),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2880 120' preserveAspectRatio='none'%3E%3Cpath d='M0 70 C240 38 480 38 720 70 C960 102 1200 102 1440 70 C1680 38 1920 38 2160 70 C2400 102 2640 102 2880 70 V120 H0 Z' fill='%237EB1CB' fill-opacity='0.45'/%3E%3C/svg%3E"),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2880 120' preserveAspectRatio='none'%3E%3Cpath d='M0 50 C240 10 480 10 720 50 C960 90 1200 90 1440 50 C1680 10 1920 10 2160 50 C2400 90 2640 90 2880 50 V120 H0 Z' fill='%23A2C3D3' fill-opacity='0.35'/%3E%3C/svg%3E");background-size:200% 100%;background-repeat:repeat-x;animation:jmWaves 2772s linear infinite}
 .jm-breath-body{position:absolute;left:0;right:0;top:calc(60% - 2px);bottom:0;background:#7EB1CB;opacity:.55}
 @keyframes jmBreathe{0%{transform:translateY(62%)}40%{transform:translateY(0)}100%{transform:translateY(62%)}}
+/* One 10s breath shared by the wave and the words: in for 4s while the wave rises to its crest (0-40%),
+   out for 6s while it settles back (40-100%). The words hand over exactly at the crest. */
 .jm-b-in{animation:jmBIn 10s linear infinite}
 .jm-b-out{animation:jmBOut 10s linear infinite}
-@keyframes jmBIn{0%{opacity:0;transform:scale(.94)}3%{opacity:1}39%{opacity:1;transform:scale(1.06)}41%{opacity:0;transform:scale(1.06)}100%{opacity:0;transform:scale(.94)}}
-@keyframes jmBOut{0%{opacity:0;transform:scale(.94)}39%{opacity:0;transform:scale(1.06)}42%{opacity:1;transform:scale(1.06)}97%{opacity:1;transform:scale(.94)}100%{opacity:0;transform:scale(.94)}}
-.jm-breath.is-paused .jm-breath-rise,.jm-breath.is-paused .jm-breath-waves{animation-play-state:paused}
+@keyframes jmBIn{0%{opacity:0;transform:scale(.94)}3%{opacity:1}37%{opacity:1;transform:scale(1.06)}40%{opacity:0;transform:scale(1.06)}100%{opacity:0;transform:scale(.94)}}
+@keyframes jmBOut{0%,40%{opacity:0;transform:scale(1.06)}43%{opacity:1;transform:scale(1.06)}97%{opacity:1;transform:scale(.94)}100%{opacity:0;transform:scale(.94)}}
+/* Pause freezes the wave and the words together so they never drift apart. */
+.jm-breath.is-paused .jm-breath-rise,.jm-breath.is-paused .jm-breath-waves,.jm-breath.is-paused .jm-b-in,.jm-breath.is-paused .jm-b-out{animation-play-state:paused}
 .jm-breath.is-paused .jm-b-in,.jm-breath.is-paused .jm-b-out{visibility:hidden}
 .jm-breath.is-paused .jm-b-idle{opacity:1}
 

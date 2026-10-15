@@ -158,11 +158,14 @@ h1.elementor-heading-title,h2.elementor-heading-title,h3.elementor-heading-title
 .jm-breath-waves{position:absolute;left:0;right:0;top:0;height:60%;background-image:BREATH_W3,BREATH_W2,BREATH_W1;background-size:200% 100%;background-repeat:repeat-x;animation:jmWaves 2772s linear infinite}
 .jm-breath-body{position:absolute;left:0;right:0;top:calc(60% - 2px);bottom:0;background:#7EB1CB;opacity:.55}
 @keyframes jmBreathe{0%{transform:translateY(62%)}40%{transform:translateY(0)}100%{transform:translateY(62%)}}
+/* One 10s breath shared by the wave and the words: in for 4s while the wave rises to its crest (0-40%),
+   out for 6s while it settles back (40-100%). The words hand over exactly at the crest. */
 .jm-b-in{animation:jmBIn 10s linear infinite}
 .jm-b-out{animation:jmBOut 10s linear infinite}
-@keyframes jmBIn{0%{opacity:0;transform:scale(.94)}3%{opacity:1}39%{opacity:1;transform:scale(1.06)}41%{opacity:0;transform:scale(1.06)}100%{opacity:0;transform:scale(.94)}}
-@keyframes jmBOut{0%{opacity:0;transform:scale(.94)}39%{opacity:0;transform:scale(1.06)}42%{opacity:1;transform:scale(1.06)}97%{opacity:1;transform:scale(.94)}100%{opacity:0;transform:scale(.94)}}
-.jm-breath.is-paused .jm-breath-rise,.jm-breath.is-paused .jm-breath-waves{animation-play-state:paused}
+@keyframes jmBIn{0%{opacity:0;transform:scale(.94)}3%{opacity:1}37%{opacity:1;transform:scale(1.06)}40%{opacity:0;transform:scale(1.06)}100%{opacity:0;transform:scale(.94)}}
+@keyframes jmBOut{0%,40%{opacity:0;transform:scale(1.06)}43%{opacity:1;transform:scale(1.06)}97%{opacity:1;transform:scale(.94)}100%{opacity:0;transform:scale(.94)}}
+/* Pause freezes the wave and the words together so they never drift apart. */
+.jm-breath.is-paused .jm-breath-rise,.jm-breath.is-paused .jm-breath-waves,.jm-breath.is-paused .jm-b-in,.jm-breath.is-paused .jm-b-out{animation-play-state:paused}
 .jm-breath.is-paused .jm-b-in,.jm-breath.is-paused .jm-b-out{visibility:hidden}
 .jm-breath.is-paused .jm-b-idle{opacity:1}
 
