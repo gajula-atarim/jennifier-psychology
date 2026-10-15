@@ -23,6 +23,12 @@ h1.elementor-heading-title,h2.elementor-heading-title,h3.elementor-heading-title
 .elementor-button{transition:background-color .2s,color .2s}
 .jm-textlink .elementor-button:hover .elementor-button-text,.jm-textlink .elementor-button:focus-visible .elementor-button-text{text-decoration:underline;text-underline-offset:4px}
 
+/* Icon lists: Elementor adds a hidden 4px icon margin and 5px text padding on top of the
+   Gap control. Remove them so the Gap setting is the whole gap (8px in the design); this is
+   what lets the top bar fit on one line at tablet widths. */
+body .elementor-widget.elementor-widget-icon-list .elementor-icon-list-icon svg{margin:0}
+body .elementor-widget.elementor-widget-icon-list .elementor-icon-list-icon+.elementor-icon-list-text{padding-inline-start:0}
+
 /* Header */
 .jm-topbar a{color:#EBE7DB}.jm-topbar a:hover{color:#DDAA33}
 .jm-nav a.hfe-menu-item{border-radius:999px;min-height:44px;display:inline-flex!important;align-items:center;white-space:nowrap;box-sizing:border-box;transition:none}
