@@ -40,9 +40,12 @@ SERIF, SANS, SCRIPT = "Cormorant Garamond", "Figtree", "Great Vibes"
 
 PHONE, PHONE_URL = "0404 174 184", "tel:0404174184"
 EMAIL = "psych@jennifermalecki.com.au"
+# Inner pages aren't built yet, so their links are "#" placeholders for now. Swap in the real
+# paths (/about/, /services/, /fees-rebates/, /for-referrers/, /gallery/, /resources/,
+# /contact/) as each page goes live.
 URL = {
-    "home": "/", "about": "/about/", "services": "/services/", "fees": "/fees-rebates/",
-    "referrers": "/for-referrers/", "gallery": "/gallery/", "resources": "/resources/", "contact": "/contact/",
+    "home": "/", "about": "#", "services": "#", "fees": "#",
+    "referrers": "#", "gallery": "#", "resources": "#", "contact": "#",
 }
 
 _ids: set = set()
