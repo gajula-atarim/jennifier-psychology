@@ -12,7 +12,9 @@ CSS = """/* Jennifer Malecki — design layer for the Elementor build. */
 /* Base */
 body{background:#F7F5EF;color:#12323F;-webkit-font-smoothing:antialiased}
 a{color:#1D5067}a:hover,a:active{color:#0d4c5c}
-.elementor-heading-title{text-wrap:balance}
+h1.elementor-heading-title,h2.elementor-heading-title,h3.elementor-heading-title{text-wrap:balance}
+.elementor-widget-icon .elementor-icon-wrapper{line-height:0}
+.elementor-widget-icon .elementor-icon svg{display:block}
 .elementor-widget-text-editor p{margin:0;text-wrap:pretty}
 .elementor-widget-text-editor ul{margin:0}
 .elementor-widget-text-editor a{color:inherit;text-decoration:none}
@@ -170,7 +172,6 @@ a{color:#1D5067}a:hover,a:active{color:#0d4c5c}
 .jm-cta{position:relative}
 .jm-cta::after{content:"";position:absolute;left:0;right:0;top:-1px;height:clamp(40px,5.5vw,84px);background:CTA_EDGE center top/100% 100% no-repeat;pointer-events:none}
 .jm-cta>.e-con-inner{position:relative;z-index:1}
-.jm-wave-icon .elementor-icon svg{width:72px;height:28px}
 
 /* Footer */
 .jm-footer a{color:#EBE7DB}.jm-footer a:hover{color:#DDAA33}

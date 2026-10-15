@@ -525,7 +525,7 @@ def intro_band():
         button("intro-cta", "Request a chat", URL["contact"], "primary", full=True),
         button("intro-meet", "Meet Jennifer", URL["about"], "ghost", full=True),
         textlink("intro-call", f"or call {PHONE}", PHONE_URL, full=True),
-    ], gap_=12, width=300, grow=0)
+    ], gap_=12, width=300, grow=0, mobile_width=False)
     return section("intro", [left, right], pad=dims(8, 24, 16, 24), row=True, wrap=True, gap_=gap(28, 56),
                    align="center", justify="space-between", cls="jm-rise")
 
@@ -652,7 +652,8 @@ def approach():
         ], gap_=2, grow=1, width=px(0, "%"), mobile_width=False),
         icon(f"app-stop-arrow-{n}", "i_arrow", 18, cls="jm-stop-arrow", _flex_size="none"),
     ], row=True, align="center", gap_=16, pad=dims(8, 14, 8, 0), tag="a", link=link(URL["services"]),
-        cls="jm-stop", min_height=px(64), border_radius=dims(16)) for n, name, sub in stops]
+        cls="jm-stop", min_height=px(80), border_radius=dims(16), flex_wrap="nowrap",
+        flex_wrap_mobile="nowrap") for n, name, sub in stops]
 
     right = container("app-right", [
         eyebrow("app-eyebrow", "My approach"),
@@ -778,7 +779,7 @@ def support_now():
              ("Medicare Mental Health", "1800 595 212", "tel:1800595212", False),
              ("Open Arms (veterans), 24/7", "1800 011 046", "tel:1800011046", False)]
     tile_els = [container(f"sos-tile-{i}", [
-        heading(f"sos-label-{i}", label, "span", SANS, 14, MUTED if dark else BODY, lh=1.3),
+        heading(f"sos-label-{i}", label, "span", SANS, 14, MUTED if dark else BODY, lh=1.2),
         heading(f"sos-num-{i}", number, "span", SANS, 26, "#ffffff" if dark else INK, weight=700, lh=1.2),
     ], gap_=4, pad=dims(20, 22), tag="a", link=link(url), border_radius=dims(18),
         cls="jm-tile" + (" jm-tile-emergency" if dark else ""),
@@ -802,7 +803,7 @@ def support_now():
 
 def closing_cta():
     return section("cta", [
-        icon("cta-wave", "i_wave_line", 72, cls="jm-wave-icon", align="center", fit_to_size="yes"),
+        icon("cta-wave", "i_wave_line", 28, cls="jm-wave-icon", align="center", fit_to_size="yes"),
         h2("cta-h", "I am here to listen and support your next step", size="clamp(38px, 4.4vw, 60px)", lh=1.06,
            align="center"),
         text("cta-p", "<p>I invite you to reach out by email or phone for a chat. In-person sessions in Mooloolaba, "
