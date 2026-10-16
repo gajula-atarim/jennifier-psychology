@@ -116,6 +116,11 @@ body .elementor-widget.elementor-widget-icon-list .elementor-icon-list-icon+.ele
 /* Welcome portrait placeholder */
 .jm-portrait{position:relative;overflow:hidden;aspect-ratio:4/5}
 .jm-portrait::after{content:"";position:absolute;left:0;right:0;bottom:0;height:28%;background:PORTRAIT_LINES center/100% 100% no-repeat;pointer-events:none}
+/* The photo fills the arch (cropped to keep her face in the upper part); the placeholder lines hide. */
+.jm-portrait>.jm-portrait-img{position:absolute!important;inset:0;margin:0}
+.jm-portrait-img>*,.jm-portrait-img a{display:block;height:100%}
+.jm-portrait-img img{width:100%;height:100%;max-width:none;object-fit:cover;object-position:50% 22%;display:block}
+.jm-portrait:has(.jm-portrait-img img)::after{display:none}
 
 /* Beneath the surface */
 .jm-ice-top{position:relative}

@@ -591,7 +591,9 @@ def welcome():
                        "help you heal and reclaim your life.</p>", 17, BODY, lh=1.75),
     ], gap_=22, width=520, grow=999)
     right = container("wel-right", [
-        container("wel-portrait", [], cls="jm-portrait", min_height=px(0),
+        container("wel-portrait", [
+            image("wel-portrait-img", "portrait", cls="jm-portrait-img"),
+        ], cls="jm-portrait", min_height=px(0),
                   border_radius=dims(200, 200, 28, 28), **gradient("#A2C3D3", TEAL, 170)),
         text("wel-caption", "<p><strong>Dr Jennifer Malecki, PhD</strong><br>"
                             "Psychologist, PhD, PsyBA General | AAPi</p>", 15, BODY, lh=1.5, cls="jm-caption"),
