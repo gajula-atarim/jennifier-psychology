@@ -661,9 +661,7 @@ def approach():
 
     stops = [("01", "Schema Therapy", "Patterns from early life"),
              ("02", "Trauma-Focused CBT", "Thoughts, feelings &amp; trauma"),
-             ("03", "Dialectical Behaviour Therapy", "Skills for intense emotions"),
-             ("04", "Compassion-focused interventions", "Easing shame &amp; self-criticism"),
-             ("05", "Mindfulness-based distress tolerance", "Staying steady in hard moments")]
+             ("03", "Dialectical Behaviour Therapy", "Skills for intense emotions")]
     stop_els = [container(f"app-stop-{n}", [
         heading(f"app-stone-{n}", n, "span", SERIF, 20, TEAL, weight=700, lh=1, cls="jm-stone",
                 _flex_size="none"),
