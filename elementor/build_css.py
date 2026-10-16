@@ -162,6 +162,8 @@ body .elementor-widget.elementor-widget-icon-list .elementor-icon-list-icon+.ele
 .jm-prints span:nth-child(even){transform:translateY(9px) rotate(90deg) scaleX(-1)}
 .jm-prints svg{display:block;width:24px;height:38px;fill:#9C7A45;opacity:0;animation:jmWalk 8s ease-in-out infinite}
 @keyframes jmWalk{0%{opacity:0;transform:scale(.55)}5%{opacity:.85;transform:scale(1.08)}8%{transform:none}62%{opacity:.85}80%{opacity:0}100%{opacity:0}}
+/* Paused until the steps row scrolls into view (see jm-site.js); the delays then count from that moment. */
+.jm-walk-pending .jm-prints svg{animation-play-state:paused}
 
 
 /* Breathe with the ocean */

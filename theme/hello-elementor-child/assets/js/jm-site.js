@@ -79,9 +79,39 @@
 		attempt();
 	}
 
+	// "Your next step": hold the footprint walk until the steps scroll into view, so every
+	// visitor sees it begin at step 01. Without this script the walk simply runs from page load.
+	function initFootprints() {
+		var rows = document.querySelectorAll( '.jm-steps' );
+		if ( ! rows.length ) {
+			return;
+		}
+		rows.forEach( function ( row ) {
+			row.classList.add( 'jm-walk-pending' );
+		} );
+		if ( ! ( 'IntersectionObserver' in window ) ) {
+			rows.forEach( function ( row ) {
+				row.classList.remove( 'jm-walk-pending' );
+			} );
+			return;
+		}
+		var observer = new IntersectionObserver( function ( entries ) {
+			entries.forEach( function ( entry ) {
+				if ( entry.isIntersecting ) {
+					entry.target.classList.remove( 'jm-walk-pending' );
+					observer.unobserve( entry.target );
+				}
+			} );
+		}, { threshold: 0.35 } );
+		rows.forEach( function ( row ) {
+			observer.observe( row );
+		} );
+	}
+
 	function init() {
 		document.querySelectorAll( '.jm-breath-toggle' ).forEach( initBreath );
 		document.querySelectorAll( '.jm-hero video' ).forEach( initHeroVideo );
+		initFootprints();
 	}
 
 	if ( 'loading' === document.readyState ) {
