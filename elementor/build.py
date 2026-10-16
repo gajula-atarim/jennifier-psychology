@@ -737,7 +737,7 @@ def referrers():
 
 
 def next_steps():
-    """One stretch of sand: the three steps walk down the beach, each led by a trail of footprints."""
+    """The three steps, each led by a trail of footprints. They open the closing sand section."""
     steps = [("01", "Reach out", "Phone, email or send an enquiry. A referral is optional if you are attending as a private client."),
              ("02", "A short chat", "A free 15-minute consultation to talk about what you are looking for and whether we are a good fit."),
              ("03", "Your first session", "Together we build a safe, collaborative plan. Every journey is unique, and we review progress together along the way.")]
@@ -746,18 +746,15 @@ def next_steps():
         heading(f"step-num-{i}", n, "span", SERIF, 56, TEAL, weight=600, lh=1),
         heading(f"step-h-{i}", title, "h3", SERIF, 28, INK, weight=600, lh=1.2, ls=-0.01),
         text(f"step-p-{i}", f"<p>{body}</p>", 16, BODY, lh=1.65),
-    ], gap_=10, width=300, grow=1, cls="jm-step", tag="article",
-        # Each step sits a little further down the beach than the last.
-        margin=dims(i * 56, 0, 0, 0), margin_mobile=dims(0)) for i, (n, title, body) in enumerate(steps)]
-    head = section_head("start-head", [
-        eyebrow("start-eyebrow", "Getting started"),
-        h2("start-h", "Your next step"),
-        text("start-p", "<p>One step at a time, at your own pace.</p>", 17, BODY, lh=1.7),
-    ], 640)
-    path = container("start-path", step_els, row=True, gap_=gap(36, 48), cls="jm-shore-path",
+    ], gap_=10, width=300, grow=1, cls="jm-step", tag="article") for i, (n, title, body) in enumerate(steps)]
+    head = container("start-head", [
+        eyebrow("start-eyebrow", "Getting started", align="center"),
+        h2("start-h", "Your next step", align="center"),
+        text("start-p", "<p>One step at a time, at your own pace.</p>", 17, BODY, lh=1.7, align="center"),
+    ], gap_=16, align="center", width=640, grow=0, _flex_align_self="center", margin=dims(0, 0, 44, 0))
+    path = container("start-path", step_els, row=True, gap_=gap(36, 48), cls="jm-steps",
                      flex_direction_mobile="column", flex_wrap="nowrap")
-    return section("next-steps", [head, path], pad=dims(104, 24), gap_=44,
-                   cls="jm-shore jm-tide", **sand_bg())
+    return [head, path]
 
 
 def breathe():
@@ -777,7 +774,7 @@ def breathe():
     card = container("br-card", [left, right], row=True, wrap=True, align="stretch", cls="jm-breathe",
                      overflow="hidden", border_radius=dims(28), background_background="classic",
                      background_color=INK)
-    return section("breathe", [card], pad=dims(0, 24, 104, 24), cls="jm-tide")
+    return section("breathe", [card], pad=dims(104, 24), cls="jm-tide")
 
 
 def support_now():
@@ -809,7 +806,8 @@ def support_now():
 
 
 def closing_cta():
-    return section("cta", [
+    """Closing sand section: the next steps, then the invitation to get in touch."""
+    invite = container("cta-invite", [
         icon("cta-wave", "i_wave_line", 28, cls="jm-wave-icon", align="center", fit_to_size="yes"),
         h2("cta-h", "I am here to listen and support your next step", size="clamp(38px, 4.4vw, 60px)", lh=1.06,
            align="center"),
@@ -820,12 +818,18 @@ def closing_cta():
             button("cta-enquire", "Send an enquiry", URL["contact"], "primary"),
             button("cta-call", f"Call {PHONE}", PHONE_URL, "ghost"),
         ], row=True, wrap=True, justify="center", gap_=12),
-    ], pad=dims(136, 24, 120, 24), gap_=22, align="center", cls="jm-cta jm-tide", boxed_width=820, **sand_bg())
+    ], gap_=22, align="center", width=820, grow=0, _flex_align_self="center")
+    divider = widget("cta-divider", "divider", {
+        "style": "solid", "weight": px(1), "color": "rgba(29,80,103,0.18)", "width": px(820), "align": "center",
+        "gap": px(0), "_margin": dims(72, 0, 56, 0),
+    })
+    return section("cta", [*next_steps(), divider, invite], pad=dims(136, 24, 120, 24), cls="jm-cta jm-tide",
+                   **sand_bg())
 
 
 def build_home():
     return [hero(), intro_band(), highlights(), welcome(), beneath(), services(), approach(), funding(),
-            referrers(), next_steps(), breathe(), support_now(), closing_cta()]
+            referrers(), breathe(), support_now(), closing_cta()]
 
 
 # ---------------------------------------------------------------- kit (Site Settings)

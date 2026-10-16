@@ -151,11 +151,6 @@ body .elementor-widget.elementor-widget-icon-list .elementor-icon-list-icon+.ele
 .jm-prints svg{display:block;width:24px;height:38px;fill:#9C7A45;opacity:0;animation:jmWalk 8s ease-in-out infinite}
 @keyframes jmWalk{0%{opacity:0;transform:scale(.55)}5%{opacity:.85;transform:scale(1.08)}8%{transform:none}62%{opacity:.85}80%{opacity:0}100%{opacity:0}}
 
-/* Next step: one stretch of sand; each step is led by its own footprint trail. */
-.jm-shore-path .jm-prints{justify-content:flex-start;gap:30px;transform:rotate(7deg);transform-origin:left center}
-@media (max-width:767px){
- .jm-shore-path .jm-prints{transform:none;justify-content:space-around}
-}
 
 /* Breathe with the ocean */
 .jm-breath-col{position:relative;overflow:hidden}
