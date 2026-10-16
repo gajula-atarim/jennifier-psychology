@@ -22,7 +22,7 @@ MEDIA = {
     "art_wave": (13, "jm-artwork-wave.jpg"),
     "portrait": (38, "jennifer-malecki-portrait.avif"),
     # The same photo set in a 4:5 canvas (wall extended at the top and sides) to fit the Welcome arch.
-    "portrait_framed": (0, "jennifer-malecki-portrait-framed.jpg"),
+    "portrait_framed": (39, "jennifer-malecki-portrait-framed.jpg"),
     "i_clock": (23, "jm-icon-clock.svg"),
     "i_heart": (24, "jm-icon-heart.svg"),
     "i_palette": (25, "jm-icon-palette.svg"),
