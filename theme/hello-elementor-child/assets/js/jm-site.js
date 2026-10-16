@@ -108,38 +108,7 @@
 		} );
 	}
 
-	// Floating header: pin the main header once the crisis bar has scrolled away, and add the
-	// floating look (shadow, frosted background) while it is pinned.
-	function initFloatingHeader() {
-		var topbar = document.querySelector( '#masthead .jm-topbar' );
-		if ( ! topbar ) {
-			return;
-		}
-		var root = document.documentElement;
-		var height = 0;
-		var ticking = false;
-		function measure() {
-			height = topbar.offsetHeight;
-			root.style.setProperty( '--jm-topbar-h', height + 'px' );
-			update();
-		}
-		function update() {
-			ticking = false;
-			document.body.classList.toggle( 'jm-floating', window.scrollY > height );
-		}
-		window.addEventListener( 'scroll', function () {
-			if ( ! ticking ) {
-				ticking = true;
-				window.requestAnimationFrame( update );
-			}
-		}, { passive: true } );
-		window.addEventListener( 'resize', measure );
-		window.addEventListener( 'load', measure );
-		measure();
-	}
-
 	function init() {
-		initFloatingHeader();
 		document.querySelectorAll( '.jm-breath-toggle' ).forEach( initBreath );
 		document.querySelectorAll( '.jm-hero video' ).forEach( initHeroVideo );
 		initFootprints();

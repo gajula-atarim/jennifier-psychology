@@ -21,17 +21,11 @@ body .elementor-widget.elementor-widget-icon-list .elementor-icon-list-icon svg{
 body .elementor-widget.elementor-widget-icon-list .elementor-icon-list-icon+.elementor-icon-list-text{padding-inline-start:0}
 
 /* Header */
-/* Floating header: the crisis bar stays at the top of the page; the main header is a rounded glass
-   pill floating over the hero. Once the bar has scrolled away (jm-site.js adds body.jm-floating)
-   the pill stays 16px from the top of the window. The switch happens exactly when the two
-   positions meet, so it never jumps. */
+/* Floating header: the crisis bar sits at the top of the page and the main header is a rounded
+   glass pill floating over the hero. It scrolls away with the page (not sticky). */
 #masthead{position:relative;z-index:100}
-#masthead .jm-header-main{position:absolute!important;top:calc(100% + 16px);left:16px;right:16px;width:auto!important;max-width:1340px;margin:0 auto!important;z-index:100;-webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);box-shadow:0 12px 32px rgba(10,30,40,.18);transition:box-shadow .3s ease}
-body.jm-floating #masthead .jm-header-main{position:fixed!important;top:16px;box-shadow:0 14px 36px rgba(10,30,40,.3)}
-body.admin-bar.jm-floating #masthead .jm-header-main{top:48px}
-@media (max-width:782px){body.admin-bar.jm-floating #masthead .jm-header-main{top:62px}}
-@media (max-width:600px){body.admin-bar.jm-floating #masthead .jm-header-main{top:16px}}
-@media (max-width:767px){#masthead .jm-header-main{left:12px;right:12px;top:calc(100% + 12px)}body.jm-floating #masthead .jm-header-main{top:12px}}
+#masthead .jm-header-main{position:absolute!important;top:calc(100% + 16px);left:16px;right:16px;width:auto!important;max-width:1340px;margin:0 auto!important;z-index:100;-webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);box-shadow:0 12px 32px rgba(10,30,40,.18)}
+@media (max-width:767px){#masthead .jm-header-main{left:12px;right:12px;top:calc(100% + 12px)}}
 /* Keep the hero message clear of the pill. */
 .jm-hero .jm-hero-msg{padding-top:calc(24px + clamp(64px,7vw,96px))!important}
 .jm-topbar a{color:#EBE7DB}.jm-topbar a:hover{color:#DDAA33}
