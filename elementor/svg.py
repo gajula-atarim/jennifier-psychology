@@ -69,9 +69,7 @@ CARE_LINE = data_uri(
 
 
 # Care pathway trail: a repeating pair of very small footprints walking down the stops.
-_FOOT = ("<path d='M11 33c-4 0-6-3-6-8 0-6 1-10 3-13 2-2 6-2 7 1 2 4 2 9 1 13-1 4-2 7-5 7z'/>"
-         "<circle cx='6' cy='6.5' r='2.2'/><circle cx='10' cy='3.6' r='2'/>"
-         "<circle cx='14' cy='4.2' r='1.8'/><circle cx='17.2' cy='6.8' r='1.5'/>")
+_FOOT = ("<path d='M13 8.6C16.4 8.6 18 11 17.7 14.6C17.4 18 15.3 20.2 14.6 23.4C14.1 25.8 14.6 28.4 13.2 30.8C12 32.9 9.3 33.1 8 31.3C6.6 29.4 7.4 26.6 7.5 24C7.6 20.6 5.8 18.6 6 15C6.2 11.2 9.2 8.6 13 8.6z'/><ellipse cx='15.6' cy='5' rx='2' ry='2.4'/><circle cx='12.2' cy='3.4' r='1.45'/><circle cx='9.6' cy='3.9' r='1.25'/><circle cx='7.4' cy='5.3' r='1.1'/><circle cx='5.8' cy='7.4' r='0.95'/>")
 CARE_PRINTS = data_uri(
     "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 32'>"
     "<g fill='#6A8CA3'>"
