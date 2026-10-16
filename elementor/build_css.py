@@ -2,7 +2,7 @@
 (decorative waves, pill chips, hover motion, scroll reveal, the breathing exercise)."""
 from pathlib import Path
 
-from svg import (BREATH_W1, BREATH_W2, BREATH_W3, CARD_W1, CARD_W2, CARD_W3, CARE_LINE, CTA_EDGE,
+from svg import (BREATH_W1, BREATH_W2, BREATH_W3, CARD_W1, CARD_W2, CARD_W3, CARE_LINE, CARE_PRINTS, CTA_EDGE,
                  GP_MARK, HERO_EDGE, ICE_BELOW, ICE_TIP, PORTRAIT_LINES, SURF_W1, SURF_W2, SURF_W3)
 
 OUT = Path(__file__).resolve().parent.parent / "theme/hello-elementor-child/assets/css/jm-site.css"
@@ -148,11 +148,12 @@ body.jm-floating #masthead .jm-header-main{background-color:rgba(247,245,239,.92
 .jm-art>.jm-art-caption{position:absolute!important;left:20px;bottom:20px;z-index:2;width:auto!important;max-width:calc(100% - 40px)}
 .jm-art-caption .elementor-heading-title{display:inline-block;background:rgba(18,50,63,.82);padding:8px 14px;border-radius:999px}
 .jm-care-list{position:relative}
-.jm-care-list::after{content:"";position:absolute;left:0;top:0;width:48px;height:100%;background:CARE_LINE 0 0/48px 100% no-repeat;pointer-events:none}
+/* Tiny footprints walk between the stones (stops are 80px, so one left-right pair lands in each gap). */
+.jm-care-list::after{content:"";position:absolute;left:0;top:40px;bottom:40px;width:48px;background:CARE_PRINTS 0 24px/48px 32px repeat-y;pointer-events:none}
 .jm-care-list>.elementor-element{position:relative;z-index:1}
 .jm-stop{text-decoration:none;transition:background-color .3s ease}
 .jm-stop:hover,.jm-stop:focus-visible{background:rgba(162,195,211,.25)}
-.jm-stone .elementor-heading-title{width:48px;height:48px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;border-radius:50% 46% 52% 48%/48% 52% 46% 50%;background:#F7F5EF;border:2px solid #1D5067;box-shadow:0 0 0 6px #F7F5EF;transition:background-color .3s ease,color .3s ease,transform .3s ease,border-color .3s ease}
+.jm-stone .elementor-heading-title{width:48px;height:48px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;border-radius:50% 46% 52% 48%/48% 52% 46% 50%;background:#F7F5EF;border:2px solid #1D5067;box-shadow:0 0 0 3px #F7F5EF;transition:background-color .3s ease,color .3s ease,transform .3s ease,border-color .3s ease}
 .jm-stop:hover .jm-stone .elementor-heading-title,.jm-stop:focus-visible .jm-stone .elementor-heading-title{background:#DDAA33;border-color:#DDAA33;color:#12323F;transform:scale(1.08)}
 .jm-stop-arrow{opacity:0;transform:translateX(-8px);transition:opacity .3s ease,transform .3s ease}
 .jm-stop:hover .jm-stop-arrow,.jm-stop:focus-visible .jm-stop-arrow{opacity:1;transform:none}
@@ -225,7 +226,7 @@ body.jm-floating #masthead .jm-header-main{background-color:rgba(247,245,239,.92
 
 TOKENS = {
     "HERO_EDGE": HERO_EDGE, "CTA_EDGE": CTA_EDGE, "GP_MARK": GP_MARK, "PORTRAIT_LINES": PORTRAIT_LINES,
-    "ICE_TIP": ICE_TIP, "ICE_BELOW": ICE_BELOW, "CARE_LINE": CARE_LINE,
+    "ICE_TIP": ICE_TIP, "ICE_BELOW": ICE_BELOW, "CARE_LINE": CARE_LINE, "CARE_PRINTS": CARE_PRINTS,
     "CARD_W1": CARD_W1, "CARD_W2": CARD_W2, "CARD_W3": CARD_W3,
     "SURF_W1": SURF_W1, "SURF_W2": SURF_W2, "SURF_W3": SURF_W3,
     "BREATH_W1": BREATH_W1, "BREATH_W2": BREATH_W2, "BREATH_W3": BREATH_W3,

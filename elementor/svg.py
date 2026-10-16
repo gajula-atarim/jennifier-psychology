@@ -67,3 +67,14 @@ CARE_LINE = data_uri(
     "C 8 470 8 480 24 500' fill='none' stroke='#6A8CA3' stroke-width='2.5' stroke-linecap='round' "
     "stroke-dasharray='1 9' vector-effect='non-scaling-stroke'/></svg>")
 
+
+# Care pathway trail: a repeating pair of very small footprints walking down the stops.
+_FOOT = ("<path d='M11 33c-4 0-6-3-6-8 0-6 1-10 3-13 2-2 6-2 7 1 2 4 2 9 1 13-1 4-2 7-5 7z'/>"
+         "<circle cx='6' cy='6.5' r='2.2'/><circle cx='10' cy='3.6' r='2'/>"
+         "<circle cx='14' cy='4.2' r='1.8'/><circle cx='17.2' cy='6.8' r='1.5'/>")
+CARE_PRINTS = data_uri(
+    "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 32'>"
+    "<g fill='#6A8CA3'>"
+    f"<g transform='translate(21.5 8) rotate(174) scale(0.22) translate(-11 -17)'>{_FOOT}</g>"
+    f"<g transform='translate(26.5 24) rotate(186) scale(-0.22 0.22) translate(-11 -17)'>{_FOOT}</g>"
+    "</g></svg>")
