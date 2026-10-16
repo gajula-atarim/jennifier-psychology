@@ -20,6 +20,7 @@ MEDIA = {
     "sand": (11, "jm-sand-texture.jpg"),
     "art_ocean": (12, "jm-artwork-ocean.jpg"),
     "art_wave": (13, "jm-artwork-wave.jpg"),
+    "portrait": (38, "jennifer-malecki-portrait.avif"),
     "i_clock": (23, "jm-icon-clock.svg"),
     "i_heart": (24, "jm-icon-heart.svg"),
     "i_palette": (25, "jm-icon-palette.svg"),
