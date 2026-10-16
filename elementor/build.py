@@ -30,6 +30,8 @@ MEDIA = {
     "i_mail": (30, "jm-icon-mail.svg"),
     "i_arrow": (31, "jm-icon-arrow-right.svg"),
     "i_wave_line": (32, "jm-icon-wave-line.svg"),
+    "i_menu": (36, "jm-icon-menu.svg"),
+    "i_close": (37, "jm-icon-close.svg"),
 }
 HERO_VIDEO = UPLOADS + "jm-hero-ocean.mp4"
 
@@ -413,11 +415,19 @@ def build_header():
         "color_menu_item": INK, "bg_color_menu_item": "",
         "color_menu_item_hover": TEAL_DK, "bg_color_menu_item_hover": STONE,
         "color_menu_item_active": "#ffffff", "bg_color_menu_item_active": TEAL,
+        # Tablet and mobile (1024px and below): hamburger toggle with a full-width dropdown.
+        "dropdown": "tablet", "resp_align": "right", "full_width_dropdown": "yes",
+        "dropdown_icon": svg_icon("i_menu"), "dropdown_close_icon": svg_icon("i_close"),
+        "toggle_color": INK, "toggle_hover_color": TEAL, "toggle_size": px(28),
+        "color_dropdown_item": INK, "background_color_dropdown_item": SAND,
+        "color_dropdown_item_hover": TEAL_DK, "background_color_dropdown_item_hover": STONE,
+        "color_dropdown_item_active": "#ffffff", "background_color_dropdown_item_active": TEAL,
+        **typo("dropdown_typography", SANS, 17, 500, 1.2),
+        "padding_horizontal_dropdown_item": px(24), "padding_vertical_dropdown_item": px(16),
+        "distance_from_menu": px(30),
+        "dropdown_divider_border": "solid", "divider_border_color": "#DED8C8", "dropdown_divider_width": px(1),
         "_css_classes": "jm-nav",
         "_flex_size": "none",
-        "_flex_size_tablet": "shrink",
-        "_element_width_tablet": "inherit",
-        "_flex_order_tablet": "end",
     })
 
     main = container("hdr-main", [

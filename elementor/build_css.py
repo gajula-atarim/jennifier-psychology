@@ -31,12 +31,19 @@ body .elementor-widget.elementor-widget-icon-list .elementor-icon-list-icon+.ele
 
 /* Header */
 .jm-topbar a{color:#EBE7DB}.jm-topbar a:hover{color:#DDAA33}
-.jm-nav a.hfe-menu-item{border-radius:999px;min-height:44px;display:inline-flex!important;align-items:center;white-space:nowrap;box-sizing:border-box;transition:none}
-.jm-nav .hfe-nav-menu{gap:2px}
+@media (min-width:1025px){
+ .jm-nav a.hfe-menu-item{border-radius:999px;min-height:44px;display:inline-flex!important;align-items:center;white-space:nowrap;box-sizing:border-box;transition:none}
+ .jm-nav .hfe-nav-menu{gap:2px}
+}
+/* Tablet and mobile: hamburger toggle (44px tap target) and a full-width dropdown under the header. */
 @media (max-width:1024px){
- .jm-nav{width:100%}
- .jm-nav .hfe-nav-menu{flex-wrap:nowrap!important;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch}
- .jm-nav .hfe-nav-menu>li{flex:none}
+ .jm-nav .hfe-nav-menu__toggle{cursor:pointer}
+ .jm-nav .hfe-nav-menu-icon{display:flex;align-items:center;justify-content:center;width:44px;height:44px;padding:0;border-radius:999px;box-sizing:border-box;transition:background-color .2s}
+ .jm-nav .hfe-nav-menu__toggle:hover .hfe-nav-menu-icon,.jm-nav .hfe-active-menu .hfe-nav-menu-icon{background:#EBE7DB}
+ .jm-nav .hfe-nav-menu-icon svg{fill:none!important}
+ .jm-nav nav.hfe-nav-menu__layout-horizontal{z-index:50;box-shadow:0 18px 30px rgba(18,50,63,.12);border-top:1px solid #DED8C8}
+ .jm-nav nav .hfe-nav-menu{max-width:1240px;margin:0 auto!important}
+ .jm-nav nav a.hfe-menu-item{border-radius:0}
 }
 
 /* Hero */
