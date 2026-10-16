@@ -527,7 +527,11 @@ def hero():
     ], gap_=12, pad=dims(24, 24, 64, 24), justify="center", align="center", cls="jm-hero-msg",
         grow=1, background_background="classic", background_color="rgba(18,50,63,0.32)")
     return container("hero", [msg], tag="section", cls="jm-hero", align="stretch",
-                     min_height=px("clamp(300px, 34vw, 500px)"),
+                     # Tall enough to let the ocean video breathe: most of the first screen on desktop,
+                     # a little less on tablet and phones so the intro still peeks in below.
+                     min_height=px("clamp(560px, calc(100vh - 120px), 860px)"),
+                     min_height_tablet=px("clamp(480px, 58vh, 720px)"),
+                     min_height_mobile=px("clamp(440px, 62vh, 580px)"),
                      background_background="video", background_video_link=HERO_VIDEO,
                      background_video_fallback=media("hero_poster"), background_play_on_mobile="yes",
                      background_color=TEAL, overflow="hidden")
