@@ -418,33 +418,38 @@ def build_header():
         "padding_horizontal_menu_item": px(13), "padding_vertical_menu_item": px(0),
         "menu_space_between": px(0), "menu_row_space": px(0),
         **typo("menu_typography", SANS, 15, 500, 1),
-        "color_menu_item": INK, "bg_color_menu_item": "",
-        "color_menu_item_hover": TEAL_DK, "bg_color_menu_item_hover": STONE,
-        "color_menu_item_active": "#ffffff", "bg_color_menu_item_active": TEAL,
-        # Tablet and mobile (1024px and below): hamburger toggle with a full-width dropdown.
+        "color_menu_item": SAND, "bg_color_menu_item": "",
+        "color_menu_item_hover": "#ffffff", "bg_color_menu_item_hover": "rgba(255,255,255,0.12)",
+        "color_menu_item_active": "#ffffff", "bg_color_menu_item_active": "rgba(255,255,255,0.18)",
+        # Tablet and mobile (1024px and below): hamburger toggle; the menu opens as a panel under the pill.
         "dropdown": "tablet", "resp_align": "right", "full_width_dropdown": "yes",
         "dropdown_icon": svg_icon("i_menu"), "dropdown_close_icon": svg_icon("i_close"),
-        "toggle_color": INK, "toggle_hover_color": TEAL, "toggle_size": px(28),
-        "color_dropdown_item": INK, "background_color_dropdown_item": SAND,
-        "color_dropdown_item_hover": TEAL_DK, "background_color_dropdown_item_hover": STONE,
-        "color_dropdown_item_active": "#ffffff", "background_color_dropdown_item_active": TEAL,
+        "toggle_color": SAND, "toggle_hover_color": OCHRE, "toggle_size": px(28),
+        "color_dropdown_item": SAND, "background_color_dropdown_item": INK,
+        "color_dropdown_item_hover": "#ffffff", "background_color_dropdown_item_hover": TEAL,
+        "color_dropdown_item_active": OCHRE, "background_color_dropdown_item_active": INK,
         **typo("dropdown_typography", SANS, 17, 500, 1.2),
         "padding_horizontal_dropdown_item": px(24), "padding_vertical_dropdown_item": px(16),
         "distance_from_menu": px(0),
-        "dropdown_divider_border": "solid", "divider_border_color": "#DED8C8", "dropdown_divider_width": px(1),
+        "dropdown_divider_border": "solid", "divider_border_color": "rgba(255,255,255,0.1)",
+        "dropdown_divider_width": px(1),
         "_css_classes": "jm-nav",
         "_flex_size": "none",
     })
 
+    # Floating header: a rounded glass pill over the hero (position and blur are in jm-site.css).
     main = container("hdr-main", [
-        image("hdr-logo", "logo_dark", width=119, height=78, fit="contain", url=URL["home"],
-              _flex_size="none"),
+        image("hdr-logo", "logo_light", width=92, height=60, fit="contain", url=URL["home"],
+              _flex_size="none", width_mobile=px(76), height_mobile=px(50)),
         nav,
-        button("hdr-cta", "Request a chat", URL["contact"], "primary",
+        button("hdr-cta", "Request a chat", URL["contact"], "ochre",
                hide_tablet="hidden-tablet", hide_mobile="hidden-mobile"),
-    ], boxed=True, row=True, wrap=True, justify="space-between", align="center", gap_=gap(12, 20),
-        pad=dims(12, 24), cls="jm-header-main", background_background="classic", background_color=SAND,
-        border_border="solid", border_width=dims(0, 0, 1, 0), border_color="#DED8C8")
+    ], row=True, justify="space-between", align="center", gap_=gap(12, 20),
+        pad=dims(10, 10, 10, 28), padding_mobile=dims(8, 8, 8, 18), cls="jm-header-main",
+        flex_wrap="nowrap", flex_wrap_mobile="nowrap",
+        background_background="classic", background_color="rgba(18,50,63,0.72)",
+        border_border="solid", border_width=dims(1), border_color="rgba(255,255,255,0.14)",
+        border_radius=dims(999))
 
     return [topbar, main]
 
