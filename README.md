@@ -36,4 +36,4 @@ Once the content team starts editing in Elementor, the editor is the source of t
 - Font sizes follow the design: fixed px values, or `clamp()` where the design uses it, entered as Elementor custom units.
 - Two-column sections use flex-wrap with the design's flex-basis and grow values, so they stack where the design stacks.
 - Card grids use `repeat(auto-fit, minmax(...))` as a custom grid-columns value.
-- Header: the crisis bar sits at the top of the page; the main header is a rounded dark-teal glass pill floating over the hero, and it scrolls away with the page (not sticky). At 1024px and below the menu becomes a hamburger with a rounded dropdown panel.
+- Header: the crisis bar sits at the top of the page; the crisis bar is teal and the main header is a rounded mist-blue pill (colour logo, gold "Request a chat") floating over the hero, and it scrolls away with the page (not sticky). At 1024px and below the menu becomes a hamburger with a rounded dropdown panel.

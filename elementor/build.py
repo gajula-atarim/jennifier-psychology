@@ -40,6 +40,7 @@ HERO_VIDEO = UPLOADS + "jm-hero-ocean.mp4"
 
 # Palette
 INK, TEAL, TEAL_DK, SAND, STONE, OCHRE = "#12323F", "#1D5067", "#0d4c5c", "#F7F5EF", "#EBE7DB", "#DDAA33"
+MIST_PILL = "#E8F0F3"  # header pill and its dropdown
 BODY, BODY_DK, MUTED, MIST, MIST_LT = "#3E5A66", "#22414D", "#C9D6DC", "#A2C3D3", "#DCE8EE"
 SERIF, SANS, SCRIPT = "Cormorant Garamond", "Figtree", "Great Vibes"
 
@@ -413,7 +414,7 @@ def build_header():
                   icon_align_tablet="center", icon_typography_font_size_mobile=px(13),
                   space_between_mobile=px(16), _element_width_mobile="inherit"),
     ], boxed=True, row=True, wrap=True, justify="space-between", align="center", gap_=gap(6, 24),
-        pad=dims(10, 24), cls="jm-topbar", background_background="classic", background_color=INK,
+        pad=dims(10, 24), cls="jm-topbar", background_background="classic", background_color=TEAL,
         flex_justify_content_tablet="center", flex_gap_mobile=gap(6, 24))
 
     nav = widget("hdr-nav", "navigation-menu", {
@@ -421,37 +422,38 @@ def build_header():
         "padding_horizontal_menu_item": px(13), "padding_vertical_menu_item": px(0),
         "menu_space_between": px(0), "menu_row_space": px(0),
         **typo("menu_typography", SANS, 15, 500, 1),
-        "color_menu_item": SAND, "bg_color_menu_item": "",
-        "color_menu_item_hover": "#ffffff", "bg_color_menu_item_hover": "rgba(255,255,255,0.12)",
-        "color_menu_item_active": "#ffffff", "bg_color_menu_item_active": "rgba(255,255,255,0.18)",
+        "color_menu_item": INK, "bg_color_menu_item": "",
+        "color_menu_item_hover": TEAL_DK, "bg_color_menu_item_hover": "#D5E4EA",
+        "color_menu_item_active": "#ffffff", "bg_color_menu_item_active": TEAL,
         # Tablet and mobile (1024px and below): hamburger toggle; the menu opens as a panel under the pill.
         "dropdown": "tablet", "resp_align": "right", "full_width_dropdown": "yes",
         "dropdown_icon": svg_icon("i_menu"), "dropdown_close_icon": svg_icon("i_close"),
-        "toggle_color": SAND, "toggle_hover_color": OCHRE, "toggle_size": px(28),
-        "color_dropdown_item": SAND, "background_color_dropdown_item": INK,
-        "color_dropdown_item_hover": "#ffffff", "background_color_dropdown_item_hover": TEAL,
-        "color_dropdown_item_active": OCHRE, "background_color_dropdown_item_active": INK,
+        "toggle_color": INK, "toggle_hover_color": TEAL, "toggle_size": px(28),
+        "color_dropdown_item": INK, "background_color_dropdown_item": MIST_PILL,
+        "color_dropdown_item_hover": TEAL_DK, "background_color_dropdown_item_hover": "#D5E4EA",
+        "color_dropdown_item_active": "#ffffff", "background_color_dropdown_item_active": TEAL,
         **typo("dropdown_typography", SANS, 17, 500, 1.2),
         "padding_horizontal_dropdown_item": px(24), "padding_vertical_dropdown_item": px(16),
         "distance_from_menu": px(0),
-        "dropdown_divider_border": "solid", "divider_border_color": "rgba(255,255,255,0.1)",
+        "dropdown_divider_border": "solid", "divider_border_color": "rgba(29,80,103,0.12)",
         "dropdown_divider_width": px(1),
         "_css_classes": "jm-nav",
         "_flex_size": "none",
     })
 
-    # Floating header: a rounded glass pill over the hero (position and blur are in jm-site.css).
+    # Floating header: a rounded mist-blue pill over the hero carrying the colour logo
+    # (position, blur and shadow are in jm-site.css).
     main = container("hdr-main", [
-        image("hdr-logo", "logo_light", width=92, height=60, fit="contain", url=URL["home"],
-              _flex_size="none", width_mobile=px(76), height_mobile=px(50)),
+        image("hdr-logo", "logo_dark", width=122, height=80, fit="contain", url=URL["home"],
+              _flex_size="none", width_mobile=px(96), height_mobile=px(63)),
         nav,
         button("hdr-cta", "Request a chat", URL["contact"], "ochre",
                hide_tablet="hidden-tablet", hide_mobile="hidden-mobile"),
     ], row=True, justify="space-between", align="center", gap_=gap(12, 20),
-        pad=dims(10, 10, 10, 28), padding_mobile=dims(8, 8, 8, 18), cls="jm-header-main",
+        pad=dims(6, 10, 6, 28), padding_mobile=dims(6, 8, 6, 18), cls="jm-header-main",
         flex_wrap="nowrap", flex_wrap_mobile="nowrap",
-        background_background="classic", background_color="rgba(18,50,63,0.72)",
-        border_border="solid", border_width=dims(1), border_color="rgba(255,255,255,0.14)",
+        background_background="classic", background_color="rgba(232,240,243,0.97)",
+        border_border="solid", border_width=dims(1), border_color="rgba(29,80,103,0.10)",
         border_radius=dims(999))
 
     return [topbar, main]

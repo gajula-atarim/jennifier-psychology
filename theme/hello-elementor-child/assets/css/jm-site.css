@@ -29,9 +29,9 @@ body .elementor-widget.elementor-widget-icon-list .elementor-icon-list-icon+.ele
 
 /* Header */
 /* Floating header: the crisis bar sits at the top of the page and the main header is a rounded
-   glass pill floating over the hero. It scrolls away with the page (not sticky). */
+   mist-blue pill with the colour logo, floating over the hero. It scrolls away with the page (not sticky). */
 #masthead{position:relative;z-index:100}
-#masthead .jm-header-main{position:absolute!important;top:calc(100% + 16px);left:16px;right:16px;width:auto!important;max-width:1340px;margin:0 auto!important;z-index:100;-webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);box-shadow:0 12px 32px rgba(10,30,40,.18)}
+#masthead .jm-header-main{position:absolute!important;top:calc(100% + 16px);left:16px;right:16px;width:auto!important;max-width:1340px;margin:0 auto!important;z-index:100;-webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);box-shadow:0 14px 34px rgba(10,30,40,.22)}
 @media (max-width:767px){#masthead .jm-header-main{left:12px;right:12px;top:calc(100% + 12px)}}
 /* Keep the hero message clear of the pill. */
 .jm-hero .jm-hero-msg{padding-top:calc(24px + clamp(64px,7vw,96px))!important}
@@ -46,12 +46,12 @@ body .elementor-widget.elementor-widget-icon-list .elementor-icon-list-icon+.ele
 @media (max-width:1024px){
  .jm-nav .hfe-nav-menu__toggle{cursor:pointer}
  .jm-nav .hfe-nav-menu-icon{display:flex;align-items:center;justify-content:center;width:44px;height:44px;padding:0;border-radius:999px;box-sizing:border-box;transition:background-color .2s}
- .jm-nav .hfe-nav-menu__toggle:hover .hfe-nav-menu-icon,.jm-nav .hfe-active-menu .hfe-nav-menu-icon{background:rgba(255,255,255,.12)}
+ .jm-nav .hfe-nav-menu__toggle:hover .hfe-nav-menu-icon,.jm-nav .hfe-active-menu .hfe-nav-menu-icon{background:rgba(29,80,103,.1)}
  .jm-nav .hfe-nav-menu-icon svg{fill:none!important}
  /* Keep the closed menu out of the header row (so the toggle sits beside the logo) and open it
     as a rounded panel just under the pill. */
  .jm-nav,.jm-nav .hfe-nav-menu,.jm-nav .hfe-layout-horizontal{position:static!important}
- .jm-nav nav.hfe-nav-menu__layout-horizontal{position:absolute!important;top:calc(100% + 8px)!important;left:0!important;right:0!important;width:auto!important;margin-top:0!important;z-index:50;border-radius:24px;overflow:hidden;background:#12323F;border:1px solid rgba(255,255,255,.14);box-shadow:0 18px 36px rgba(10,30,40,.3)}
+ .jm-nav nav.hfe-nav-menu__layout-horizontal{position:absolute!important;top:calc(100% + 8px)!important;left:0!important;right:0!important;width:auto!important;margin-top:0!important;z-index:50;border-radius:24px;overflow:hidden;background:#E8F0F3;border:1px solid rgba(29,80,103,.12);box-shadow:0 18px 36px rgba(10,30,40,.22)}
  .jm-nav nav .hfe-nav-menu{margin:0!important}
  .jm-nav nav .hfe-nav-menu>li:last-child>a.hfe-menu-item{border-bottom:0!important}
  .jm-nav nav a.hfe-menu-item{border-radius:0}
