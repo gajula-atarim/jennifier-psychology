@@ -21,6 +21,8 @@ MEDIA = {
     "art_ocean": (12, "jm-artwork-ocean.jpg"),
     "art_wave": (13, "jm-artwork-wave.jpg"),
     "portrait": (38, "jennifer-malecki-portrait.avif"),
+    # The same photo set in a 4:5 canvas (wall extended at the top and sides) to fit the Welcome arch.
+    "portrait_framed": (0, "jennifer-malecki-portrait-framed.jpg"),
     "i_clock": (23, "jm-icon-clock.svg"),
     "i_heart": (24, "jm-icon-heart.svg"),
     "i_palette": (25, "jm-icon-palette.svg"),
@@ -592,7 +594,7 @@ def welcome():
     ], gap_=22, width=520, grow=999)
     right = container("wel-right", [
         container("wel-portrait", [
-            image("wel-portrait-img", "portrait", cls="jm-portrait-img"),
+            image("wel-portrait-img", "portrait_framed", cls="jm-portrait-img"),
         ], cls="jm-portrait", min_height=px(0),
                   border_radius=dims(200, 200, 28, 28), **gradient("#A2C3D3", TEAL, 170)),
         text("wel-caption", "<p><strong>Dr Jennifer Malecki, PhD</strong><br>"
