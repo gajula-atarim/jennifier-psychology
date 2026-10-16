@@ -7,7 +7,7 @@ Site: https://jennifermalecki.wsdfy.com (Atarim workspace: VentraIP)
 - Theme: Hello Elementor, with the child theme in `theme/hello-elementor-child`
   - `functions.php` loads every file in `assets/css` and `assets/js`, and lets admins upload SVG icons
   - `assets/css/jm-site.css` is the design layer Elementor controls can't express (animated waves, chips, hover motion, scroll reveal, breathing exercise)
-  - `assets/js/jm-site.js` runs the breathing toggle and keeps the hero video playing
+  - `assets/js/jm-site.js` runs the breathing toggle, the floating header and the footprint walk, and keeps the hero video playing
 - Elementor 4.3 (free): containers plus core widgets, so every section is editable in the Elementor editor
 - Ultimate Addons for Elementor (UAE): Site Header (post 33) and Site Footer (post 34), shown site-wide
 - Home page: post 14, set as the static front page
@@ -36,4 +36,4 @@ Once the content team starts editing in Elementor, the editor is the source of t
 - Font sizes follow the design: fixed px values, or `clamp()` where the design uses it, entered as Elementor custom units.
 - Two-column sections use flex-wrap with the design's flex-basis and grow values, so they stack where the design stacks.
 - Card grids use `repeat(auto-fit, minmax(...))` as a custom grid-columns value.
-- Header: below 1024px the "Request a chat" button is hidden and the menu moves to its own row, scrolling sideways.
+- Header: the crisis bar scrolls away and the main header floats (sticky, frosted, shadowed) for the rest of the page; `jm-site.js` measures the bar's height. At 1024px and below the menu becomes a hamburger.
