@@ -150,6 +150,13 @@ body .elementor-widget.elementor-widget-icon-list .elementor-icon-list-icon+.ele
 @keyframes jmSwapA{0%,40%{opacity:1;transform:scale(1)}50%,90%{opacity:0;transform:scale(1.04)}100%{opacity:1;transform:scale(1)}}
 @keyframes jmSwapB{0%,40%{opacity:0;transform:scale(1.04)}50%,90%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.04)}}
 .jm-art>.jm-art-caption{position:absolute!important;left:20px;bottom:20px;z-index:2;width:auto!important;max-width:calc(100% - 40px)}
+/* Gallery collage: the ocean painting large at the top left, the wave painting smaller at the bottom
+   right in a sand-coloured mat, overlapping it. */
+.jm-collage{position:relative;width:100%;aspect-ratio:450/690}
+.jm-collage>.jm-art{position:absolute!important;margin:0!important}
+.jm-collage>.jm-art-main{left:0;top:0;width:76%!important;aspect-ratio:4/5;box-shadow:0 24px 48px rgba(18,50,63,.18)}
+.jm-collage>.jm-art-inset{right:0;bottom:0;width:60%!important;aspect-ratio:10/13;z-index:2;border:8px solid #F7F5EF;box-shadow:0 24px 48px rgba(18,50,63,.22)}
+.jm-collage>.jm-art-inset>.jm-art-caption{left:12px;bottom:12px;max-width:calc(100% - 24px)}
 .jm-art-caption .elementor-heading-title{display:inline-block;background:rgba(18,50,63,.82);padding:8px 14px;border-radius:999px}
 .jm-care-list{position:relative}
 /* Tiny footprints walk between the stones (stops are 80px, so one left-right pair lands in each gap). */
@@ -222,7 +229,7 @@ body .elementor-widget.elementor-widget-icon-list .elementor-icon-list-icon+.ele
    instead of stretching across the whole column. */
 @media (max-width:1024px){
  .jm-portrait,.jm-portrait~.jm-caption{width:100%!important;max-width:440px!important;margin-inline:auto!important}
- .jm-art{width:100%!important;max-width:520px!important;margin-inline:auto!important}
+ .jm-collage{max-width:520px;margin-inline:auto}
 }
 
 /* Motion preferences */

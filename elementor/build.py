@@ -664,14 +664,18 @@ def services():
 
 
 def approach():
-    art = container("app-art", [
-        image("app-art-a", "art_ocean", cls="jm-swap-a"),
-        image("app-art-b", "art_wave", cls="jm-swap-b"),
+    # Gallery collage: the two paintings overlap (positions are in jm-site.css, as percentages, so the
+    # pair scales as one at every width).
+    art_frame = dict(border_radius=dims(28), overflow="hidden", background_background="classic",
+                     background_color=TEAL)
+    main_art = container("app-art", [image("app-art-a", "art_ocean")], cls="jm-art jm-art-main", **art_frame)
+    inset_art = container("app-art-inset", [
+        image("app-art-b", "art_wave"),
         heading("app-art-caption", "Original artwork © Jennifer Malecki", "p", SANS, 13, SAND, lh=1.2,
                 cls="jm-art-caption"),
-    ], cls="jm-art", border_radius=dims(28), overflow="hidden", background_background="classic",
-        background_color=TEAL)
-    left = container("app-left", [art], width=380, grow=1)
+    ], cls="jm-art jm-art-inset", **art_frame)
+    collage = container("app-collage", [main_art, inset_art], cls="jm-collage")
+    left = container("app-left", [collage], width=450, grow=1)
 
     stops = [("01", "Schema Therapy", "Patterns from early life"),
              ("02", "Trauma-Focused CBT", "Thoughts, feelings &amp; trauma"),
@@ -707,7 +711,7 @@ def approach():
             textlink("app-mapping-link", "About body mapping", URL["services"], arrow=True),
         ], gap_=12, pad=dims(32), margin=dims(8, 0, 0, 0), border_radius=dims(24),
             background_background="classic", background_color=STONE),
-    ], gap_=22, width=520, grow=999)
+    ], gap_=22, width=460, grow=999)
     return section("approach", [left, right], pad=dims(104, 24), row=True, wrap=True, gap_=64, align="center",
                    cls="jm-tide")
 
