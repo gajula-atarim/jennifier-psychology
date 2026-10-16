@@ -116,10 +116,11 @@ body .elementor-widget.elementor-widget-icon-list .elementor-icon-list-icon+.ele
 /* Welcome portrait placeholder */
 .jm-portrait{position:relative;overflow:hidden;aspect-ratio:4/5}
 .jm-portrait::after{content:"";position:absolute;left:0;right:0;bottom:0;height:28%;background:PORTRAIT_LINES center/100% 100% no-repeat;pointer-events:none}
-/* With a photo: the arch is taller (3:5) and shows the whole photo, anchored to the bottom. The space
-   above her head is the photo's own wall, stretched upwards from its top rows, so it reads as one image. */
-.jm-portrait:has(.jm-portrait-img img){aspect-ratio:3/5;background:#D2CAC5 url("https://jennifermalecki.wsdfy.com/wp-content/uploads/2026/10/jennifer-malecki-portrait.avif") center top/100% 3000% no-repeat!important}
-.jm-portrait>.jm-portrait-img{position:absolute!important;left:0;right:0;bottom:0;margin:0}
+/* With a photo: the photo spans the arch's width and starts 8% down, leaving room above her head
+   (filled with the photo's own wall, stretched up from its top rows, so it reads as one image);
+   the bottom of the shirt is cropped by the frame. */
+.jm-portrait:has(.jm-portrait-img img){background:#D2CAC5 url("https://jennifermalecki.wsdfy.com/wp-content/uploads/2026/10/jennifer-malecki-portrait.avif") center top/100% 3000% no-repeat!important}
+.jm-portrait>.jm-portrait-img{position:absolute!important;left:0;right:0;top:8%;margin:0}
 .jm-portrait-img img{width:100%;height:auto;max-width:none;display:block}
 .jm-portrait:has(.jm-portrait-img img)::after{display:none}
 

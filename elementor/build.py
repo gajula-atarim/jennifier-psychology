@@ -597,7 +597,7 @@ def welcome():
                   border_radius=dims(200, 200, 28, 28), **gradient("#A2C3D3", TEAL, 170)),
         text("wel-caption", "<p><strong>Dr Jennifer Malecki, PhD</strong><br>"
                             "Psychologist, PhD, PsyBA General | AAPi</p>", 15, BODY, lh=1.5, cls="jm-caption"),
-    ], gap_=14, width=360, grow=1)
+    ], gap_=14, width=400, grow=1)
     return section("welcome", [left, right], pad=dims(72, 24, 96, 24), row=True, wrap=True, gap_=56,
                    align="center", cls="jm-tide")
 
