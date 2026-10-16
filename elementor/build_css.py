@@ -78,7 +78,7 @@ body .elementor-widget.elementor-widget-icon-list .elementor-icon-list-icon+.ele
 /* Intro */
 .jm-rise{animation:jmRise 1.1s cubic-bezier(.2,.7,.2,1) both}
 @keyframes jmRise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
-.jm-pill .elementor-heading-title{display:inline-flex;align-items:center;gap:10px;background:#F4E6BF;border-radius:999px;padding:6px 14px}
+.jm-pill .elementor-heading-title{display:inline-flex;align-items:center;gap:10px;background:#F4E6BF;border-radius:999px;padding:6px 14px;text-wrap:balance}
 .jm-pill .elementor-heading-title::before{content:"";display:block;flex:none;width:8px;height:8px;border-radius:50%;background:#C08A12}
 .jm-pill-ochre .elementor-heading-title{background:#DDAA33;padding:8px 16px}
 .jm-pill-ochre .elementor-heading-title::before{width:9px;height:9px;background:#12323F}
@@ -226,6 +226,13 @@ body .elementor-widget.elementor-widget-icon-list .elementor-icon-list-icon+.ele
 
 /* Footer */
 .jm-footer a{color:#EBE7DB}.jm-footer a:hover{color:#DDAA33}
+
+/* Stacked layouts (tablet/phone): keep the portrait and the artwork at a comfortable size, centred,
+   instead of stretching across the whole column. */
+@media (max-width:1024px){
+ .jm-portrait,.jm-portrait~.jm-caption{width:100%!important;max-width:440px!important;margin-inline:auto!important}
+ .jm-art{width:100%!important;max-width:520px!important;margin-inline:auto!important}
+}
 
 /* Motion preferences */
 @media (prefers-reduced-motion:reduce){
