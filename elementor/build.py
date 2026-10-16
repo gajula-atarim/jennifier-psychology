@@ -233,7 +233,7 @@ def h2(name, label, size="clamp(36px, 4vw, 54px)", lh=1.08, color=INK, tag="h2",
 
 BTN_STYLES = {
     #            text   bg      border   hover-text hover-bg  hover-border
-    "primary": ("#ffffff", TEAL, None, "#ffffff", TEAL_DK, None),
+    "primary": ("#ffffff", TEAL, None, "#ffffff", INK, None),
     "ghost": (TEAL, "", TEAL, "#ffffff", TEAL, TEAL),
     "ochre": (INK, OCHRE, None, INK, "#E8BE57", None),
     "light": (SAND, "", STONE, INK, STONE, STONE),
@@ -762,7 +762,7 @@ def referrers():
     actions = container("gp-actions", [
         button("gp-info", "Referrer information", URL["referrers"], "ochre"),
         button("gp-call", f"Call {PHONE}", PHONE_URL, "light"),
-    ], row=True, wrap=True, gap_=12)
+    ], row=True, wrap=True, gap_=12, justify="center")
     return section("referrers", [head, cards, actions], pad=dims(96, 24), bg=TEAL, gap_=44, cls="jm-gp jm-tide")
 
 
