@@ -95,11 +95,13 @@ body .elementor-widget.elementor-widget-icon-list .elementor-icon-list-icon+.ele
 @supports (animation-timeline:view()){
  .jm-tide{animation:jmTide ease-out both;animation-timeline:view();animation-range:entry 0% entry 30%}
  .jm-chips-dark .elementor-icon-list-item{animation:jmSink linear both;animation-timeline:view()}
- .jm-chips-dark .elementor-icon-list-item:nth-child(1){animation-range:cover 15% cover 27%}
- .jm-chips-dark .elementor-icon-list-item:nth-child(2){animation-range:cover 21% cover 33%}
- .jm-chips-dark .elementor-icon-list-item:nth-child(3){animation-range:cover 27% cover 39%}
- .jm-chips-dark .elementor-icon-list-item:nth-child(4){animation-range:cover 33% cover 45%}
- .jm-chips-dark .elementor-icon-list-item:nth-child(5){animation-range:cover 39% cover 51%}
+ /* Each chip sinks in soon after it enters the viewport (finished ~18% into its trip), staggered
+    so they arrive one after another; all five are in place well before the card is centred. */
+ .jm-chips-dark .elementor-icon-list-item:nth-child(1){animation-range:cover 2% cover 10%}
+ .jm-chips-dark .elementor-icon-list-item:nth-child(2){animation-range:cover 4% cover 12%}
+ .jm-chips-dark .elementor-icon-list-item:nth-child(3){animation-range:cover 6% cover 14%}
+ .jm-chips-dark .elementor-icon-list-item:nth-child(4){animation-range:cover 8% cover 16%}
+ .jm-chips-dark .elementor-icon-list-item:nth-child(5){animation-range:cover 10% cover 18%}
 }
 
 /* Welcome portrait placeholder */
