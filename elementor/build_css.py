@@ -70,8 +70,9 @@ body .elementor-widget.elementor-widget-icon-list .elementor-icon-list-icon+.ele
 .jm-hero{position:relative;overflow:hidden}
 .jm-hero .elementor-background-video-hosted{object-position:center 40%}
 .jm-hero::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:clamp(36px,5vw,72px);background:HERO_EDGE center bottom/100% 100% no-repeat;z-index:3;pointer-events:none}
-.jm-hero-msg{position:relative;z-index:2;animation:jmHeroMsg 6s ease forwards}
-@keyframes jmHeroMsg{0%{opacity:0;transform:translateY(12px)}12%{opacity:1;transform:none}84%{opacity:1}100%{opacity:0;visibility:hidden}}
+/* The hero message fades up on load and then stays. */
+.jm-hero-msg{position:relative;z-index:2;animation:jmHeroMsg .9s ease both}
+@keyframes jmHeroMsg{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 .jm-lined .elementor-heading-title{display:flex;align-items:center;justify-content:center;gap:14px}
 .jm-lined .elementor-heading-title::before,.jm-lined .elementor-heading-title::after{content:"";display:block;flex:none;width:36px;height:1px;background:#DDAA33}
 
