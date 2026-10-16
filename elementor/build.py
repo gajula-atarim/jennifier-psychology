@@ -456,8 +456,8 @@ def build_footer():
     cols = grid("ftr-grid", [
         container("ftr-col-brand", [
             image("ftr-logo", "logo_light", width=170),
-            text("ftr-entity", "<p>J. Malecki &amp; Associates Psychological Services<br>"
-                               "J. Malecki &amp; Associates Pty Ltd</p>", 14, MUTED, lh=1.6),
+            text("ftr-entity", "<p>Jennifer Malecki – Psychologist<br>"
+                               "Jennifer Malecki &amp; Associates Pty Ltd</p>", 14, MUTED, lh=1.6),
         ], gap_=16),
         container("ftr-col-visit", [
             h("ftr-visit-h", "Visit"),
@@ -490,7 +490,7 @@ def build_footer():
                                "or Lifeline on 13 11 14.</p>", 13, MUTED, lh=1.6),
             text("ftr-ack", "<p>[Acknowledgement of Country — wording to be confirmed by Jennifer]</p>", 13, MUTED, lh=1.6),
             container("ftr-legal", [
-                text("ftr-copy", "<p>© 2026 J. Malecki &amp; Associates Pty Ltd · ABN [00 000 000 000] · Artwork and "
+                text("ftr-copy", "<p>© 2026 Jennifer Malecki &amp; Associates Pty Ltd · ABN [00 000 000 000] · Artwork and "
                                  "images © Jennifer Malecki, not for reproduction</p>", 13, MUTED, lh=1.6,
                      _flex_size="shrink"),
                 icon_list("ftr-policies", [("Privacy policy", "#"), ("Website disclaimer", "#")], inline=True,
@@ -575,6 +575,8 @@ def welcome():
                        "from all walks of life.</p>", 17, BODY, lh=1.75),
         text("wel-p2", "<p>I also have published research, read globally, on how early life experiences and trauma "
                        "affect our experience of the body.</p>", 17, BODY, lh=1.75),
+        text("wel-p4", "<p>I can help you make sense of the origins of your problems, and build the skills and make "
+                       "the changes needed for a happier and more meaningful life.</p>", 17, BODY, lh=1.75),
         text("wel-p3", "<p>In our very first session, we will work together to build a safe, collaborative plan to "
                        "help you heal and reclaim your life.</p>", 17, BODY, lh=1.75),
     ], gap_=22, width=520, grow=999)
@@ -582,7 +584,7 @@ def welcome():
         container("wel-portrait", [], cls="jm-portrait", min_height=px(0),
                   border_radius=dims(200, 200, 28, 28), **gradient("#A2C3D3", TEAL, 170)),
         text("wel-caption", "<p><strong>Dr Jennifer Malecki, PhD</strong><br>"
-                            "Principal Psychologist | AAPi (General Psychologist)</p>", 15, BODY, lh=1.5, cls="jm-caption"),
+                            "Psychologist, PhD, PsyBA General | AAPi</p>", 15, BODY, lh=1.5, cls="jm-caption"),
     ], gap_=14, width=360, grow=1)
     return section("welcome", [left, right], pad=dims(72, 24, 96, 24), row=True, wrap=True, gap_=56,
                    align="center", cls="jm-tide")
@@ -741,7 +743,7 @@ def referrers():
         ], **dark),
         container("gp-card-details", [
             heading("gp-details-h", "Practitioner details", "h3", SERIF, 26, "#ffffff", weight=600, lh=1.2, ls=-0.01),
-            text("gp-details-p", "<p>Dr Jennifer Malecki, PhD<br>Provider No. 1894363H<br>"
+            text("gp-details-p", "<p>Dr Jennifer Malecki, PhD<br>Psychologist, PsyBA General<br>Provider No. 1894363H<br>"
                                  "In person, Mooloolaba · Telehealth</p>", 16, MIST_LT, lh=1.8),
         ], **dark),
     ], 280, 20)
