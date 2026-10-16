@@ -398,14 +398,20 @@ BREATH_HTML = (
 def build_header():
     topbar = container("hdr-topbar", [
         text("hdr-crisis",
-             f'<p>In an emergency call <a href="tel:000"><strong>000</strong></a> · 24/7 crisis support: '
-             f'Lifeline <a href="tel:131114"><strong>13 11 14</strong></a></p>',
-             14, STONE, lh=1.4, _flex_size="shrink"),
+             f'<p>In an emergency call&nbsp;<a href="tel:000"><strong>000</strong></a> · 24/7 crisis support: '
+             f'Lifeline&nbsp;<a href="tel:131114"><strong>13&nbsp;11&nbsp;14</strong></a></p>',
+             14, STONE, lh=1.4, _flex_size="shrink",
+             # Tablet/mobile: when the bar wraps, centre each line; on phones the crisis line takes
+             # its own (two-line) row and the phone and email share one row underneath.
+             align_tablet="center", typography_font_size_mobile=px(13), _element_width_mobile="inherit"),
         icon_list("hdr-contact", [(PHONE, PHONE_URL, "i_phone"), (EMAIL, f"mailto:{EMAIL}", "i_mail")],
                   inline=True, size=14, color=STONE, hover=OCHRE, lh=1.4, space=22, icon_size=16,
-                  icon_color=STONE, _flex_size="shrink"),
+                  icon_color=STONE, _flex_size="shrink",
+                  icon_align_tablet="center", icon_typography_font_size_mobile=px(13),
+                  space_between_mobile=px(16), _element_width_mobile="inherit"),
     ], boxed=True, row=True, wrap=True, justify="space-between", align="center", gap_=gap(6, 24),
-        pad=dims(10, 24), cls="jm-topbar", background_background="classic", background_color=INK)
+        pad=dims(10, 24), cls="jm-topbar", background_background="classic", background_color=INK,
+        flex_justify_content_tablet="center", flex_gap_mobile=gap(6, 24))
 
     nav = widget("hdr-nav", "navigation-menu", {
         "menu": "main-menu", "layout": "horizontal", "dropdown": "none", "navmenu_align": "left",

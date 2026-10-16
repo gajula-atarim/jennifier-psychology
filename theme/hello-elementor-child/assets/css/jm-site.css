@@ -22,6 +22,8 @@ body .elementor-widget.elementor-widget-icon-list .elementor-icon-list-icon+.ele
 
 /* Header */
 .jm-topbar a{color:#EBE7DB}.jm-topbar a:hover{color:#DDAA33}
+/* When the crisis line wraps (tablet/phone), split it into two even lines. */
+.jm-topbar .elementor-widget-text-editor p{text-wrap:balance}
 @media (min-width:1025px){
  .jm-nav a.hfe-menu-item{border-radius:999px;min-height:44px;display:inline-flex!important;align-items:center;white-space:nowrap;box-sizing:border-box;transition:none}
  .jm-nav .hfe-nav-menu{gap:2px}
