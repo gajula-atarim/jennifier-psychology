@@ -32,7 +32,10 @@ body .elementor-widget.elementor-widget-icon-list .elementor-icon-list-icon+.ele
  .jm-nav .hfe-nav-menu-icon{display:flex;align-items:center;justify-content:center;width:44px;height:44px;padding:0;border-radius:999px;box-sizing:border-box;transition:background-color .2s}
  .jm-nav .hfe-nav-menu__toggle:hover .hfe-nav-menu-icon,.jm-nav .hfe-active-menu .hfe-nav-menu-icon{background:#EBE7DB}
  .jm-nav .hfe-nav-menu-icon svg{fill:none!important}
- .jm-nav nav.hfe-nav-menu__layout-horizontal{z-index:50;box-shadow:0 18px 30px rgba(18,50,63,.12);border-top:1px solid #DED8C8}
+ /* Keep the closed menu out of the header row (so the toggle sits beside the logo) and open it
+    full width from the header's bottom edge. */
+ .jm-nav,.jm-nav .hfe-nav-menu,.jm-nav .hfe-layout-horizontal{position:static!important}
+ .jm-nav nav.hfe-nav-menu__layout-horizontal{position:absolute!important;top:100%!important;left:0!important;right:0!important;width:auto!important;margin-top:0!important;z-index:50;box-shadow:0 18px 30px rgba(18,50,63,.12);border-top:1px solid #DED8C8}
  .jm-nav nav .hfe-nav-menu{max-width:1240px;margin:0 auto!important}
  .jm-nav nav a.hfe-menu-item{border-radius:0}
 }

@@ -424,7 +424,7 @@ def build_header():
         "color_dropdown_item_active": "#ffffff", "background_color_dropdown_item_active": TEAL,
         **typo("dropdown_typography", SANS, 17, 500, 1.2),
         "padding_horizontal_dropdown_item": px(24), "padding_vertical_dropdown_item": px(16),
-        "distance_from_menu": px(30),
+        "distance_from_menu": px(0),
         "dropdown_divider_border": "solid", "divider_border_color": "#DED8C8", "dropdown_divider_width": px(1),
         "_css_classes": "jm-nav",
         "_flex_size": "none",
