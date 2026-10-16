@@ -42,7 +42,7 @@ body.admin-bar.jm-floating #masthead .jm-header-main{top:48px}
 @media (max-width:600px){body.admin-bar.jm-floating #masthead .jm-header-main{top:16px}}
 @media (max-width:767px){#masthead .jm-header-main{left:12px;right:12px;top:calc(100% + 12px)}body.jm-floating #masthead .jm-header-main{top:12px}}
 /* Keep the hero message clear of the pill. */
-.jm-hero{padding-top:clamp(84px,8vw,112px)!important}
+.jm-hero .jm-hero-msg{padding-top:calc(24px + clamp(64px,7vw,96px))!important}
 .jm-topbar a{color:#EBE7DB}.jm-topbar a:hover{color:#DDAA33}
 /* When the crisis line wraps (tablet/phone), split it into two even lines. */
 .jm-topbar .elementor-widget-text-editor p{text-wrap:balance}
