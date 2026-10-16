@@ -673,7 +673,7 @@ def approach():
     main_art = container("app-art", [image("app-art-a", "art_ocean")], cls="jm-art jm-art-main", **art_frame)
     inset_art = container("app-art-inset", [
         image("app-art-b", "art_wave"),
-        heading("app-art-caption", "Original artwork © Jennifer Malecki", "p", SANS, 13, SAND, lh=1.2,
+        heading("app-art-caption", '<span class="jm-cap-long">Original artwork </span>© Jennifer Malecki', "p", SANS, 13, SAND, lh=1.2,
                 cls="jm-art-caption"),
     ], cls="jm-art jm-art-inset", **art_frame)
     collage = container("app-collage", [main_art, inset_art], cls="jm-collage")

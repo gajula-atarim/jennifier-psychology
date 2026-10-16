@@ -157,6 +157,8 @@ body .elementor-widget.elementor-widget-icon-list .elementor-icon-list-icon+.ele
 .jm-collage>.jm-art-main{left:0;top:0;width:76%!important;aspect-ratio:4/5;box-shadow:0 24px 48px rgba(18,50,63,.18)}
 .jm-collage>.jm-art-inset{right:0;bottom:0;width:60%!important;aspect-ratio:10/13;z-index:2;border:8px solid #F7F5EF;box-shadow:0 24px 48px rgba(18,50,63,.22)}
 .jm-collage>.jm-art-inset>.jm-art-caption{left:12px;bottom:12px;max-width:calc(100% - 24px)}
+/* Phones: the label shortens to "© Jennifer Malecki" so it stays on one line. */
+@media (max-width:767px){.jm-art-caption .jm-cap-long{display:none}}
 .jm-art-caption .elementor-heading-title{display:inline-block;background:rgba(18,50,63,.82);padding:8px 14px;border-radius:999px}
 .jm-care-list{position:relative}
 /* Tiny footprints walk between the stones (stops are 80px, so one left-right pair lands in each gap). */
