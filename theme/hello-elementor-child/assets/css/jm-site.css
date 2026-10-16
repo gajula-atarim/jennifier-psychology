@@ -107,10 +107,11 @@ body .elementor-widget.elementor-widget-icon-list .elementor-icon-list-icon+.ele
 /* Welcome portrait placeholder */
 .jm-portrait{position:relative;overflow:hidden;aspect-ratio:4/5}
 .jm-portrait::after{content:"";position:absolute;left:0;right:0;bottom:0;height:28%;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 120' preserveAspectRatio='none'%3E%3Cpath d='M0 40 C70 20 130 20 200 40 S330 60 400 40' fill='none' stroke='%23EBE7DB' stroke-opacity='0.35' stroke-width='2'/%3E%3Cpath d='M0 70 C70 50 130 50 200 70 S330 90 400 70' fill='none' stroke='%23EBE7DB' stroke-opacity='0.25' stroke-width='2'/%3E%3Cpath d='M0 100 C70 80 130 80 200 100 S330 120 400 100' fill='none' stroke='%23EBE7DB' stroke-opacity='0.18' stroke-width='2'/%3E%3C/svg%3E") center/100% 100% no-repeat;pointer-events:none}
-/* The photo fills the arch (cropped to keep her face in the upper part); the placeholder lines hide. */
-.jm-portrait>.jm-portrait-img{position:absolute!important;inset:0;margin:0}
-.jm-portrait-img>*,.jm-portrait-img a{display:block;height:100%}
-.jm-portrait-img img{width:100%;height:100%;max-width:none;object-fit:cover;object-position:50% 22%;display:block}
+/* With a photo: the arch is taller (3:5) and shows the whole photo, anchored to the bottom. The space
+   above her head is the photo's own wall, stretched upwards from its top rows, so it reads as one image. */
+.jm-portrait:has(.jm-portrait-img img){aspect-ratio:3/5;background:#D2CAC5 url("https://jennifermalecki.wsdfy.com/wp-content/uploads/2026/10/jennifer-malecki-portrait.avif") center top/100% 3000% no-repeat!important}
+.jm-portrait>.jm-portrait-img{position:absolute!important;left:0;right:0;bottom:0;margin:0}
+.jm-portrait-img img{width:100%;height:auto;max-width:none;display:block}
 .jm-portrait:has(.jm-portrait-img img)::after{display:none}
 
 /* Beneath the surface */
