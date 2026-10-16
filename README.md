@@ -36,4 +36,4 @@ Once the content team starts editing in Elementor, the editor is the source of t
 - Font sizes follow the design: fixed px values, or `clamp()` where the design uses it, entered as Elementor custom units.
 - Two-column sections use flex-wrap with the design's flex-basis and grow values, so they stack where the design stacks.
 - Card grids use `repeat(auto-fit, minmax(...))` as a custom grid-columns value.
-- Header: the crisis bar scrolls away and the main header floats (sticky, frosted, shadowed) for the rest of the page; `jm-site.js` measures the bar's height. At 1024px and below the menu becomes a hamburger.
+- Header: the crisis bar sits at the top of the page; the main header is a rounded dark-teal glass pill floating over the hero, and it stays 16px from the top of the window once the bar has scrolled away (`jm-site.js` adds `body.jm-floating`). At 1024px and below the menu becomes a hamburger with a rounded dropdown panel.
