@@ -443,7 +443,7 @@ def build_header():
         button("hdr-cta", "Request a chat", URL["contact"], "primary",
                hide_tablet="hidden-tablet", hide_mobile="hidden-mobile"),
     ], boxed=True, row=True, wrap=True, justify="space-between", align="center", gap_=gap(12, 20),
-        pad=dims(12, 24), background_background="classic", background_color=SAND,
+        pad=dims(12, 24), cls="jm-header-main", background_background="classic", background_color=SAND,
         border_border="solid", border_width=dims(0, 0, 1, 0), border_color="#DED8C8")
 
     return [topbar, main]

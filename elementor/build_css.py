@@ -30,6 +30,14 @@ body .elementor-widget.elementor-widget-icon-list .elementor-icon-list-icon svg{
 body .elementor-widget.elementor-widget-icon-list .elementor-icon-list-icon+.elementor-icon-list-text{padding-inline-start:0}
 
 /* Header */
+/* Floating header: the crisis bar scrolls away, the main header stays pinned at the top.
+   --jm-topbar-h is measured by jm-site.js (the bar wraps to different heights). */
+#masthead{position:sticky;top:calc(-1 * var(--jm-topbar-h, 0px));z-index:100}
+body.admin-bar #masthead{top:calc(32px - var(--jm-topbar-h, 0px))}
+@media (max-width:782px){body.admin-bar #masthead{top:calc(46px - var(--jm-topbar-h, 0px))}}
+@media (max-width:600px){body.admin-bar #masthead{top:calc(-1 * var(--jm-topbar-h, 0px))}}
+.jm-header-main{transition:box-shadow .3s ease,background-color .3s ease}
+body.jm-floating #masthead .jm-header-main{background-color:rgba(247,245,239,.92)!important;-webkit-backdrop-filter:blur(10px) saturate(140%);backdrop-filter:blur(10px) saturate(140%);box-shadow:0 10px 28px rgba(18,50,63,.12)}
 .jm-topbar a{color:#EBE7DB}.jm-topbar a:hover{color:#DDAA33}
 /* When the crisis line wraps (tablet/phone), split it into two even lines. */
 .jm-topbar .elementor-widget-text-editor p{text-wrap:balance}
