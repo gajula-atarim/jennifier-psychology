@@ -322,6 +322,7 @@ body.elementor-editor-active .jm-modal{display:flex!important;padding:24px 16px;
 .jm-inner-bar .jm-rounds a.jm-round:hover,.jm-inner-bar .jm-rounds a.jm-round:focus-visible{background:#fff;color:#12323F}
 .jm-page-hero.e-con{--padding-top:calc(clamp(20px,2.5vw,36px) + 92px)!important;--padding-block-start:calc(clamp(20px,2.5vw,36px) + 92px)!important;padding-top:calc(clamp(20px,2.5vw,36px) + 92px)!important;padding-block-start:calc(clamp(20px,2.5vw,36px) + 92px)!important}
 @media (max-width:767px){.jm-page-hero.e-con{--padding-top:92px!important;--padding-block-start:92px!important;padding-top:92px!important;padding-block-start:92px!important}}
+.jm-page-hero>.e-con-inner{padding-top:0!important;padding-block-start:0!important;margin-top:0!important}
 .jm-inner-logo img{width:auto!important;max-width:none}
 .jm-rounds{display:flex;align-items:center;gap:10px}
 .jm-round{width:48px;height:48px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;border:1.5px solid #1D5067;background:transparent;color:#1D5067;cursor:pointer;padding:0;text-decoration:none;flex:none;box-sizing:border-box;transition:background-color .25s,color .25s,transform .25s}
