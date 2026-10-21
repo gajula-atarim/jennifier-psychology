@@ -415,9 +415,10 @@ a.jm-contact-tile:hover,a.jm-call:hover,a.jm-contact-tile:focus-visible,a.jm-cal
 .jm-tile-value p.jm-email-v{word-break:normal;overflow-wrap:normal}
 @media (max-width:420px){.jm-tile-value p.jm-email-v{font-size:17px}}
 .jm-map iframe{border-radius:28px;border:1px solid #CFDCE3!important;display:block}
-/* Contact: the wide map carries its two buttons in the bottom-right corner (below it on phones). */
+/* Contact: the wide map carries its two buttons in the bottom-right corner, left of Google's
+   full-screen control (below the map on phones). */
 .jm-map-wrap{position:relative}
-@media (min-width:768px){.jm-map-wrap .jm-map-btns{position:absolute!important;right:24px;bottom:24px;width:auto!important;z-index:2}
+@media (min-width:768px){.jm-map-wrap .jm-map-btns{position:absolute!important;right:68px;bottom:22px;width:auto!important;z-index:2}
  .jm-map-wrap .jm-map-btns .elementor-button{box-shadow:0 8px 20px rgba(18,50,63,.18)}}
 a.jm-contact-tile-dark:hover,a.jm-contact-tile-dark:focus-visible{border-color:#0d4c5c!important;background-color:#0d4c5c!important;box-shadow:0 14px 30px rgba(18,50,63,.25)}
 .jm-sos-card{text-decoration:none!important;box-shadow:0 24px 60px rgba(0,0,0,.3);max-width:400px;transition:transform .25s,box-shadow .25s,background-color .25s}
