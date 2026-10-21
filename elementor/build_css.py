@@ -432,7 +432,8 @@ body.elementor-editor-active .jm-modal{display:flex!important;padding:24px 16px;
 @media (max-width:600px){.jm-areas .elementor-icon-list-items{columns:1}}
 .jm-areas .elementor-icon-list-item{break-inside:avoid;display:flex!important;align-items:center;gap:14px;min-height:64px;padding:12px 6px!important;margin:0!important;border-bottom:1px solid rgba(162,195,211,.3);border-radius:10px;transition:background-color .25s,padding-left .25s}
 .jm-areas .elementor-icon-list-icon{flex:none;width:30px;justify-content:center}
-.jm-areas .elementor-icon-list-icon svg{width:26px!important;height:26px!important;stroke-width:1.5}
+.jm-areas .elementor-icon-list-icon svg{width:26px!important;height:26px!important;color:#E8F0F3}
+.jm-areas .elementor-icon-list-icon svg,.jm-areas .elementor-icon-list-icon svg *{stroke:#E8F0F3!important}
 .jm-areas .elementor-icon-list-text{padding-left:0!important}
 .jm-areas .elementor-icon-list-item:hover{background:rgba(247,245,239,.08);padding-left:12px!important}
 .jm-areas .elementor-icon-list-item::after{display:none!important}
