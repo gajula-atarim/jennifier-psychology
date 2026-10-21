@@ -275,6 +275,9 @@ body.elementor-editor-active .jm-modal{display:flex!important;padding:24px 16px;
 .jm-round-light{border-color:#EBE7DB!important;color:#F7F5EF!important;background:transparent!important}
 .jm-round-light:hover,.jm-round-light:focus-visible{background:#EBE7DB!important;color:#12323F!important}
 
+/* Services therapy cards: keep the "Read more" buttons level along the bottom of the row. */
+.jm-ther-card>.elementor-widget:last-child,.jm-ther-card>.e-con-inner>.elementor-widget:last-child{margin-top:auto}
+
 /* Inner pages use the Home menu button and dropdown panel (the .jm-nav rules above). Here the
    button sits in the light bar beside the phone button, and the panel hangs from the bar. */
 .jm-inner-bar>.e-con-inner{position:relative}

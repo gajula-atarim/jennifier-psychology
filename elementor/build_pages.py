@@ -377,11 +377,13 @@ def services_page():
                                         "jm-ar-11 jm-arch-round")], width=340, grow=1, cls="jm-fig-col jm-fig-col-460"))
 
     cards = [wave_card(f"sv-card-{key}", [
-        heading(f"sv-num-{key}", num, "span", SERIF, 48, "#6A8CA3", weight=600, lh=1),
-        h3(f"sv-h-{key}", title),
-        para(f"sv-p-{key}", short, 16, GREY_BODY, 1.7),
+        heading(f"sv-num-{key}", num, "span", SERIF, 34, "#6A8CA3", weight=600, lh=1),
+        h3(f"sv-h-{key}", title, size=23, lh=1.2),
+        para(f"sv-p-{key}", short, 15, GREY_BODY, 1.6),
         more(f"sv-more-{key}", "Read more", f"#jm-pop-{key}"),
-    ], radius=24, pad=dims(32, 32, 116, 32), gap_=12) for key, num, title, short, _ in THERAPIES]
+    ], radius=20, pad=dims(24, 24, 72, 24), gap_=10, size="sm") for key, num, title, short, _ in THERAPIES]
+    for c in cards:
+        c["settings"]["css_classes"] += " jm-ther-card"
     therapies = section("sv-ther", [
         container("sv-ther-head", [
             eyebrow("sv-ther-eyebrow", "Therapies"),
@@ -390,7 +392,8 @@ def services_page():
                               "therapy. Body mapping is used to explore and express aspects of the self, enhancing "
                               "treatment outcomes and supporting healing.", 17, GREY_BODY, 1.75),
         ], gap_=14, width=700, grow=0),
-        grid("sv-ther-grid", cards, 380, 20, grid_columns_grid=px("repeat(2, minmax(0, 1fr))"),
+        grid("sv-ther-grid", cards, 240, 16, grid_columns_grid=px("repeat(4, minmax(0, 1fr))"),
+             grid_columns_grid_tablet=px("repeat(2, minmax(0, 1fr))"),
              grid_columns_grid_mobile={"unit": "fr", "size": 1, "sizes": []}),
     ], pad=dims("clamp(56px,7vw,96px)", 24), gap_=36, cls="jm-tide")
 
