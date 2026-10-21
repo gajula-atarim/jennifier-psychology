@@ -383,6 +383,15 @@ def section(name, children, *, pad, bg=None, cls="", boxed_width=1240, **kw):
 
 # ---------------------------------------------------------------- shared pieces
 
+def tablet_row(g, n):
+    """Show a grid's n cards in one row on tablet (jm-site.css tightens them); phones keep their layout."""
+    st = g["settings"]
+    st.setdefault("grid_columns_grid_mobile", st["grid_columns_grid"])
+    st["grid_columns_grid_tablet"] = px(f"repeat({n}, minmax(0, 1fr))")
+    st["css_classes"] = (st.get("css_classes", "") + " jm-tab-row").strip()
+    return g
+
+
 def wave_card(name, children, *, radius, pad, gap_, size="", hover=True):
     cls = "jm-wave-card" + (f" jm-wave-{size}" if size else "") + (" jm-card" if hover else "")
     return container(name, children, gap_=gap_, pad=pad, cls=cls,
@@ -692,7 +701,7 @@ def highlights():
         heading(f"hl-h-{i}", title, "h2", SERIF, 28, INK, weight=600, lh=1.15, ls=-0.01),
         text(f"hl-p-{i}", f"<p>{body}</p>", 16, BODY, lh=1.6),
     ], radius=22, pad=dims(32, 32, 104, 32), gap_=12, hover=False) for i, (ico, title, body) in enumerate(items)]
-    return section("highlights", [grid("hl-grid", cards, 300, 20)], pad=dims(56, 24, 24, 24))
+    return section("highlights", [tablet_row(grid("hl-grid", cards, 300, 20), 3)], pad=dims(56, 24, 24, 24))
 
 
 def welcome():
@@ -781,7 +790,7 @@ def services():
         heading(f"svc-h-{i}", title, "h3", SERIF, 30, INK, weight=600, lh=1.12, ls=-0.01),
         text(f"svc-p-{i}", f"<p>{body}</p>", 16, BODY, lh=1.65),
     ], radius=24, pad=dims(36, 36, 116, 36), gap_=14, hover=False) for i, (ico, title, body) in enumerate(items)]
-    return section("services", [head, grid("svc-grid", cards, 320, 20)], pad=dims(96, 24), bg=STONE, gap_=44,
+    return section("services", [head, tablet_row(grid("svc-grid", cards, 320, 20), 3)], pad=dims(96, 24), bg=STONE, gap_=44,
                    cls="jm-tide")
 
 
@@ -859,7 +868,7 @@ def funding():
         *([textlink("fund-dva-more", "DVA &amp; Open Arms details", "#jm-pop-dva", arrow=True)] if title == "DVA" else []),
     ], radius=20, pad=dims(26, 26, 76, 26), gap_=8, size="sm", hover=title == "DVA")
         for i, (title, body) in enumerate(items)]
-    return section("funding", [head, grid("fund-grid", cards, 220, 16)], pad=dims(0, 24, 104, 24), gap_=36,
+    return section("funding", [head, tablet_row(grid("fund-grid", cards, 220, 16), 5)], pad=dims(0, 24, 104, 24), gap_=36,
                    cls="jm-tide")
 
 

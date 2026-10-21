@@ -9,7 +9,7 @@ import json
 
 from build import (BODY, BODY_DK, DIST, EMAIL, EMAIL_URL, INK, MIST, MIST_LT, MUTED, NAME_TITLE, OCHRE, PHONE,
                    PHONE_URL, AHPRA_REG, SAND, SANS, SERIF, STONE, TEAL, URL, border, button, container, dims,
-                   eyebrow, gap, gradient, grid, heading, html, icon, icon_list, image, main_nav, media, modal, pop_text, px,
+                   eyebrow, gap, gradient, grid, heading, html, icon, icon_list, image, main_nav, media, modal, tablet_row, pop_text, px,
                    sand_bg, section, text, textlink, wave_card, widget)
 
 PAGES = {"about": 50, "services": 51, "fees": 52, "referrers": 53, "gallery": 54,
@@ -275,7 +275,7 @@ def about_page():
             heading("ab-week-appt", "By Appointment Only", "p", SANS, 15, TEAL, weight=600, lh=1.2,
                     cls="jm-appt-pill", _flex_size="none"),
         ], row=True, wrap=True, justify="space-between", align="flex-end", gap_=gap(14, 40)),
-        grid("ab-days", days, 170, 12),
+        tablet_row(grid("ab-days", days, 170, 12), 5),
         container("ab-week-cards", [in_person, telehealth], row=True, wrap=True, gap_=20, align="stretch"),
     ], pad=dims("clamp(64px,8vw,112px)", 24, "clamp(64px,8vw,112px)", 24), gap_=28, cls="jm-tide")
 
@@ -462,7 +462,7 @@ def fees_page():
     card = lambda n, key, title, kids, hover=False: wave_card(f"fe-card-{n}", [
         icon(f"fe-card-{n}-i", key, 36, color=TEAL), h3(f"fe-card-{n}-h", title), *kids,
     ], radius=24, pad=dims(32, 32, 116, 32), gap_=14, hover=hover)
-    pay = section("fe-pay", [grid("fe-pay-grid", [
+    pay = section("fe-pay", [tablet_row(grid("fe-pay-grid", [
         card("pay", "i_card", "Accepted Payment Methods", [
             icon_list("fe-pay-list", ["Bank Transfer (Electronic Funds Transfer)", "Mastercard", "Visa"], inline=True,
                       size=15, weight=500, lh=1.3, cls="jm-chips jm-chips-left jm-chips-outline")]),
@@ -473,7 +473,7 @@ def fees_page():
         card("change", "i_calendar", "Changing Your Appointment", [
             para("fe-change-p", "Your session time is reserved exclusively for you.", 16, GREY_BODY, 1.7),
             more("fe-change-more", "Cancellation policy", "#jm-pop-cancel")], hover=True),
-    ], 340, 20)], pad=dims("clamp(56px,7vw,96px)", 24), cls="jm-tide")
+    ], 340, 20), 3)], pad=dims("clamp(56px,7vw,96px)", 24), cls="jm-tide")
 
     way = lambda n, title, sub, target=None: wave_card(f"fe-way-{n}", [
         heading(f"fe-way-{n}-h", title, "p", SERIF, 26, INK, weight=600, lh=1.15),
@@ -489,12 +489,12 @@ def fees_page():
                               "supply receipts for clients who wish to claim rebates from private health.", 17,
                  GREY_BODY, 1.75),
         ], gap_=14, width=720, grow=0),
-        grid("fe-ways-grid", [way("medicare", "Medicare", "Mental Health Care Plans", "#jm-pop-medicare"),
+        tablet_row(grid("fe-ways-grid", [way("medicare", "Medicare", "Mental Health Care Plans", "#jm-pop-medicare"),
                               way("ed", "ED Plan", "Eating Disorder Plan"),
                               way("dva", "DVA &amp; Open Arms", "Veterans and their families", "#jm-pop-dva-fees"),
                               way("ndis", "NDIS", "Self-managed and plan-managed participants"),
                               way("private", "Private clients", "No referral needed; claim through your extras cover")],
-             220, 16),
+             220, 16), 5),
     ], pad=dims("clamp(56px,7vw,96px)", 24), bg=STONE, gap_=32, cls="jm-tide")
 
     cta = sand_cta("fe-cta", "Questions about fees or rebates?",
@@ -971,14 +971,14 @@ def support_page():
     beyond = button("sp-bn-btn", "Open BeyondNow ↗", "https://www.beyondblue.org.au/get-support/"
                     "beyondnow-suicide-safety-planning", "ghost")
     beyond["settings"]["link"]["is_external"] = "on"
-    after = section("sp-next", [grid("sp-next-grid", [
+    after = section("sp-next", [tablet_row(grid("sp-next-grid", [
         card("bn", "BeyondNow", "An interactive app created by Beyond Blue to help you easily build and keep a personal "
                                 "safety plan on your phone for times of high distress.", [beyond]),
         card("res", "More resources", "Trauma, eating disorders, complex mental health and grounding tools.",
              [button("sp-res-btn", "Go to Resources", URL["resources"], "ghost")]),
         card("con", "Contact Jennifer", "By Appointment Only. For non-urgent enquiries, reach out by email or phone.",
              [button("sp-con-call", PHONE, PHONE_URL, "primary"), button("sp-con-email", "Email", EMAIL_URL, "ghost")]),
-    ], 340, 20)], pad=dims("clamp(56px,7vw,88px)", 24), bg=STONE)
+    ], 340, 20), 3)], pad=dims("clamp(56px,7vw,88px)", 24), bg=STONE)
     return [hero, lines, after]
 
 
