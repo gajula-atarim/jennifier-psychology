@@ -252,6 +252,24 @@ body .elementor-widget.elementor-widget-icon-list .elementor-icon-list-icon+.ele
 .jm-modal-text ul{margin:0;padding-left:1.2em}.jm-modal-text li{margin:0 0 .6em}.jm-modal-text p{margin:0 0 .9em}
 .jm-modal-text a{color:#1D5067;text-decoration:underline;text-underline-offset:3px}
 @keyframes jmModalIn{from{opacity:0}to{opacity:1}}
+/* Phones: pop-ups open as a bottom sheet (full width, rounded top, grab handle, at most 88% of the
+   screen tall), with the close button pinned while the text scrolls and type sized for a phone. */
+@keyframes jmSheetIn{from{transform:translateY(48px);opacity:.4}to{transform:none;opacity:1}}
+@media (max-width:767px){
+ .jm-modal.is-open{justify-content:flex-end!important;align-items:stretch!important;padding:0!important}
+ .jm-modal.is-open .jm-modal-panel{max-width:none!important;max-height:88vh;max-height:88dvh;border-radius:24px 24px 0 0!important;padding:30px 20px calc(26px + env(safe-area-inset-bottom)) 20px!important;gap:12px!important;animation:jmSheetIn .3s cubic-bezier(.2,.7,.2,1)}
+ .jm-modal-panel::before{content:"";position:absolute;top:10px;left:50%;width:44px;height:5px;margin-left:-22px;border-radius:99px;background:rgba(18,50,63,.18)}
+ .jm-modal-panel>.elementor-widget-html{position:sticky!important;top:12px;z-index:3;height:0;align-self:stretch}
+ .jm-modal-panel .jm-modal-close{top:0;right:-6px;width:40px;height:40px;box-shadow:0 4px 14px rgba(18,50,63,.18)}
+ .jm-modal-title .elementor-heading-title{font-size:26px!important;line-height:1.15!important}
+ .jm-modal-title{padding-right:44px}
+ .jm-modal-text,.jm-modal-text p,.jm-modal-text li{font-size:15.5px!important;line-height:1.65!important}
+ .jm-modal-text li{margin-bottom:.5em}
+ .jm-modal-panel h3.elementor-heading-title{font-size:16px!important}
+ .jm-modal-panel>.e-con{padding:16px 18px!important;border-radius:16px!important}
+ .jm-modal-bignum a{font-size:22px}
+}
+@media (max-width:767px) and (prefers-reduced-motion:reduce){.jm-modal.is-open .jm-modal-panel{animation:none}}
 body.jm-modal-open{overflow:hidden}
 /* In the Elementor editor, show pop-ups in place so their text can be edited. */
 body.elementor-editor-active .jm-modal{display:flex!important;padding:24px 16px;background:#12323F}
