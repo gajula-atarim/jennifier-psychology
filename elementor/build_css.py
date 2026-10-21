@@ -390,6 +390,7 @@ body.elementor-editor-active .jm-modal{display:flex!important;padding:24px 16px;
 
 /* About: quote card over the artwork. */
 .jm-quote-wrap{position:relative;padding-bottom:56px!important;max-width:500px}
+@media (max-width:1024px){.jm-quote-wrap{margin-inline:auto}}
 .jm-quote-wrap>.jm-quote-card{position:absolute!important;right:-12px;bottom:0;width:min(78%,360px)!important;margin:0;z-index:2}
 .jm-quote-card .elementor-heading-title{background:#1D5067;border-radius:24px;padding:24px 26px;box-shadow:0 24px 50px rgba(18,50,63,.28)}
 @media (max-width:767px){.jm-quote-wrap>.jm-quote-card{right:0}}
