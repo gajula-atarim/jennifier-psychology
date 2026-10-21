@@ -86,7 +86,6 @@ body .elementor-widget.elementor-widget-icon-list .elementor-icon-list-icon+.ele
 .jm-page-hero>.e-con-inner>.e-con>.elementor-element:nth-child(4){animation-delay:.36s}
 .jm-page-hero>.e-con-inner>.e-con>.elementor-element:nth-child(n+5){animation-delay:.48s}
 .jm-page-hero>.e-con-inner>.e-con:nth-child(2){animation:jmHeroMsg .9s ease .4s both}
-@media (prefers-reduced-motion:reduce){.jm-hero-msg,.jm-page-hero>.e-con-inner>.e-con,.jm-page-hero>.e-con-inner>.e-con>.elementor-element{animation:none!important}}
 .jm-lined .elementor-heading-title{display:flex;align-items:center;justify-content:center;gap:14px}
 .jm-lined .elementor-heading-title::before,.jm-lined .elementor-heading-title::after{content:"";display:block;flex:none;width:36px;height:1px;background:#DDAA33}
 
