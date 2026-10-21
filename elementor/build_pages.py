@@ -847,7 +847,9 @@ def contact_tile(name, key, label, value_html, *, url=None, size=18, dark=False,
         text(f"{name}-v", value_html, size, "#ffffff" if dark else INK, weight=700, lh=1.45, cls="jm-tile-value"),
         *(extra or []),
     ]
-    common = dict(gap_=8, pad=dims(26), cls="jm-contact-tile" + (" jm-contact-tile-dark" if dark else ""),
+    # Rolling waves along the foot of each tile, as on the other cards (bottom padding leaves room for them).
+    common = dict(gap_=8, pad=dims(26, 26, 84, 26),
+                  cls="jm-contact-tile jm-wave-card jm-wave-sm" + (" jm-contact-tile-dark" if dark else ""),
                   background_background="classic", background_color=TEAL if dark else "#ffffff",
                   **border(1, TEAL if dark else LINE, 22))
     return link_box(name, kids, url, **common) if url else container(name, kids, **common)
