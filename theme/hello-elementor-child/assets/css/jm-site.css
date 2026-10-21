@@ -28,33 +28,37 @@ body .elementor-widget.elementor-widget-icon-list .elementor-icon-list-icon svg{
 body .elementor-widget.elementor-widget-icon-list .elementor-icon-list-icon+.elementor-icon-list-text{padding-inline-start:0}
 
 /* Header */
-/* Floating header: the crisis bar sits at the top of the page and the main header is a rounded
-   mist-blue pill with the colour logo, floating over the hero. It scrolls away with the page (not sticky). */
+/* The crisis bar sits at the top of the page; below it there is no bar at all, just a round menu
+   button floating over the waves (on every screen size). It scrolls away with the page. */
 #masthead{position:relative;z-index:100}
-#masthead .jm-header-main{position:absolute!important;top:calc(100% + 16px);left:16px;right:16px;width:auto!important;max-width:1340px;margin:0 auto!important;z-index:100;-webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);box-shadow:0 14px 34px rgba(10,30,40,.22)}
+#masthead .jm-header-main{position:absolute!important;top:calc(100% + 16px);left:16px;right:16px;width:auto!important;max-width:1340px;margin:0 auto!important;z-index:100;background:none!important;border:0!important;box-shadow:none!important;pointer-events:none}
+#masthead .jm-header-main>*{pointer-events:auto}
 @media (max-width:767px){#masthead .jm-header-main{left:12px;right:12px;top:calc(100% + 12px)}}
-/* Keep the hero message clear of the pill. */
+/* Keep the hero message clear of the menu button. */
 .jm-hero .jm-hero-msg{padding-top:calc(24px + clamp(64px,7vw,96px))!important}
+.jm-hero-logo img{filter:drop-shadow(0 2px 10px rgba(0,0,0,.45))}
 .jm-topbar a{color:#EBE7DB}.jm-topbar a:hover{color:#DDAA33}
 /* When the crisis line wraps (tablet/phone), split it into two even lines. */
 .jm-topbar .elementor-widget-text-editor p{text-wrap:balance}
+/* The menu button. */
+.jm-nav .hfe-nav-menu__toggle{display:flex!important;cursor:pointer;margin:0!important}
+.jm-nav .hfe-nav-menu-icon{display:flex;align-items:center;justify-content:center;width:56px;height:56px;padding:0;border-radius:999px;box-sizing:border-box;background:rgba(232,240,243,.94);color:#12323F;box-shadow:0 8px 24px rgba(10,30,40,.22);transition:background-color .2s,transform .2s}
+.jm-nav .hfe-nav-menu__toggle:hover .hfe-nav-menu-icon,.jm-nav .hfe-nav-menu__toggle:focus-visible .hfe-nav-menu-icon{background:#fff;transform:scale(1.05)}
+.jm-nav .hfe-nav-menu-icon svg{fill:none!important}
+@media (max-width:767px){.jm-nav .hfe-nav-menu-icon{width:52px;height:52px}}
+/* The menu opens as a rounded panel under the button: full width on tablet/phone, a compact
+   panel on the right on desktop. */
+.jm-nav,.jm-nav .hfe-nav-menu,.jm-nav .hfe-layout-horizontal{position:static!important}
+.jm-nav nav.hfe-nav-menu__layout-horizontal{position:absolute!important;top:calc(100% + 8px)!important;left:0!important;right:0!important;width:auto!important;margin-top:0!important;z-index:50;border-radius:24px;overflow:hidden;background:#E8F0F3;border:1px solid rgba(29,80,103,.12);box-shadow:0 18px 36px rgba(10,30,40,.22)}
+.jm-nav nav .hfe-nav-menu{margin:0!important}
+.jm-nav nav .hfe-nav-menu>li:last-child>a.hfe-menu-item{border-bottom:0!important}
+.jm-nav nav a.hfe-menu-item{border-radius:0}
 @media (min-width:1025px){
- .jm-nav a.hfe-menu-item{border-radius:999px;min-height:44px;display:inline-flex!important;align-items:center;white-space:nowrap;box-sizing:border-box;transition:none}
- .jm-nav .hfe-nav-menu{gap:2px}
-}
-/* Tablet and mobile: hamburger toggle (44px tap target) and a full-width dropdown under the header. */
-@media (max-width:1024px){
- .jm-nav .hfe-nav-menu__toggle{cursor:pointer}
- .jm-nav .hfe-nav-menu-icon{display:flex;align-items:center;justify-content:center;width:44px;height:44px;padding:0;border-radius:999px;box-sizing:border-box;transition:background-color .2s}
- .jm-nav .hfe-nav-menu__toggle:hover .hfe-nav-menu-icon,.jm-nav .hfe-active-menu .hfe-nav-menu-icon{background:rgba(29,80,103,.1)}
- .jm-nav .hfe-nav-menu-icon svg{fill:none!important}
- /* Keep the closed menu out of the header row (so the toggle sits beside the logo) and open it
-    as a rounded panel just under the pill. */
- .jm-nav,.jm-nav .hfe-nav-menu,.jm-nav .hfe-layout-horizontal{position:static!important}
- .jm-nav nav.hfe-nav-menu__layout-horizontal{position:absolute!important;top:calc(100% + 8px)!important;left:0!important;right:0!important;width:auto!important;margin-top:0!important;z-index:50;border-radius:24px;overflow:hidden;background:#E8F0F3;border:1px solid rgba(29,80,103,.12);box-shadow:0 18px 36px rgba(10,30,40,.22)}
- .jm-nav nav .hfe-nav-menu{margin:0!important}
- .jm-nav nav .hfe-nav-menu>li:last-child>a.hfe-menu-item{border-bottom:0!important}
- .jm-nav nav a.hfe-menu-item{border-radius:0}
+ .jm-nav nav.hfe-nav-menu__layout-horizontal{display:none!important;left:auto!important;width:300px!important}
+ .jm-nav.jm-menu-open nav.hfe-nav-menu__layout-horizontal{display:block!important;height:auto!important}
+ .jm-nav nav .hfe-nav-menu{display:flex!important;flex-direction:column!important;align-items:stretch!important}
+ .jm-nav nav .hfe-nav-menu>li{width:100%;margin:0!important}
+ .jm-nav nav a.hfe-menu-item{display:flex!important;padding:15px 24px!important;border-bottom:1px solid rgba(29,80,103,.12)}
 }
 
 /* Hero */

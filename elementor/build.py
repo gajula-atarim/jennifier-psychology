@@ -441,18 +441,10 @@ def build_header():
 
     # Floating header: a rounded mist-blue pill over the hero carrying the colour logo
     # (position, blur and shadow are in jm-site.css).
-    main = container("hdr-main", [
-        image("hdr-logo", "logo_dark", width=122, height=80, fit="contain", url=URL["home"],
-              _flex_size="none", width_mobile=px(96), height_mobile=px(63)),
-        nav,
-        button("hdr-cta", "Request a chat", EMAIL_URL, "ochre",
-               hide_tablet="hidden-tablet", hide_mobile="hidden-mobile"),
-    ], row=True, justify="space-between", align="center", gap_=gap(12, 20),
-        pad=dims(6, 10, 6, 28), padding_mobile=dims(6, 8, 6, 18), cls="jm-header-main",
-        flex_wrap="nowrap", flex_wrap_mobile="nowrap",
-        background_background="classic", background_color="rgba(232,240,243,0.97)",
-        border_border="solid", border_width=dims(1), border_color="rgba(29,80,103,0.10)",
-        border_radius=dims(999))
+    # Just the menu button, floating over the waves (the logo lives in the hero now). The button and
+    # its dropdown panel are styled in jm-site.css; jm-site.js opens it on desktop too.
+    main = container("hdr-main", [nav], row=True, justify="flex-end", align="center", pad=dims(0),
+                     cls="jm-header-main", flex_wrap="nowrap", flex_wrap_mobile="nowrap")
 
     return [topbar, main]
 
@@ -623,6 +615,8 @@ def hero():
                  align="center", cls="jm-lined", shadow=(0, 1, 12, "rgba(0,0,0,0.5)"))
     # Script line first, then her name and the location under it, sitting towards the bottom of the video.
     msg = container("hero-msg", [
+        image("hero-logo", "logo_light", width=170, url=URL["home"], align="center", width_mobile=px(120),
+              cls="jm-hero-logo"),
         heading("hero-script", "You do not have to carry it alone", "p", SCRIPT, "clamp(46px, 6.2vw, 92px)",
                 "#ffffff", weight=400, lh=1.1, align="center", maxw=1000, shadow=(0, 2, 20, "rgba(0,0,0,0.5)")),
         heading("hero-name", NAME_TITLE, "p", lined.pop("family"), lined.pop("size"), lined.pop("color"),

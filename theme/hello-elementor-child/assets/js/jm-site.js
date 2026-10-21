@@ -194,11 +194,61 @@
 		}
 	}
 
+	// Menu button on desktop: UAE only opens its menu below 1025px, so above that we open and close
+	// the same menu ourselves (the panel styling is in jm-site.css).
+	function initDesktopMenu() {
+		var navs = document.querySelectorAll( '.jm-nav' );
+		var desktop = window.matchMedia( '(min-width: 1025px)' );
+		navs.forEach( function ( nav ) {
+			var toggle = nav.querySelector( '.hfe-nav-menu__toggle' );
+			if ( ! toggle ) {
+				return;
+			}
+			toggle.setAttribute( 'role', 'button' );
+			toggle.setAttribute( 'tabindex', '0' );
+			toggle.setAttribute( 'aria-label', 'Menu' );
+			function set( open ) {
+				nav.classList.toggle( 'jm-menu-open', open );
+				toggle.setAttribute( 'aria-expanded', open ? 'true' : 'false' );
+			}
+			set( false );
+			toggle.addEventListener( 'click', function ( event ) {
+				if ( ! desktop.matches ) {
+					return;
+				}
+				event.preventDefault();
+				event.stopImmediatePropagation();
+				set( ! nav.classList.contains( 'jm-menu-open' ) );
+			}, true );
+			toggle.addEventListener( 'keydown', function ( event ) {
+				if ( desktop.matches && ( 'Enter' === event.key || ' ' === event.key ) ) {
+					event.preventDefault();
+					set( ! nav.classList.contains( 'jm-menu-open' ) );
+				}
+			} );
+			document.addEventListener( 'click', function ( event ) {
+				if ( nav.classList.contains( 'jm-menu-open' ) && ! nav.contains( event.target ) ) {
+					set( false );
+				}
+			} );
+			document.addEventListener( 'keydown', function ( event ) {
+				if ( 'Escape' === event.key && nav.classList.contains( 'jm-menu-open' ) ) {
+					set( false );
+					toggle.focus();
+				}
+			} );
+			desktop.addEventListener( 'change', function () {
+				set( false );
+			} );
+		} );
+	}
+
 	function init() {
 		document.querySelectorAll( '.jm-breath-toggle' ).forEach( initBreath );
 		document.querySelectorAll( '.jm-hero video' ).forEach( initHeroVideo );
 		initFootprints();
 		initModals();
+		initDesktopMenu();
 	}
 
 	if ( 'loading' === document.readyState ) {
