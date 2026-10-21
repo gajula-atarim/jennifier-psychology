@@ -417,9 +417,15 @@ body.elementor-editor-active .jm-modal{display:flex!important;padding:24px 16px;
 .jm-care-stone .jm-stop:hover,.jm-care-stone .jm-stop:focus-visible{background:rgba(247,245,239,.7)}
 
 /* About: practice areas in columns. */
-.jm-areas .elementor-icon-list-items{display:block!important;columns:3 210px;column-gap:28px}
-.jm-areas .elementor-icon-list-item{break-inside:avoid;display:flex!important;align-items:center;gap:6px;padding:14px 10px!important;margin:0!important;border-bottom:1px solid rgba(162,195,211,.28);border-radius:10px;transition:background-color .25s,padding-left .25s}
-.jm-areas .elementor-icon-list-item:hover{background:rgba(247,245,239,.08);padding-left:16px!important}
+/* Practice areas: three columns of icon rows with a hairline under each (two on tablet, one on phones). */
+.jm-areas .elementor-icon-list-items{display:block!important;columns:3;column-gap:40px}
+@media (max-width:1024px){.jm-areas .elementor-icon-list-items{columns:2;column-gap:32px}}
+@media (max-width:600px){.jm-areas .elementor-icon-list-items{columns:1}}
+.jm-areas .elementor-icon-list-item{break-inside:avoid;display:flex!important;align-items:center;gap:14px;min-height:64px;padding:12px 6px!important;margin:0!important;border-bottom:1px solid rgba(162,195,211,.3);border-radius:10px;transition:background-color .25s,padding-left .25s}
+.jm-areas .elementor-icon-list-icon{flex:none;width:30px;justify-content:center}
+.jm-areas .elementor-icon-list-icon svg{width:26px!important;height:26px!important;stroke-width:1.5}
+.jm-areas .elementor-icon-list-text{padding-left:0!important}
+.jm-areas .elementor-icon-list-item:hover{background:rgba(247,245,239,.08);padding-left:12px!important}
 .jm-areas .elementor-icon-list-item::after{display:none!important}
 .jm-appt-pill .elementor-heading-title{display:inline-flex;align-items:center;gap:10px;background:#fff;border:1px solid #E2DCCD;border-radius:999px;padding:10px 18px}
 .jm-appt-pill .elementor-heading-title::before{content:"";width:18px;height:18px;flex:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231D5067' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 7v5l3 2'/%3E%3C/svg%3E") center/contain no-repeat}

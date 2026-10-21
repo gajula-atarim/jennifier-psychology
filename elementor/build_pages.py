@@ -135,6 +135,10 @@ AREAS = ["Alcohol Use", "Anger Management", "Anxiety", "Behavioural Issues", "Bi
          "Grief", "Impulse Control Disorders", "Mood Disorders", "Narcissistic Personality (NPD)",
          "Personality Disorders", "Psychosis", "Self-Harming", "Sexual Abuse", "Suicidal Ideation",
          "Thinking Disorders", "Veterans"]
+# One line icon per practice area (assets/icons/areas/<key>.svg), in the same order as AREAS.
+AREA_ICONS = ["alcohol", "anger", "anxiety", "behaviour", "bipolar", "body", "depression", "dissociative", "domestic",
+              "drug", "emotional", "grief", "impulse", "mood", "narcissistic", "personality", "psychosis", "selfharm",
+              "sexual", "suicidal", "thinking", "veterans"]
 
 
 def about_page():
@@ -223,8 +227,9 @@ def about_page():
                     transform="uppercase", _margin=dims(-8, 0, 0, 0)),
             call_email("ab-areas-btns", call_style="ochre", email_style="light"),
         ], gap_=16, width=300, grow=1),
-        icon_list("ab-areas-list", [(a, None, "i_wave_mini") for a in AREAS], size=17, color=SAND, weight=500, lh=1.3,
-                  icon_size=22, icon_color=OCHRE, cls="jm-areas", _element_width="initial",
+        icon_list("ab-areas-list", [(a, None, f"area_{k}") for a, k in zip(AREAS, AREA_ICONS)], size=17,
+                  color=SAND, weight=500, lh=1.35, icon_size=26, icon_color="#E8F0F3", cls="jm-areas",
+                  _element_width="initial",
                   _element_custom_width=px(620), _flex_size="custom", _flex_grow=999, _flex_shrink=1),
     ], pad=dims("clamp(64px,8vw,112px)", 24), bg=TEAL, row=True, wrap=True, gap_=gap(40, 64), align="flex-start",
         cls="jm-gp jm-areas-section")

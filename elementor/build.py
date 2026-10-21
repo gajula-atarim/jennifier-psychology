@@ -112,6 +112,13 @@ def gap(row, col=None):
     return {"row": str(row), "column": str(col), "isLinked": row == col, "unit": "px", "size": col}
 
 
+# Practice-area icons: uploaded at deploy time, which swaps each "AREA_ID_<key>" for the attachment id.
+for _k in ["alcohol", "anger", "anxiety", "behaviour", "bipolar", "body", "depression", "dissociative", "domestic",
+           "drug", "emotional", "grief", "impulse", "mood", "narcissistic", "personality", "psychosis", "selfharm",
+           "sexual", "suicidal", "thinking", "veterans"]:
+    MEDIA[f"area_{_k}"] = (f"AREA_ID_{_k}", f"jm-area-{_k}.svg")
+
+
 def media(key):
     mid, name = MEDIA[key]
     return {"url": UPLOADS + name, "id": mid}
