@@ -266,8 +266,10 @@ def about_page():
                           "regional areas.", 17, GREY_BODY, 1.8),
     ], radius=28, pad=dims("clamp(28px,3.4vw,44px)", "clamp(28px,3.4vw,44px)", 120, "clamp(28px,3.4vw,44px)"),
         gap_=16, hover=False)
-    telehealth["settings"].update({"width": px(480), "_flex_size": "custom", "_flex_grow": 999, "_flex_shrink": 1,
-                                   "width_mobile": px(100, "%")})
+    for card in (in_person, telehealth):
+        card["settings"].update({"width": px(100, "%"), "width_mobile": px(100, "%")})
+        for k in ("_flex_size", "_flex_grow", "_flex_shrink"):
+            card["settings"].pop(k, None)
 
     week = section("ab-week", [
         container("ab-week-head", [
@@ -282,7 +284,9 @@ def about_page():
         ], row=True, wrap=True, justify="space-between", align="flex-end", gap_=gap(14, 40)),
         grid("ab-days", days, 0, 16, grid_columns_grid=px("1fr 2fr"), grid_columns_grid_tablet=px("1fr 2fr"),
              grid_columns_grid_mobile={"unit": "fr", "size": 1, "sizes": []}),
-        container("ab-week-cards", [in_person, telehealth], row=True, wrap=True, gap_=20, align="stretch"),
+        # Same 1 : 2 columns and gap as the day cards above, so the edges line up.
+        grid("ab-week-cards", [in_person, telehealth], 0, 16, grid_columns_grid=px("1fr 2fr"),
+             grid_columns_grid_tablet=px("1fr 2fr"), grid_columns_grid_mobile={"unit": "fr", "size": 1, "sizes": []}),
     ], pad=dims("clamp(64px,8vw,112px)", 24, "clamp(64px,8vw,112px)", 24), gap_=28, cls="jm-tide")
 
     next_ = sand_cta("ab-next", "", "", kids=[
