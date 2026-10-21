@@ -475,7 +475,7 @@ a.jm-contact-tile-dark:hover,a.jm-contact-tile-dark:focus-visible{border-color:#
 
 /* Motion preferences */
 @media (prefers-reduced-motion:reduce){
- .jm-rise,.jm-tide,.jm-chips-dark .elementor-icon-list-item,.jm-wave-card::after,.jm-ice-top::after,.jm-breath-waves{animation:none!important}
+ .jm-wave-card::after,.jm-ice-top::after,.jm-breath-waves{animation:none!important}
  .jm-swap-a{animation:none;opacity:1}.jm-swap-b{animation:none;opacity:0}
  .jm-prints svg{animation:none;opacity:.85}
 }
