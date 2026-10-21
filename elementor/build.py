@@ -20,9 +20,6 @@ MEDIA = {
     "sand": (11, "jm-sand-texture.jpg"),
     "art_ocean": (12, "jm-artwork-ocean.jpg"),
     "art_wave": (13, "jm-artwork-wave.jpg"),
-    "portrait": (38, "jennifer-malecki-portrait.avif"),
-    # The same photo set in a 4:5 canvas (wall extended at the top and sides) to fit the Welcome arch.
-    "portrait_framed": (39, "jennifer-malecki-portrait-framed.jpg"),
     "i_clock": (23, "jm-icon-clock.svg"),
     "i_heart": (24, "jm-icon-heart.svg"),
     "i_palette": (25, "jm-icon-palette.svg"),
@@ -46,6 +43,9 @@ SERIF, SANS, SCRIPT = "Cormorant Garamond", "Figtree", "Great Vibes"
 
 PHONE, PHONE_URL = "0404 174 184", "tel:0404174184"
 EMAIL = "psych@jennifermalecki.com.au"
+EMAIL_URL = f"mailto:{EMAIL}"
+NAME_TITLE = "Jennifer Malecki, Psychologist, PhD"  # AHPRA: no "Dr" title
+AHPRA_REG, ABN = "PSY0001410118", "63 687 967 193"
 # Inner pages aren't built yet, so their links are "#" placeholders for now. Swap in the real
 # paths (/about/, /services/, /fees-rebates/, /for-referrers/, /gallery/, /resources/,
 # /contact/) as each page goes live.
@@ -445,7 +445,7 @@ def build_header():
         image("hdr-logo", "logo_dark", width=122, height=80, fit="contain", url=URL["home"],
               _flex_size="none", width_mobile=px(96), height_mobile=px(63)),
         nav,
-        button("hdr-cta", "Request a chat", URL["contact"], "ochre",
+        button("hdr-cta", "Request a chat", EMAIL_URL, "ochre",
                hide_tablet="hidden-tablet", hide_mobile="hidden-mobile"),
     ], row=True, justify="space-between", align="center", gap_=gap(12, 20),
         pad=dims(6, 10, 6, 28), padding_mobile=dims(6, 8, 6, 18), cls="jm-header-main",
@@ -476,7 +476,7 @@ def build_footer():
             h("ftr-contact-h", "Contact"),
             icon_list("ftr-contact-links", [(PHONE, PHONE_URL), (EMAIL, f"mailto:{EMAIL}")],
                       size=15, color=STONE, hover=OCHRE, lh=1.2, space=12),
-            text("ftr-reg", "<p>Provider No. 1894363H<br>AHPRA Reg. [PSY0000000000]</p>", 14, MUTED, lh=1.6),
+            text("ftr-reg", f"<p>Provider No. 1894363H<br>AHPRA Reg. {AHPRA_REG}</p>", 14, MUTED, lh=1.6),
         ], gap_=12),
         container("ftr-col-explore", [
             h("ftr-explore-h", "Explore"),
@@ -496,12 +496,11 @@ def build_footer():
         container("ftr-bottom-inner", [
             text("ftr-crisis", "<p>This website is not a crisis service. If you are in immediate danger call 000, "
                                "or Lifeline on 13 11 14.</p>", 13, MUTED, lh=1.6),
-            text("ftr-ack", "<p>[Acknowledgement of Country — wording to be confirmed by Jennifer]</p>", 13, MUTED, lh=1.6),
             container("ftr-legal", [
-                text("ftr-copy", "<p>© 2026 Jennifer Malecki &amp; Associates Pty Ltd · ABN [00 000 000 000] · Artwork and "
+                text("ftr-copy", f"<p>© 2026 Jennifer Malecki &amp; Associates Pty Ltd · ABN {ABN} · Artwork and "
                                  "images © Jennifer Malecki, not for reproduction</p>", 13, MUTED, lh=1.6,
                      _flex_size="shrink"),
-                icon_list("ftr-policies", [("Privacy policy", "#"), ("Website disclaimer", "#")], inline=True,
+                icon_list("ftr-policies", [("Privacy policy", "#"), ("Website disclaimer", "#jm-pop-disclaimer")], inline=True,
                           size=13, color=STONE, hover=OCHRE, lh=1.6, space=20, _flex_size="none"),
             ], row=True, wrap=True, justify="space-between", gap_=gap(8, 24)),
         ], gap_=14, pad=dims(24, 0, 36, 0),
@@ -511,7 +510,110 @@ def build_footer():
     for c in (main, bottom):
         c["settings"]["css_classes"] = "jm-footer"
         c["settings"]["html_tag"] = "div"
-    return [main, bottom]
+    return [main, bottom, disclaimer_modal()]
+
+
+# ---------------------------------------------------------------- pop-ups
+# Each pop-up is an ordinary Elementor container (so its text stays editable), hidden on the page and
+# opened by any link to "#<id>". jm-site.js turns it into an accessible dialog.
+
+def modal(mid, title, kids):
+    return container(mid, [
+        container(f"{mid}-panel", [
+            html(f"{mid}-close", '<button type="button" class="jm-modal-close" aria-label="Close">'
+                                 '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" '
+                                 'stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>'),
+            heading(f"{mid}-title", title, "h2", SERIF, 32, INK, weight=600, lh=1.15, ls=-0.01, cls="jm-modal-title"),
+            *kids,
+        ], gap_=14, pad=dims(40, 36, 36, 36), padding_mobile=dims(32, 22, 26, 22), cls="jm-modal-panel",
+            background_background="classic", background_color=SAND, border_radius=dims(24)),
+    ], cls=f"jm-modal {mid}", _element_id=mid)
+
+
+def pop_h(name, t):
+    return heading(name, t, "h3", SANS, 17, INK, weight=700, lh=1.3, _margin=dims(8, 0, 0, 0))
+
+
+def pop_text(name, h):
+    return text(name, h, 16, BODY, lh=1.7, cls="jm-modal-text")
+
+
+def fees_modal():
+    return modal("jm-pop-fees", "Medicare rebates &amp; fees", [
+        pop_text("fees-intro", "<p>I aim to keep the billing process as simple and transparent as possible:</p>"
+                 "<ul><li><strong>Medicare Rebates:</strong> If you have a Mental Health Care Plan (MHCP) or ED Plan from "
+                 "your GP, you will be eligible for a Medicare rebate per session.</li>"
+                 "<li><strong>How it Works:</strong> You pay the session fee on the day, and the rebate is processed directly "
+                 "back into your bank account via Medicare—usually within 3 days.</li>"
+                 "<li><strong>Easy Payments:</strong> All payments are securely processed at the end of your session using "
+                 "digital payment options.</li>"
+                 "<li><strong>No Complex Forms:</strong> You don't need to fill out any compliance paperwork online. We will "
+                 "sort out all the details together during our initial phone call or first session.</li></ul>"),
+        pop_h("fees-pay-h", "Payment methods"),
+        pop_text("fees-pay", "<p>Bank transfer · Electronic Funds Transfer · Mastercard · Visa</p>"),
+        pop_h("fees-change-h", "Changing your appointment"),
+        pop_text("fees-change", "<p>Your session time is reserved exclusively for you. If you need to cancel or change "
+                 "your appointment, please provide at least <strong>2 full business days' notice</strong>. Regrettably, "
+                 "cancellations made within this 2-business-day window or on the day of the appointment will incur a "
+                 "cancellation fee.</p>"),
+        pop_h("fees-phi-h", "Private health insurance"),
+        pop_text("fees-phi", "<p>Once your invoice is settled, we will issue a formal receipt so you can claim your "
+                 "private health insurance rebate. (Note: Health funds generally do not cover cancellation fees).</p>"),
+    ])
+
+
+def dva_modal():
+    return modal("jm-pop-dva", "DVA &amp; Open Arms", [
+        pop_text("dva-list", "<ul>"
+                 "<li><strong>Accepted DVA Cards:</strong> We accept <strong>Gold</strong> and <strong>White</strong> "
+                 "Veteran Cards, including treatment provided under <strong>Non-Liability Health Care (NLHC)</strong> "
+                 "arrangements (which covers all mental health conditions for eligible current or former ADF members who "
+                 "have served at least one day).</li>"
+                 "<li><strong>No-Gap / Bulk Billing Policy:</strong> We bill DVA directly with <strong>no out-of-pocket gap "
+                 "fees or co-payments</strong> for eligible services.</li>"
+                 "<li><strong>Referral Requirements:</strong> We require a referral from your General Practitioner (GP), "
+                 "psychiatrist, or medical specialist.</li>"
+                 "<li><strong>Provider Registration Status:</strong> I am registered with Medicare under the "
+                 "<strong>Better Access</strong> scheme as a psychologist (which is a statutory requirement for DVA allied "
+                 "mental health services).</li>"
+                 "<li><strong>Open Arms Support:</strong> <strong>Open Arms – Veterans &amp; Families Counselling</strong> "
+                 "on <a href=\"tel:1800011046\">1800 011 046</a>, as an additional or after-hours resource.</li>"
+                 "</ul>"),
+    ])
+
+
+def bodymap_modal():
+    return modal("jm-pop-bodymap", "Body mapping", [
+        pop_text("bodymap-p", "<p>A Body map is a life-sized outline of the body filled with symbols, colour and texture "
+                 "that creatively express emotions and physical sensations attached to memories. The map is a tool to "
+                 "communicate complex experiences and support healing and growth.</p>"
+                 "<p>My practice operates from an embodiment framework. This means we recognise that prolonged stress, "
+                 "depression, anxiety, anger, grief, shame, problems with managing emotions, emotional pain and childhood "
+                 "trauma, are not just stored as thoughts in the mind—they are physically held and expressed within the "
+                 "body itself. The effects of this can manifest as a deep sense of physical numbness or dissociation from "
+                 "your body, an internal feeling of tension and anxiousness from being unsafe, or chronic anxiousness and "
+                 "depression. We can sometimes use food control as an objective way to manage overwhelming bodily "
+                 "sensations.</p>"
+                 "<p>By focusing on embodiment through tools like body mapping, we don't just talk about the symptoms. We "
+                 "work safely and creatively to understand the story your body is holding, helping you to bridge the gap "
+                 "between mind and physical self and support evidence-based therapies that are the mainstay of "
+                 "treatment.</p>"),
+    ])
+
+
+def disclaimer_modal():
+    return modal("jm-pop-disclaimer", "Website disclaimer", [
+        pop_text("disc-p", f"<p><strong>{NAME_TITLE}</strong> | AHPRA Reg: PSY 0001410118</p>"
+                 "<p><em>Educational Content Only: The information on this website is not a substitute for professional "
+                 "psychological treatment and does not constitute a clinical relationship. This site is not monitored "
+                 "24/7.</em></p>"
+                 "<p><strong>In a Crisis?</strong> This is not an emergency service. If you are in immediate danger, please "
+                 "call <a href=\"tel:000\"><strong>000</strong></a>, visit an emergency department, or contact "
+                 "<a href=\"https://www.lifeline.org.au/\" target=\"_blank\" rel=\"noopener\">Lifeline</a> "
+                 "<strong>on <a href=\"tel:131114\">13 11 14</a></strong> or "
+                 "<a href=\"https://www.beyondblue.org.au/\" target=\"_blank\" rel=\"noopener\">Beyond Blue</a> "
+                 "<strong>on <a href=\"tel:1300224636\">1300 22 4636</a></strong>.</p>"),
+    ])
 
 
 # ---------------------------------------------------------------- home page
@@ -519,15 +621,16 @@ def build_footer():
 def hero():
     lined = dict(family=SERIF, size="clamp(20px, 2vw, 28px)", color="#ffffff", weight=600, lh=1.2, ls=0.02,
                  align="center", cls="jm-lined", shadow=(0, 1, 12, "rgba(0,0,0,0.5)"))
+    # Script line first, then her name and the location under it, sitting towards the bottom of the video.
     msg = container("hero-msg", [
-        heading("hero-place", "Mooloolaba · Sunshine Coast", "p", lined.pop("family"), lined.pop("size"),
-                lined.pop("color"), _margin=dims(0, 0, 4, 0), **lined),
         heading("hero-script", "You do not have to carry it alone", "p", SCRIPT, "clamp(46px, 6.2vw, 92px)",
                 "#ffffff", weight=400, lh=1.1, align="center", maxw=1000, shadow=(0, 2, 20, "rgba(0,0,0,0.5)")),
-        heading("hero-name", "Dr Jennifer Malecki, PhD · Psychologist", "p", SERIF, "clamp(20px, 2vw, 28px)",
-                "#ffffff", weight=600, lh=1.2, ls=0.02, align="center", cls="jm-lined",
-                shadow=(0, 1, 12, "rgba(0,0,0,0.5)"), _margin=dims(4, 0, 0, 0)),
-    ], gap_=12, pad=dims(24, 24, 64, 24), justify="center", align="center", cls="jm-hero-msg",
+        heading("hero-name", NAME_TITLE, "p", lined.pop("family"), lined.pop("size"), lined.pop("color"),
+                _margin=dims(4, 0, 0, 0), **lined),
+        heading("hero-place", "Mooloolaba · Sunshine Coast", "p", SANS, 15, "#ffffff", weight=600, lh=1.2,
+                ls=0.18, align="center", shadow=(0, 1, 10, "rgba(0,0,0,0.55)"), cls="jm-hero-place"),
+    ], gap_=12, pad=dims(24, 24, 120, 24), padding_mobile=dims(24, 20, 88, 20), justify="flex-end",
+        align="center", cls="jm-hero-msg",
         grow=1, background_background="classic", background_color="rgba(18,50,63,0.32)")
     return container("hero", [msg], tag="section", cls="jm-hero", align="stretch",
                      # Tall enough to let the ocean video breathe: most of the first screen on desktop,
@@ -545,7 +648,7 @@ def intro_band():
         heading("intro-pill", "Now accepting new clients &amp; referrals — no wait time", "p", SANS, 13, "#4E3A08",
                 weight=600, lh=1.2, cls="jm-pill"),
         eyebrow("intro-eyebrow", "Psychologist · Mooloolaba, Sunshine Coast"),
-        h2("intro-h1", "Cultivating resilience and healing through <em>integrated care pathways</em>",
+        h2("intro-h1", "Cultivating healing to help you to <em>reclaim your life</em>",
            size="clamp(38px, 4.6vw, 62px)", lh=1.04, tag="h1", maxw=820, cls="jm-h1"),
         text("intro-lede", "<p>High-quality, personalised care for adults living with trauma, PTSD, depression, "
                            "anxiety, eating disorders and complex mental health concerns, with one-to-one attention "
@@ -553,7 +656,7 @@ def intro_band():
              "clamp(17px, 1.4vw, 19px)", BODY_DK, lh=1.65, maxw=720),
     ], gap_=16, width=560, grow=999)
     right = container("intro-right", [
-        button("intro-cta", "Request a chat", URL["contact"], "primary", full=True),
+        button("intro-cta", "Request a chat", EMAIL_URL, "primary", full=True),
         button("intro-meet", "Meet Jennifer", URL["about"], "ghost", full=True),
         textlink("intro-call", f"or call {PHONE}", PHONE_URL, full=True),
     ], gap_=12, width=300, grow=0, mobile_width=False)
@@ -583,23 +686,25 @@ def welcome():
                          "anxiety, intense emotional distress or an eating disorder, help is here.</p>", 19, BODY_DK, lh=1.7),
         text("wel-p1", "<p>The clinic is located in the heart of Mooloolaba, where I offer a high-quality, personalised "
                        "approach to mental health care. You can expect more one-to-one active attention from an "
-                       "experienced psychologist who will assess and treat your mental health concerns. I treat adults "
-                       "from all walks of life.</p>", 17, BODY, lh=1.75),
-        text("wel-p2", "<p>I also have published research, read globally, on how early life experiences and trauma "
-                       "affect our experience of the body.</p>", 17, BODY, lh=1.75),
+                       "experienced psychologist who will assess and treat your mental health concerns.</p>", 17, BODY, lh=1.75),
+        text("wel-p2", "<p>I treat adults from all walks of life. I have also published research on how early life "
+                       "experiences affect our experience of the body.</p>", 17, BODY, lh=1.75),
         text("wel-p4", "<p>I can help you make sense of the origins of your problems, and build the skills and make "
                        "the changes needed for a happier and more meaningful life.</p>", 17, BODY, lh=1.75),
         text("wel-p3", "<p>In our very first session, we will work together to build a safe, collaborative plan to "
                        "help you heal and reclaim your life.</p>", 17, BODY, lh=1.75),
     ], gap_=22, width=520, grow=999)
     right = container("wel-right", [
-        container("wel-portrait", [
-            image("wel-portrait-img", "portrait_framed", cls="jm-portrait-img"),
-        ], cls="jm-portrait", min_height=px(0),
-                  border_radius=dims(200, 200, 28, 28), **gradient("#A2C3D3", TEAL, 170)),
-        text("wel-caption", "<p><strong>Dr Jennifer Malecki, PhD</strong><br>"
-                            "Psychologist, PhD, PsyBA General | AAPi</p>", 15, BODY, lh=1.5, cls="jm-caption"),
-    ], gap_=14, width=400, grow=1)
+        container("wel-art", [
+            container("wel-art-a", [image("wel-art-a-img", "art_ocean")], cls="jm-art", border_radius=dims(160, 160, 24, 24),
+                      overflow="hidden", background_background="classic", background_color=TEAL),
+            container("wel-art-b", [image("wel-art-b-img", "art_wave")], cls="jm-art jm-art-low",
+                      border_radius=dims(160, 160, 24, 24), overflow="hidden", background_background="classic",
+                      background_color=TEAL),
+        ], row=True, gap_=16, cls="jm-wel-art", flex_wrap="nowrap", flex_wrap_mobile="nowrap"),
+        text("wel-caption", "<p>Original artwork © Jennifer Malecki</p>", 14, BODY, lh=1.5, cls="jm-caption",
+             align="center"),
+    ], gap_=14, width=440, grow=1)
     return section("welcome", [left, right], pad=dims(72, 24, 96, 24), row=True, wrap=True, gap_=56,
                    align="center", cls="jm-tide")
 
@@ -708,7 +813,7 @@ def approach():
             text("app-mapping-p", "<p>To enrich the therapeutic process, you may choose to integrate arts-based "
                                   "techniques into therapy. Body mapping is used to explore and express aspects of the "
                                   "self, alongside your regular treatment.</p>", 16, "#33505C", lh=1.7),
-            textlink("app-mapping-link", "About body mapping", URL["services"], arrow=True),
+            textlink("app-mapping-link", "About body mapping", "#jm-pop-bodymap", arrow=True),
         ], gap_=12, pad=dims(32), margin=dims(8, 0, 0, 0), border_radius=dims(24),
             background_background="classic", background_color=STONE),
     ], gap_=22, width=460, grow=999)
@@ -729,11 +834,12 @@ def funding():
             text("fund-p", "<p>Receipts are supplied for clients who wish to claim rebates from private health.</p>",
                  17, BODY, lh=1.7),
         ], 660),
-        button("fund-more", "Fees, rebates &amp; referrals", URL["fees"], "ghost"),
+        button("fund-more", "Medicare rebates &amp; fees", "#jm-pop-fees", "ghost"),
     ], row=True, wrap=True, justify="space-between", align="flex-end", gap_=gap(20, 48))
     cards = [wave_card(f"fund-card-{i}", [
         heading(f"fund-h-{i}", title, "h3", SERIF, 24, INK, weight=600, lh=1.2, ls=-0.01),
         text(f"fund-p-{i}", f"<p>{body}</p>", 15, BODY, lh=1.55),
+        *([textlink("fund-dva-more", "DVA &amp; Open Arms details", "#jm-pop-dva", arrow=True)] if title == "DVA" else []),
     ], radius=20, pad=dims(26, 26, 76, 26), gap_=8, size="sm") for i, (title, body) in enumerate(items)]
     return section("funding", [head, grid("fund-grid", cards, 220, 16)], pad=dims(0, 24, 104, 24), gap_=36,
                    cls="jm-tide")
@@ -759,7 +865,7 @@ def referrers():
         ], **dark),
         container("gp-card-details", [
             heading("gp-details-h", "Practitioner details", "h3", SERIF, 26, "#ffffff", weight=600, lh=1.2, ls=-0.01),
-            text("gp-details-p", "<p>Dr Jennifer Malecki, PhD<br>Psychologist, PsyBA General<br>Provider No. 1894363H<br>"
+            text("gp-details-p", f"<p>{NAME_TITLE}<br>PsyBA General<br>Provider No. 1894363H<br>"
                                  "In person, Mooloolaba · Telehealth</p>", 16, MIST_LT, lh=1.8),
         ], **dark),
     ], 280, 20)
@@ -849,7 +955,7 @@ def closing_cta():
                       "and secure telehealth across the Sunshine Coast and surrounding areas.</p>",
              18, BODY, lh=1.7, align="center"),
         container("cta-actions", [
-            button("cta-enquire", "Send an enquiry", URL["contact"], "primary"),
+            button("cta-enquire", "Send an email", EMAIL_URL, "primary"),
             button("cta-call", f"Call {PHONE}", PHONE_URL, "ghost"),
         ], row=True, wrap=True, justify="center", gap_=12),
     ], gap_=22, align="center", width=820, grow=0, _flex_align_self="center")
@@ -863,7 +969,7 @@ def closing_cta():
 
 def build_home():
     return [hero(), intro_band(), highlights(), welcome(), beneath(), services(), approach(), funding(),
-            referrers(), breathe(), support_now(), closing_cta()]
+            referrers(), breathe(), support_now(), closing_cta(), fees_modal(), dva_modal(), bodymap_modal()]
 
 
 # ---------------------------------------------------------------- kit (Site Settings)

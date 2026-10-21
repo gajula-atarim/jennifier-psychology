@@ -115,11 +115,6 @@ body .elementor-widget.elementor-widget-icon-list .elementor-icon-list-icon+.ele
 /* Welcome portrait placeholder */
 .jm-portrait{position:relative;overflow:hidden;aspect-ratio:4/5}
 .jm-portrait::after{content:"";position:absolute;left:0;right:0;bottom:0;height:28%;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 120' preserveAspectRatio='none'%3E%3Cpath d='M0 40 C70 20 130 20 200 40 S330 60 400 40' fill='none' stroke='%23EBE7DB' stroke-opacity='0.35' stroke-width='2'/%3E%3Cpath d='M0 70 C70 50 130 50 200 70 S330 90 400 70' fill='none' stroke='%23EBE7DB' stroke-opacity='0.25' stroke-width='2'/%3E%3Cpath d='M0 100 C70 80 130 80 200 100 S330 120 400 100' fill='none' stroke='%23EBE7DB' stroke-opacity='0.18' stroke-width='2'/%3E%3C/svg%3E") center/100% 100% no-repeat;pointer-events:none}
-/* With a photo: it fills the arch (the framed photo is already 4:5, so nothing important is cropped). */
-.jm-portrait>.jm-portrait-img{position:absolute!important;inset:0;margin:0}
-.jm-portrait-img>*,.jm-portrait-img a{display:block;height:100%}
-.jm-portrait-img img{width:100%;height:100%;max-width:none;object-fit:cover;object-position:50% 100%;display:block}
-.jm-portrait:has(.jm-portrait-img img)::after{display:none}
 
 /* Beneath the surface */
 .jm-ice-top{position:relative}
@@ -231,9 +226,30 @@ body .elementor-widget.elementor-widget-icon-list .elementor-icon-list-icon+.ele
 /* Stacked layouts (tablet/phone): keep the portrait and the artwork at a comfortable size, centred,
    instead of stretching across the whole column. */
 @media (max-width:1024px){
- .jm-portrait,.jm-portrait~.jm-caption{width:100%!important;max-width:440px!important;margin-inline:auto!important}
+ .jm-wel-art,.jm-wel-art~.jm-caption{width:100%!important;max-width:460px!important;margin-inline:auto!important}
  .jm-collage{max-width:520px;margin-inline:auto}
 }
+
+/* Welcome: two of Jennifer's paintings side by side, the second set a little lower. */
+.jm-wel-art>.jm-art{flex:1 1 0!important;width:auto!important;min-width:0}
+.jm-wel-art>.jm-art-low{margin-top:40px!important}
+/* Hero: the location line under her name. */
+.jm-hero-place .elementor-heading-title{text-transform:uppercase}
+
+/* Pop-ups (opened by links to "#jm-pop-…"; see jm-site.js) */
+.jm-modal{display:none!important}
+.jm-modal.is-open{display:flex!important;position:fixed!important;inset:0;z-index:10000;align-items:center;justify-content:center;padding:20px!important;background:rgba(18,50,63,.6);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);animation:jmModalIn .25s ease}
+.jm-modal-panel{position:relative;width:100%!important;max-width:680px;max-height:calc(100vh - 40px);overflow:auto;box-shadow:0 30px 70px rgba(0,0,0,.3);overscroll-behavior:contain}
+.jm-modal-close{position:absolute;top:14px;right:14px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border:0;border-radius:999px;background:#EBE7DB;color:#12323F;cursor:pointer;padding:0}
+.jm-modal-close:hover,.jm-modal-close:focus-visible{background:#1D5067;color:#fff}
+.jm-modal-panel>.elementor-widget-html{position:static!important;margin:0!important;height:0}
+.jm-modal-title{padding-right:48px}
+.jm-modal-text ul{margin:0;padding-left:1.2em}.jm-modal-text li{margin:0 0 .6em}.jm-modal-text p{margin:0 0 .9em}
+.jm-modal-text a{color:#1D5067;text-decoration:underline;text-underline-offset:3px}
+@keyframes jmModalIn{from{opacity:0}to{opacity:1}}
+body.jm-modal-open{overflow:hidden}
+/* In the Elementor editor, show pop-ups in place so their text can be edited. */
+body.elementor-editor-active .jm-modal{display:flex!important;padding:24px 16px;background:#12323F}
 
 /* Motion preferences */
 @media (prefers-reduced-motion:reduce){
