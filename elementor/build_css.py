@@ -377,7 +377,14 @@ body.elementor-editor-active .jm-modal{display:flex!important;padding:24px 16px;
 @media (max-width:1024px){.jm-page-hero.jm-hero-photo::before{background:linear-gradient(180deg,rgba(13,40,52,.9) 0%,rgba(18,50,63,.78) 100%)!important}}
 .jm-hero-photo .jm-filter{border-color:#EBE7DB;color:#F7F5EF}
 .jm-hero-photo .jm-filter[aria-pressed="true"],.jm-hero-photo .jm-filter:hover{background:#F7F5EF;color:#12323F}
-.jm-hero-photo .jm-rebate-card{box-shadow:0 24px 60px rgba(0,0,0,.35);border:1px solid rgba(235,231,219,.25)!important}
+/* Hero boxes over the photo (Fees rebate, Referral details): frosted glass, light text. */
+.jm-hero-photo .jm-rebate-card,.jm-hero-photo .jm-ref-details{background:rgba(247,245,239,.1)!important;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid rgba(247,245,239,.35)!important;box-shadow:0 24px 60px rgba(0,0,0,.25)!important}
+.jm-hero-photo .jm-rebate-card::after{opacity:.35}
+.jm-hero-photo .jm-ref-details .elementor-heading-title{color:#A2C3D3!important}
+.jm-hero-photo .jm-ref-details>.elementor-widget-heading .elementor-heading-title{color:#fff!important}
+.jm-hero-photo .jm-ref-details p,.jm-hero-photo .jm-ref-details a,.jm-hero-photo .jm-ref-details .elementor-widget-text-editor{color:#F7F5EF!important}
+.jm-hero-photo .jm-ref-details a:hover{color:#DDAA33!important}
+.jm-hero-photo .jm-ref-details .e-con{border-color:rgba(247,245,239,.2)!important}
 .jm-ref-hero::after{background:HERO_EDGE center bottom/100% 100% no-repeat;right:0;top:auto;width:auto;height:clamp(36px,5vw,72px);opacity:1}
 .jm-ref-hero::before{content:"";position:absolute;right:-160px;top:-160px;width:620px;height:620px;opacity:.1;background:GP_MARK center/contain no-repeat;pointer-events:none}
 .jm-areas-section::after{right:auto;left:-180px;top:auto;bottom:-200px;opacity:.09}
