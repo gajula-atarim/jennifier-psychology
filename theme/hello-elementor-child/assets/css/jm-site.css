@@ -478,9 +478,4 @@ a.jm-contact-tile-dark:hover,a.jm-contact-tile-dark:focus-visible{border-color:#
  .jm-rise,.jm-tide,.jm-chips-dark .elementor-icon-list-item,.jm-wave-card::after,.jm-ice-top::after,.jm-breath-waves{animation:none!important}
  .jm-swap-a{animation:none;opacity:1}.jm-swap-b{animation:none;opacity:0}
  .jm-prints svg{animation:none;opacity:.85}
- .jm-res-card,.jm-res-go .elementor-icon,.jm-line,.jm-contact-tile,.jm-call,.jm-sos-card,.jm-g-img img,.jm-round,.jm-areas .elementor-icon-list-item{transition:none!important}
- .jm-g-img:hover img,.jm-res-card:hover,.jm-res-row:hover .jm-res-go .elementor-icon,a.jm-contact-tile:hover,a.jm-call:hover,.jm-sos-card:hover{transform:none}
- .jm-card,.jm-tile,.jm-card .elementor-widget-icon svg,.jm-wave-card::after,.jm-stop,.jm-stone .elementor-heading-title,.jm-stop-arrow{transition:none}
- .jm-card:hover,.jm-tile:hover,.jm-card:hover .elementor-widget-icon svg{transform:none}
- .elementor-button,.elementor-button:hover,.elementor-button:focus-visible,.jm-textlink .elementor-button-icon{transform:none!important}
 }
