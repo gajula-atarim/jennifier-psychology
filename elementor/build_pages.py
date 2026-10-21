@@ -9,7 +9,7 @@ import json
 
 from build import (BODY, BODY_DK, DIST, EMAIL, EMAIL_URL, INK, MIST, MIST_LT, MUTED, NAME_TITLE, OCHRE, PHONE,
                    PHONE_URL, AHPRA_REG, SAND, SANS, SERIF, STONE, TEAL, URL, border, button, container, dims,
-                   eyebrow, gap, gradient, grid, heading, html, icon, icon_list, image, main_nav, modal, pop_text, px,
+                   eyebrow, gap, gradient, grid, heading, html, icon, icon_list, image, main_nav, media, modal, pop_text, px,
                    sand_bg, section, text, textlink, wave_card, widget)
 
 PAGES = {"about": 50, "services": 51, "fees": 52, "referrers": 53, "gallery": 54,
@@ -141,16 +141,17 @@ AREAS = ["Alcohol Use", "Anger Management", "Anxiety", "Behavioural Issues", "Bi
 
 def about_page():
     hero = page_hero("ab-hero", [
-        eyebrow("ab-eyebrow", "About"),
-        h1("ab-h1", NAME_TITLE),
-        heading("ab-role", "Principal Psychologist | AAPi (General Psychologist)", "p", SANS, 18, TEAL, weight=600,
+        eyebrow("ab-eyebrow", "About", color=MIST),
+        h1("ab-h1", NAME_TITLE, color="#ffffff"),
+        heading("ab-role", "Principal Psychologist | AAPi (General Psychologist)", "p", SANS, 18, OCHRE, weight=600,
                 lh=1.4),
         para("ab-lede", "I invite you to reach out by email or phone for a confidential chat. I am here to listen and "
-                        "support your next step.", "clamp(17px, 1.4vw, 19px)", BODY_DK, 1.7, maxw=640),
-        call_email("ab-hero-btns"),
+                        "support your next step.", "clamp(17px, 1.4vw, 19px)", SAND, 1.7, maxw=640),
+        call_email("ab-hero-btns", call_style="ochre", email_style="light"),
     ], container("ab-hero-art", [figure("ab-hero-fig", "art_ocean", "Original artwork © Jennifer Malecki",
                                         "jm-ar-45 jm-arch")], width=340, grow=1, _element_custom_width=px(440),
                  cls="jm-fig-col jm-fig-col-440"))
+    photo_hero(hero, "hero_poster", "center 60%")
 
     practice = section("ab-practice", [
         container("ab-practice-head", [eyebrow("ab-practice-eyebrow", "The practice"),
@@ -365,16 +366,17 @@ THERAPIES = [
 
 def services_page():
     hero = page_hero("sv-hero", [
-        eyebrow("sv-eyebrow", "Services"),
-        h1("sv-h1", "What I do"),
+        eyebrow("sv-eyebrow", "Services", color=MIST),
+        h1("sv-h1", "What I do", color="#ffffff"),
         para("sv-lede", "I use a range of evidence-based therapies to support clients in their journey towards healing "
                         "and personal growth. My approach incorporates schema therapy, cognitive behavioural therapy "
                         "(CBT), and dialectical behaviour therapy (DBT). I aim to look beyond symptoms, asking holistic "
                         "questions to understand your whole story and help you truly reclaim your life.",
-             "clamp(17px, 1.4vw, 19px)", BODY_DK, 1.75),
-        call_email("sv-hero-btns"),
+             "clamp(17px, 1.4vw, 19px)", SAND, 1.75),
+        call_email("sv-hero-btns", call_style="ochre", email_style="light"),
     ], container("sv-hero-art", [figure("sv-hero-fig", "art_wave", "Original artwork © Jennifer Malecki",
                                         "jm-ar-11 jm-arch-round")], width=340, grow=1, cls="jm-fig-col jm-fig-col-460"))
+    photo_hero(hero, "hero_poster", "center 35%")
 
     cards = [wave_card(f"sv-card-{key}", [
         heading(f"sv-num-{key}", num, "span", SERIF, 34, "#6A8CA3", weight=600, lh=1),
@@ -452,12 +454,13 @@ def fees_page():
                                "_flex_grow": 1, "_flex_shrink": 1, "width_mobile": px(100, "%"),
                                "css_classes": rebate["settings"]["css_classes"] + " jm-rebate-card"})
     hero = page_hero("fe-hero", [
-        eyebrow("fe-eyebrow", "Fees &amp; Rebates"),
-        h1("fe-h1", "Fees &amp; Rebates"),
+        eyebrow("fe-eyebrow", "Fees &amp; Rebates", color=MIST),
+        h1("fe-h1", "Fees &amp; Rebates", color="#ffffff"),
         para("fe-lede", "Sessions are charged at a standard consultation rate. If you have a valid Mental Health Care "
                         "Plan from your GP, you will be eligible to claim a Medicare rebate per session (for up to 10 "
-                        "sessions per calendar year).", "clamp(17px, 1.4vw, 19px)", BODY_DK, 1.75, maxw=680),
+                        "sessions per calendar year).", "clamp(17px, 1.4vw, 19px)", SAND, 1.75, maxw=680),
     ], rebate)
+    photo_hero(hero, "photo_beach", "center 60%")
 
     card = lambda n, key, title, kids: wave_card(f"fe-card-{n}", [
         icon(f"fe-card-{n}-i", key, 36, color=TEAL), h3(f"fe-card-{n}-h", title), *kids,
@@ -572,6 +575,7 @@ def referrers_page():
                         "as well as through private arrangements.", "clamp(17px, 1.4vw, 19px)", MIST_LT, 1.75),
         call_email("rf-hero-btns", "Email a referral", "ochre", "light"),
     ], details, bg=TEAL, cls="jm-gp jm-ref-hero")
+    photo_hero(hero, "photo_cartwright", "center 22%")
     hero["settings"]["flex_align_items"] = "flex-start"
 
     tcard = lambda n, t, p: wave_card(f"rf-type-{n}", [h3(f"rf-type-{n}-h", t, size=28, lh=1.15),
@@ -651,14 +655,15 @@ def gallery_page():
                                  '</div>')
     filters["settings"]["_flex_size"] = "none"
     hero = page_hero("ga-hero", [
-        eyebrow("ga-eyebrow", "Gallery"),
-        h1("ga-h1", "Art, ocean &amp; the Sunshine Coast"),
+        eyebrow("ga-eyebrow", "Gallery", color=MIST),
+        h1("ga-h1", "Art, ocean &amp; the Sunshine Coast", color="#ffffff"),
         para("ga-lede", "Original artwork by Jennifer Malecki, alongside the beach and coastal landscapes of Mooloolaba. "
-                        "Select any image to view it larger.", "clamp(17px, 1.4vw, 19px)", BODY_DK, 1.7),
+                        "Select any image to view it larger.", "clamp(17px, 1.4vw, 19px)", SAND, 1.7),
     ], filters, pad=dims("clamp(56px,7vw,96px)", 24, "clamp(96px,10vw,130px)", 24))
     hero["settings"].update({"flex_align_items": "flex-end", "flex_justify_content": "space-between",
                              "flex_gap": gap(24, 56)})
     hero["elements"][0]["settings"]["width"] = px(620)
+    photo_hero(hero, "hero_poster", "center 70%")
     hero["elements"][0]["settings"]["flex_gap"] = gap(18)
 
     items = []
@@ -707,6 +712,15 @@ def link_box(name, kids, url, *, external=False, cls="", **kw):
     """A whole card that is one link (Elementor container rendered as <a>)."""
     return container(name, kids, tag="a", link={"url": url, "is_external": "on" if external else ""},
                      cls=cls, **kw)
+
+
+def photo_hero(sec, key, pos="center center"):
+    """Coastal photo behind an inner-page hero (the teal shade over it is in jm-site.css)."""
+    sec["settings"].update({"background_background": "classic", "background_color": INK,
+                            "background_image": media(key), "background_position": pos,
+                            "background_size": "cover", "background_repeat": "no-repeat"})
+    sec["settings"]["css_classes"] += " jm-hero-photo"
+    return sec
 
 
 def hero_text_only(name, kids, *, bg=STONE, maxw=None, pad=None):
@@ -767,14 +781,15 @@ def line_card(name, label, number, tel, *, ochre=False):
 
 def resources_page():
     hero = hero_text_only("rs-hero", [
-        eyebrow("rs-eyebrow", "Resources"),
-        h1("rs-h1", "Resources"),
+        eyebrow("rs-eyebrow", "Resources", color=MIST),
+        h1("rs-h1", "Resources", color="#ffffff"),
         para("rs-lede", "The informational resources and external links provided below are intended for educational "
                         "and support purposes only, and do not replace professional psychological care or medical "
                         "advice. If you or someone you know is in acute distress or experiencing an immediate safety "
                         "risk, please utilise the crisis contacts below or present to your nearest hospital emergency "
-                        "department.", "clamp(17px, 1.4vw, 19px)", BODY_DK, 1.75, maxw=860),
+                        "department.", "clamp(17px, 1.4vw, 19px)", SAND, 1.75, maxw=860),
     ])
+    photo_hero(hero, "photo_cartwright", "center 22%")
 
     lines = [line_card("rs-line-000", "Emergency Services · immediate danger or medical emergencies", "000", "000",
                        ochre=True)] + [
@@ -855,14 +870,15 @@ def contact_tile(name, key, label, value_html, *, url=None, size=18, weight=700,
 
 def contact_page():
     hero = hero_text_only("ct-hero", [
-        eyebrow("ct-eyebrow", "Contact"),
-        h1("ct-h1", "Contact Me"),
+        eyebrow("ct-eyebrow", "Contact", color=MIST),
+        h1("ct-h1", "Contact Me", color="#ffffff"),
         para("ct-lede", "Feel free to reach out by email or phone to ask any questions or to discuss taking the next "
-                        "step toward your healing.", "clamp(17px, 1.4vw, 19px)", BODY_DK, 1.75, maxw=820),
+                        "step toward your healing.", "clamp(17px, 1.4vw, 19px)", SAND, 1.75, maxw=820),
         para("ct-p", "When you reach out by phone, you will speak directly with me. I manage my own enquiries to ensure "
                      "that from your very first phone call, you are met with a safe, confidential, and deeply "
-                     "personalised introduction to care.", 17, GREY_BODY, 1.75, maxw=820),
+                     "personalised introduction to care.", 17, MIST_LT, 1.75, maxw=820),
     ])
+    photo_hero(hero, "photo_beach", "center 55%")
     address = "Unit 1, 38 Burnett Street, Mooloolaba QLD 4557"
     tiles = container("ct-tiles", [
         contact_tile("ct-phone", "i_phone", "Phone", f"<p>{PHONE}</p>", url=PHONE_URL, size=24),
@@ -978,14 +994,15 @@ TEAL_DK_ = "#0d4c5c"
 def privacy_page():
     narrow = dict(boxed_width=880)
     hero = section("pv-hero", [container("pv-hero-text", [
-        eyebrow("pv-eyebrow", "Legal"),
-        heading("pv-h1", "Privacy policy &amp; website disclaimer", "h1", SERIF, "clamp(40px, 5vw, 64px)", INK,
+        eyebrow("pv-eyebrow", "Legal", color=MIST),
+        heading("pv-h1", "Privacy policy &amp; website disclaimer", "h1", SERIF, "clamp(40px, 5vw, 64px)", "#ffffff",
                 weight=600, lh=1.04, ls=-0.01),
         container("pv-toc", [toc_pill("pv-toc-p", "Privacy policy", "#privacy"),
                              toc_pill("pv-toc-d", "Website disclaimer", "#disclaimer")],
                   row=True, wrap=True, gap_=10, pad=dims(6, 0, 0, 0), tag="nav"),
     ], gap_=18)], pad=dims("clamp(56px,7vw,88px)", 24, "clamp(88px,9vw,120px)", 24), bg=STONE, cls="jm-page-hero",
         **narrow)
+    photo_hero(hero, "photo_beach", "center 60%")
 
     privacy = section("pv-privacy", [
         h2("pv-p-h", "Privacy policy", size="clamp(32px, 3.6vw, 46px)", lh=1.1),
