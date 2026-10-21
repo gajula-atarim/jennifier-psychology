@@ -352,6 +352,8 @@ body.elementor-editor-active .jm-modal{display:flex!important;padding:24px 16px;
 .jm-link-pills .elementor-icon-list-item a:hover,.jm-link-pills .elementor-icon-list-item a:focus-visible{background:#1D5067}
 .jm-link-pills .elementor-icon-list-item a:hover .elementor-icon-list-text{color:#fff}
 .jm-cta-stone::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 90' preserveAspectRatio='none'%3E%3Cpath d='M0 0 H1440 V40 C1300 70 1160 72 1010 52 C860 32 720 30 560 52 C400 74 220 76 0 50 Z' fill='%23EBE7DB'/%3E%3Cpath d='M0 50 C220 76 400 74 560 52 C720 30 860 32 1010 52 C1160 72 1300 70 1440 40' fill='none' stroke='%23ffffff' stroke-width='5' stroke-linecap='round' opacity='0.9'/%3E%3Cpath d='M0 62 C220 86 400 84 560 64 C720 44 860 46 1010 64 C1160 82 1300 80 1440 54' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' opacity='0.5'/%3E%3C/svg%3E")}
+/* Fixed-width text boxes never overflow narrower screens. */
+.jm-page-cta .e-con,.jm-page-hero .e-con{max-width:100%}
 
 /* Gallery: filters, tiles, placeholders and the lightbox (jm-site.js). */
 .jm-filters{display:flex;flex-wrap:wrap;gap:8px}

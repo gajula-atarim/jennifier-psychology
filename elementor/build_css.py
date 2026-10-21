@@ -361,6 +361,8 @@ body.elementor-editor-active .jm-modal{display:flex!important;padding:24px 16px;
 .jm-link-pills .elementor-icon-list-item a:hover,.jm-link-pills .elementor-icon-list-item a:focus-visible{background:#1D5067}
 .jm-link-pills .elementor-icon-list-item a:hover .elementor-icon-list-text{color:#fff}
 .jm-cta-stone::after{background-image:CTA_EDGE_STONE}
+/* Fixed-width text boxes never overflow narrower screens. */
+.jm-page-cta .e-con,.jm-page-hero .e-con{max-width:100%}
 
 /* Gallery: filters, tiles, placeholders and the lightbox (jm-site.js). */
 .jm-filters{display:flex;flex-wrap:wrap;gap:8px}
