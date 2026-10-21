@@ -811,8 +811,7 @@ def services():
 
 
 def approach():
-    # Gallery collage: the two paintings overlap (positions are in jm-site.css, as percentages, so the
-    # pair scales as one at every width).
+    # The two paintings side by side, the second a little lower (layout in jm-site.css).
     art_frame = dict(border_radius=dims(28), overflow="hidden", background_background="classic",
                      background_color=TEAL)
     main_art = container("app-art", [image("app-art-a", "art_ocean")], cls="jm-art jm-art-main", **art_frame)

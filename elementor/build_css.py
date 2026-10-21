@@ -188,10 +188,10 @@ html:not(.jm-fonts-ready) .jm-hero-msg,html:not(.jm-fonts-ready) .jm-page-hero>.
 .jm-art>.jm-art-caption{position:absolute!important;left:20px;bottom:20px;z-index:2;width:auto!important;max-width:calc(100% - 40px)}
 /* Gallery collage: the ocean painting large at the top left, the wave painting smaller at the bottom
    right in a sand-coloured mat, overlapping it. */
-.jm-collage{position:relative;width:100%;aspect-ratio:450/690}
-.jm-collage>.jm-art{position:absolute!important;margin:0!important}
-.jm-collage>.jm-art-main{left:0;top:0;width:76%!important;aspect-ratio:4/5;box-shadow:0 24px 48px rgba(18,50,63,.18)}
-.jm-collage>.jm-art-inset{right:0;bottom:0;width:60%!important;aspect-ratio:10/13;z-index:2;border:8px solid #F7F5EF;box-shadow:0 24px 48px rgba(18,50,63,.22)}
+/* My approach: the two paintings side by side, the second set a little lower. */
+.jm-collage{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;align-items:flex-start;gap:16px;width:100%;aspect-ratio:auto!important;padding-bottom:48px}
+.jm-collage>.jm-art{position:relative!important;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;border:0!important;flex:1 1 0!important;width:auto!important;min-width:0;margin:0!important;aspect-ratio:4/5!important;box-shadow:0 24px 48px rgba(18,50,63,.18)}
+.jm-collage>.jm-art-inset{margin-top:48px!important}
 .jm-collage>.jm-art-inset>.jm-art-caption{left:12px;bottom:12px;max-width:calc(100% - 24px)}
 /* Phones: the label shortens to "© Jennifer Malecki" so it stays on one line. */
 @media (max-width:767px){.jm-art-caption .jm-cap-long{display:none}}
