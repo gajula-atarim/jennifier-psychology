@@ -459,9 +459,9 @@ def fees_page():
     ], rebate)
     photo_hero(hero, "photo_beach", "center 60%")
 
-    card = lambda n, key, title, kids: wave_card(f"fe-card-{n}", [
+    card = lambda n, key, title, kids, hover=False: wave_card(f"fe-card-{n}", [
         icon(f"fe-card-{n}-i", key, 36, color=TEAL), h3(f"fe-card-{n}-h", title), *kids,
-    ], radius=24, pad=dims(32, 32, 116, 32), gap_=14)
+    ], radius=24, pad=dims(32, 32, 116, 32), gap_=14, hover=hover)
     pay = section("fe-pay", [grid("fe-pay-grid", [
         card("pay", "i_card", "Accepted Payment Methods", [
             icon_list("fe-pay-list", ["Bank Transfer (Electronic Funds Transfer)", "Mastercard", "Visa"], inline=True,
@@ -472,7 +472,7 @@ def fees_page():
                              "generally do not cover cancellation fees).", 16, GREY_BODY, 1.7)]),
         card("change", "i_calendar", "Changing Your Appointment", [
             para("fe-change-p", "Your session time is reserved exclusively for you.", 16, GREY_BODY, 1.7),
-            more("fe-change-more", "Cancellation policy", "#jm-pop-cancel")]),
+            more("fe-change-more", "Cancellation policy", "#jm-pop-cancel")], hover=True),
     ], 340, 20)], pad=dims("clamp(56px,7vw,96px)", 24), cls="jm-tide")
 
     way = lambda n, title, sub, target=None: wave_card(f"fe-way-{n}", [
@@ -480,7 +480,7 @@ def fees_page():
         para(f"fe-way-{n}-s", sub, 15, GREY_BODY, 1.5),
         *([textlink(f"fe-way-{n}-more", "Details +", target, text_padding=dims(4, 0), typography_font_size=px(14))]
           if target else []),
-    ], radius=20, pad=dims(26, 26, 76, 26), gap_=8, size="sm")
+    ], radius=20, pad=dims(26, 26, 76, 26), gap_=8, size="sm", hover=bool(target))
     ways = section("fe-ways", [
         container("fe-ways-head", [
             eyebrow("fe-ways-eyebrow", "Referrals &amp; plans"),
@@ -577,7 +577,7 @@ def referrers_page():
 
     tcard = lambda n, t, p: wave_card(f"rf-type-{n}", [h3(f"rf-type-{n}-h", t, size=28, lh=1.15),
                                                        para(f"rf-type-{n}-p", p, 16, GREY_BODY, 1.6)],
-                                      radius=22, pad=dims(28, 28, 104, 28), gap_=8)
+                                      radius=22, pad=dims(28, 28, 104, 28), gap_=8, hover=False)
     types = section("rf-types", [
         container("rf-types-head", [
             eyebrow("rf-types-eyebrow", "Referral pathways"),

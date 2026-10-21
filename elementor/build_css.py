@@ -287,6 +287,12 @@ body.elementor-editor-active .jm-modal{display:flex!important;padding:24px 16px;
 /* Services therapy cards: keep the "Read more" buttons level along the bottom of the row. */
 .jm-ther-card>.elementor-widget:last-child,.jm-ther-card>.e-con-inner>.elementor-widget:last-child{margin-top:auto}
 
+/* Hover feedback for the remaining links and boxes. */
+.jm-sos-card:hover,.jm-sos-card:focus-visible{box-shadow:0 18px 40px rgba(0,0,0,.3);background-color:#E8BE57!important}
+.jm-inline-links a,.jm-modal-text a,.jm-prose a{transition:color .2s,text-decoration-color .2s}
+.jm-inline-links a:hover,.jm-modal-text a:hover,.jm-prose a:hover,.jm-inline-links a:focus-visible,.jm-modal-text a:focus-visible{color:#12323F;text-decoration-color:#DDAA33;text-decoration-thickness:2px}
+.jm-bar-links a:hover,.jm-bar-links a:focus-visible,.jm-modal-bignum a:hover,.jm-modal-bignum a:focus-visible{color:#DDAA33!important}
+
 /* Inner pages use the Home menu button and dropdown panel (the .jm-nav rules above). Here the
    button sits in the light bar beside the phone button, and the panel hangs from the bar. */
 .jm-inner-bar>.e-con-inner{position:relative}
@@ -391,7 +397,7 @@ body.elementor-editor-active .jm-modal{display:flex!important;padding:24px 16px;
 
 /* Resources, Contact, Support, Privacy */
 .jm-line,.jm-contact-tile,.jm-call{text-decoration:none!important;transition:border-color .25s,transform .25s,box-shadow .25s}
-a.jm-line:hover,a.jm-line:focus-visible{border-color:#1D5067!important}
+a.jm-line:hover,a.jm-line:focus-visible{border-color:#1D5067!important;transform:translateY(-3px);box-shadow:0 12px 28px rgba(0,0,0,.25)}
 a.jm-contact-tile:hover,a.jm-call:hover,a.jm-contact-tile:focus-visible,a.jm-call:focus-visible{border-color:#1D5067!important;transform:translateY(-3px);box-shadow:0 12px 28px rgba(18,50,63,.12)}
 .jm-res-cols{display:block!important;columns:2 440px;column-gap:20px}
 .jm-res-cols>.jm-res-card{break-inside:avoid;margin-bottom:20px!important;display:flex!important}
@@ -409,8 +415,8 @@ a.jm-contact-tile:hover,a.jm-call:hover,a.jm-contact-tile:focus-visible,a.jm-cal
 .jm-tile-value p.jm-email-v{word-break:normal;overflow-wrap:normal}
 @media (max-width:420px){.jm-tile-value p.jm-email-v{font-size:17px}}
 .jm-map iframe{border-radius:28px;border:1px solid #CFDCE3!important;display:block}
-.jm-sos-card{text-decoration:none!important;box-shadow:0 24px 60px rgba(0,0,0,.3);max-width:400px;transition:transform .25s}
-.jm-sos-card:hover{transform:translateY(-3px)}
+.jm-sos-card{text-decoration:none!important;box-shadow:0 24px 60px rgba(0,0,0,.3);max-width:400px;transition:transform .25s,box-shadow .25s,background-color .25s}
+.jm-sos-card:hover,.jm-sos-card:focus-visible{transform:translateY(-3px)}
 .jm-tap-pill .elementor-heading-title{display:inline-block;background:#12323F;border-radius:999px;padding:10px 18px}
 .jm-placeholder-box{background:#fff;border:2px dashed #A2C3D3;border-radius:16px;padding:20px 22px}
 .jm-placeholder-box p{margin:0}
