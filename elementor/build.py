@@ -186,6 +186,9 @@ def container(name, children, *, boxed=False, row=False, wrap=False, gap_=0, pad
         s["_flex_size"] = "custom"
         s["_flex_grow"] = grow
         s["_flex_shrink"] = shrink
+    if isinstance(width, (int, float)) and width > 720:
+        # Wider than a small tablet's content area: jm-site.css caps it at the space available.
+        cls = (cls + " jm-fit").strip()
     if cls:
         s["css_classes"] = cls
     if tag:
