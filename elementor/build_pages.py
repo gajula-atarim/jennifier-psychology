@@ -569,21 +569,26 @@ def referrers_page():
     ], bg=TEAL, cls="jm-gp jm-ref-hero")
     photo_hero(hero, "photo_cartwright", "center 22%")
 
-    # Referral details sit beside the How to Refer text: two columns of label and value on desktop.
+    # Referral details: one wave card per detail, with an icon on top (three across on desktop).
+    tile = lambda n, key, label, value: wave_card(f"rf-d-{n}", [
+        icon(f"rf-d-{n}-i", key, 28, color=TEAL, _flex_size="none"),
+        eyebrow(f"rf-d-{n}-l", label, ls=0.12, _margin=dims(6, 0, 0, 0)),
+        text(f"rf-d-{n}-v", f"<p>{value}</p>", 16, INK, lh=1.5, cls="jm-inline-links"),
+    ], radius=20, pad=dims(24, 24, 84, 24), gap_=6, size="sm", hover=False)
     details = container("rf-details", [
         h3("rf-details-h", "Referral details", size=28, lh=1.15),
         grid("rf-dl", [
-            label_value("rf-d-cap", "Current Capacity", "Active availability for face-to-face consultations "
-                                                        "(Mondays) and Telehealth (Tuesday–Friday)."),
-            label_value("rf-d-mo", "Secure Electronic Messaging", "Medical Objects"),
-            label_value("rf-d-email", "Secure Practice Email", email),
-            label_value("rf-d-phone", "Phone", f'<a href="{PHONE_URL}">{PHONE}</a>'),
-            label_value("rf-d-loc", "Medicare location ID", "894363H"),
-            label_value("rf-d-addr", "Address", "Unit 1/38 Burnett Street Mooloolaba 4557"),
-        ], 240, 0, grid_gaps={"row": "14", "column": "32", "isLinked": False, "unit": "px", "size": 32},
-            css_classes="jm-inline-links"),
-    ], gap_=18, pad=dims(32), width=520, grow=999, cls="jm-ref-card",
-        background_background="classic", background_color="#ffffff", **border(1, LINE, 26))
+            tile("cap", "i_calendar", "Current Capacity", "Active availability for face-to-face consultations "
+                                                          "(Mondays) and Telehealth (Tuesday–Friday)."),
+            tile("mo", "i_shield", "Secure Electronic Messaging", "Medical Objects"),
+            tile("email", "i_mail_line", "Secure Practice Email", email),
+            tile("phone", "i_phone", "Phone", f'<a href="{PHONE_URL}">{PHONE}</a>'),
+            tile("loc", "i_card", "Medicare location ID", "894363H"),
+            tile("addr", "i_map_pin", "Address", "Unit 1/38 Burnett Street Mooloolaba 4557"),
+        ], 220, 14, grid_columns_grid=px("repeat(3, minmax(0, 1fr))"),
+            grid_columns_grid_tablet=px("repeat(2, minmax(0, 1fr))"),
+            grid_columns_grid_mobile={"unit": "fr", "size": 1, "sizes": []}),
+    ], gap_=18, width=520, grow=999, cls="jm-ref-tiles")
     how = section("rf-how", [
         container("rf-how-head", [
             eyebrow("rf-how-eyebrow", "Referral pathways"),
