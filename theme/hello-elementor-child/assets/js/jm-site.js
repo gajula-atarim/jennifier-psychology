@@ -116,8 +116,8 @@
 		}
 		var lastFocus = null;
 		modals.forEach( function ( modal ) {
-			// Move to <body> so no transformed section can trap the fixed overlay.
-			document.body.appendChild( modal );
+			// Leave the pop-up where Elementor placed it (a top-level container): Elementor's own styles
+			// for it (panel colour, padding, fonts) only apply inside the page's wrapper.
 			var panel = modal.querySelector( '.jm-modal-panel' ) || modal;
 			var title = modal.querySelector( '.jm-modal-title .elementor-heading-title' );
 			panel.setAttribute( 'role', 'dialog' );
