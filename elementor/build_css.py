@@ -50,7 +50,7 @@ body .elementor-widget.elementor-widget-icon-list .elementor-icon-list-icon+.ele
 /* When the crisis line wraps (tablet/phone), split it into two even lines. */
 .jm-topbar .elementor-widget-text-editor p{text-wrap:balance}
 /* The menu button. */
-.jm-nav .hfe-nav-menu__toggle{display:flex!important;cursor:pointer;margin:0!important}
+.jm-nav .hfe-nav-menu__toggle{display:flex!important;visibility:visible!important;opacity:1!important;cursor:pointer;margin:0!important}
 .jm-nav .hfe-nav-menu-icon{display:flex;align-items:center;justify-content:center;width:56px;height:56px;padding:0;border-radius:999px;box-sizing:border-box;background:rgba(232,240,243,.94);color:#12323F;box-shadow:0 8px 24px rgba(10,30,40,.22);transition:background-color .2s,transform .2s}
 .jm-nav .hfe-nav-menu__toggle:hover .hfe-nav-menu-icon,.jm-nav .hfe-nav-menu__toggle:focus-visible .hfe-nav-menu-icon{background:#fff;transform:scale(1.05)}
 .jm-nav .hfe-nav-menu-icon svg{fill:none!important}
@@ -64,7 +64,8 @@ body .elementor-widget.elementor-widget-icon-list .elementor-icon-list-icon+.ele
 .jm-nav nav a.hfe-menu-item{border-radius:0}
 @media (min-width:1025px){
  .jm-nav nav.hfe-nav-menu__layout-horizontal{display:none!important;left:auto!important;width:300px!important}
- .jm-nav.jm-menu-open nav.hfe-nav-menu__layout-horizontal{display:block!important;height:auto!important}
+ .jm-nav.jm-menu-open nav.hfe-nav-menu__layout-horizontal{display:block!important;height:auto!important;visibility:visible!important;opacity:1!important;transform:none!important}
+ .jm-nav.jm-menu-open nav .hfe-nav-menu,.jm-nav.jm-menu-open nav .hfe-nav-menu>li,.jm-nav.jm-menu-open nav a.hfe-menu-item{visibility:visible!important;opacity:1!important}
  .jm-nav nav .hfe-nav-menu{display:flex!important;flex-direction:column!important;align-items:stretch!important}
  .jm-nav nav .hfe-nav-menu>li{width:100%;margin:0!important}
  .jm-nav nav a.hfe-menu-item{display:flex!important;padding:15px 24px!important;border-bottom:1px solid rgba(29,80,103,.12)}
