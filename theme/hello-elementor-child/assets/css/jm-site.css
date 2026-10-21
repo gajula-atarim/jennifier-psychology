@@ -283,6 +283,8 @@ body.elementor-editor-active .jm-modal{display:flex!important;padding:24px 16px;
 @media (max-width:767px){.jm-menu-panel .elementor-widget-image img{height:56px}}
 .jm-sr-title{position:absolute!important;width:1px!important;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .jm-menu-nav ul.hfe-nav-menu{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:6px 40px;margin:0!important}
+/* the menu plugin's clearfix pseudo-elements would otherwise take the first grid cell */
+.jm-menu-nav ul.hfe-nav-menu::before,.jm-menu-nav ul.hfe-nav-menu::after{display:none!important;content:none!important}
 .jm-menu-nav ul.hfe-nav-menu>li{border:0!important;margin:0!important}
 .jm-menu-nav a.hfe-menu-item{display:inline-flex!important;align-items:center;min-height:44px;padding-left:0!important}
 .jm-menu-nav .hfe-menu-toggle,.jm-menu-nav .sub-arrow{display:none!important}
