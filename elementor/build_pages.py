@@ -553,16 +553,18 @@ def fees_page():
 # ---------------------------------------------------------------- For Referrers
 
 def referrers_page():
+    # Wording from the client's Referrers document (kept as written for AHPRA).
+    email = f'<a href="{EMAIL_URL}">{EMAIL}</a>'
     details = container("rf-details", [
         h2("rf-details-h", "Referral details", size=30, lh=1.1),
         container("rf-dl", [
-            label_value("rf-d-name", "Practitioner", NAME_TITLE),
-            label_value("rf-d-prov", "Medicare Provider No.", "1894363H"),
-            label_value("rf-d-ahpra", "AHPRA", AHPRA_REG),
-            label_value("rf-d-mo", "Medical Objects", "[Medical Objects ID — to be supplied]"),
-            label_value("rf-d-contact", "Phone / email", f'<a href="{PHONE_URL}">{PHONE}</a><br>'
-                                                         f'<a href="{EMAIL_URL}">{EMAIL}</a>'),
-            label_value("rf-d-addr", "Address", "Unit 1, 38 Burnett Street, Mooloolaba QLD 4557", last=True),
+            label_value("rf-d-cap", "Current Capacity", "Face-to-face consultations (Mondays)<br>"
+                                                        "Telehealth (Tuesday–Friday)"),
+            label_value("rf-d-mo", "Secure Electronic Messaging", "Medical Objects"),
+            label_value("rf-d-email", "Secure Practice Email", email),
+            label_value("rf-d-phone", "Phone", f'<a href="{PHONE_URL}">{PHONE}</a>'),
+            label_value("rf-d-loc", "Medicare location ID", "894363H"),
+            label_value("rf-d-addr", "Address", "Unit 1/38 Burnett Street Mooloolaba 4557", last=True),
         ], gap_=12),
     ], gap_=16, pad=dims(32), width=340, grow=1, border_radius=dims(28), tag="aside", cls="jm-ref-details",
         background_background="classic", background_color=SAND)
@@ -571,69 +573,50 @@ def referrers_page():
                 cls="jm-pill jm-pill-ochre"),
         eyebrow("rf-eyebrow", "For GPs &amp; referring practitioners", color=MIST),
         h1("rf-h1", "For Referrers", color="#ffffff"),
-        para("rf-lede", "Jennifer values collaboration with referring professionals to ensure continuity of care and "
-                        "coordinated treatment planning. Referrals are welcomed from GPs via Mental Health Care Plans, "
-                        "as well as through private arrangements.", "clamp(17px, 1.4vw, 19px)", MIST_LT, 1.75),
+        para("rf-lede", "I welcome referrals for adults experiencing complex trauma, PTSD, anxiety, depression, and "
+                        "eating disorders. I provide high-quality, personalised care utilising evidence-based "
+                        "frameworks—including Schema Therapy, DBT, and CBT—alongside specialised, embodied practices "
+                        "like body mapping to address the deeper roots of distress.", "clamp(17px, 1.4vw, 19px)",
+             MIST_LT, 1.75),
         call_email("rf-hero-btns", "Email a referral", "ochre", "light"),
     ], details, bg=TEAL, cls="jm-gp jm-ref-hero")
     photo_hero(hero, "photo_cartwright", "center 22%")
     hero["settings"]["flex_align_items"] = "flex-start"
 
-    tcard = lambda n, t, p: wave_card(f"rf-type-{n}", [h3(f"rf-type-{n}-h", t, size=28, lh=1.15),
-                                                       para(f"rf-type-{n}-p", p, 16, GREY_BODY, 1.6)],
-                                      radius=22, pad=dims(28, 28, 104, 28), gap_=8, hover=False)
-    types = section("rf-types", [
-        container("rf-types-head", [
-            eyebrow("rf-types-eyebrow", "Referral pathways"),
-            h2("rf-types-h", "Referral Types Accepted"),
-            para("rf-types-p", "She accepts referrals from your General Practitioner (GP) via Mental Health Care Plans, "
-                               "NDIS referrals, and works with clients supported by the Department of Veterans' Affairs "
-                               "(DVA). These can be made by phone or email.", 17, GREY_BODY, 1.75),
-        ], gap_=14, width=760, grow=0),
-        grid("rf-types-grid", [tcard("gp", "General Practitioner (GP)", "Mental Health Care Plan referrals."),
-                               tcard("ndis", "NDIS", "Self-managed and plan-managed NDIS referrals."),
-                               tcard("dva", "Department of Veterans' Affairs (DVA)",
-                                     "Referrals supported for eligible veterans."),
-                               tcard("mo", "Medical Objects", "Referrals can be made via Medical Objects.")], 260, 16),
-    ], pad=dims("clamp(56px,7vw,96px)", 24), gap_=32, cls="jm-tide")
-
     step = lambda n, t, p: container(f"rf-step-{n}", [
         heading(f"rf-step-{n}-n", str(n), "span", SERIF, 20, "#ffffff", weight=700, lh=1, cls="jm-step-num",
                 _flex_size="none"),
         container(f"rf-step-{n}-t", [h3(f"rf-step-{n}-h", t, size=24, lh=1.2),
-                                     para(f"rf-step-{n}-p", p, 16, GREY_BODY, 1.5)], gap_=4, grow=1,
-                  width=px(0, "%"), mobile_width=False),
+                                     para(f"rf-step-{n}-p", p, 16, GREY_BODY, 1.5, cls="jm-inline-links")],
+                  gap_=4, grow=1, width=px(0, "%"), mobile_width=False),
     ], row=True, gap_=18, align="flex-start", pad=dims(22, 24), border_radius=dims(20), flex_wrap="nowrap",
         flex_wrap_mobile="nowrap", background_background="classic", background_color=SAND)
-    delivery = section("rf-del", [
-        container("rf-del-head", [
-            eyebrow("rf-del-eyebrow", "Working together"),
-            h2("rf-del-h", "Service Delivery"),
-            para("rf-del-p", "Services are available in person at the Mooloolaba clinic and via secure telehealth for "
-                             "clients across the Sunshine Coast and surrounding areas. Referrers receive timely updates "
-                             "following assessment and at key review points.", 17, GREY_BODY, 1.75),
-            more("rf-del-more", "Presentations I work with", "#jm-pop-areas"),
+    how = section("rf-how", [
+        container("rf-how-head", [
+            eyebrow("rf-how-eyebrow", "Referral pathways"),
+            h2("rf-how-h", "How to Refer"),
+            para("rf-how-p", "Please send formal Mental Health Care Plans (MHCP) or eating disorder management plans "
+                             "directly via secure electronic messaging.", 17, GREY_BODY, 1.75),
+            more("rf-how-more", "Practice areas", "#jm-pop-areas"),
         ], gap_=16, width=320, grow=1),
-        container("rf-del-steps", [step(1, "In-Person Therapy", "Available at our Mooloolaba clinic."),
-                                   step(2, "Telehealth Services", "Secure online therapy for clients across the "
-                                                                  "Sunshine Coast and surrounding areas."),
-                                   step(3, "Referrer Communication", "Referrers receive timely updates following "
-                                                                     "assessment and at key review points.")],
-                  gap_=14, width=520, grow=999),
+        container("rf-how-steps", [
+            step(1, "Secure Electronic Messaging", "Medical Objects"),
+            step(2, "Secure Practice Email", email),
+            step(3, "Current Capacity", "Active availability for face-to-face consultations (Mondays) and Telehealth "
+                                        "(Tuesday–Friday)."),
+        ], gap_=14, width=520, grow=999),
     ], pad=dims("clamp(56px,7vw,96px)", 24), bg=STONE, row=True, wrap=True, gap_=gap(32, 64), align="flex-start",
         cls="jm-tide")
 
-    cta = sand_cta("rf-cta", "Make a referral", "Referrals can be made by phone or email, or via Medical Objects.",
-                   email_label="Email a referral", stone_above=True)
+    cta = sand_cta("rf-cta", "Make a referral", "I value collaborative care and am committed to maintaining open, "
+                   "professional communication with referring general practitioners regarding your patient's "
+                   "treatment plan and ongoing progress.", email_label="Email a referral", stone_above=True)
     areas = modal("jm-pop-areas", "Practice Areas", [
-        pop_text("areas-p", "<p>Extensive experience working with adults with PTSD, personality disorders, self-harming "
-                            "behaviours, depression, bipolar disorder, anxiety, mood disorders, schizophrenia, and other "
-                            "serious mental health conditions.</p>"),
         icon_list("areas-pills", AREAS, inline=True, size=15, weight=500, lh=1.3,
                   cls="jm-chips jm-chips-left jm-chips-outline"),
     ])
     areas["elements"][0]["settings"]["css_classes"] += " jm-modal-wide"
-    return [hero, types, delivery, cta, areas]
+    return [hero, how, cta, areas]
 
 
 # ---------------------------------------------------------------- Gallery
