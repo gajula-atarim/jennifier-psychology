@@ -951,7 +951,7 @@ def support_page():
         h2(f"sp-next-{n}-h", title, size=30, lh=1.15), para(f"sp-next-{n}-p", body, 16, GREY_BODY, 1.7),
         container(f"sp-next-{n}-btns", btns, row=True, wrap=True, gap_=10),
     ], gap_=12, pad=dims(32), border_radius=dims(24), background_background="classic", background_color=SAND)
-    beyond = button("sp-bn-btn", "Open BeyondNow ↗", "https://www.beyondblue.org.au/get-support/"
+    beyond = button("sp-bn-btn", "Open BeyondNow", "https://www.beyondblue.org.au/get-support/"
                     "beyondnow-suicide-safety-planning", "ghost")
     beyond["settings"]["link"]["is_external"] = "on"
     after = section("sp-next", [tablet_row(grid("sp-next-grid", [
