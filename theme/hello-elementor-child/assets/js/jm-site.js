@@ -429,7 +429,30 @@
 		}
 	}
 
+	// Hero text waits for its web fonts, so the script line never flashes up in a fallback font first
+	// (jm-site.css holds the hero fade-up until html has .jm-fonts-ready; 2.5s at most).
+	function initFontsReady() {
+		var root = document.documentElement;
+		function ready() {
+			root.classList.add( 'jm-fonts-ready' );
+		}
+		if ( ! document.fonts || ! document.fonts.load ) {
+			ready();
+			return;
+		}
+		Promise.race( [
+			Promise.all( [
+				document.fonts.load( '400 1em "Great Vibes"' ),
+				document.fonts.load( '600 1em "Cormorant Garamond"' ),
+			] ),
+			new Promise( function ( resolve ) {
+				setTimeout( resolve, 2500 );
+			} ),
+		] ).then( ready, ready );
+	}
+
 	function init() {
+		initFontsReady();
 		document.querySelectorAll( '.jm-breath-toggle' ).forEach( initBreath );
 		document.querySelectorAll( '.jm-hero video' ).forEach( initHeroVideo );
 		initFootprints();

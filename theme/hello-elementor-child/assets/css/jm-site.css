@@ -81,6 +81,8 @@ body .elementor-widget.elementor-widget-icon-list .elementor-icon-list-icon+.ele
 /* The hero message fades up on load and then stays. */
 .jm-hero-msg{position:relative;z-index:2;animation:jmHeroMsg .9s ease both}
 @keyframes jmHeroMsg{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+/* Hold the hero fade-up (invisible) until the web fonts have loaded (jm-site.js adds .jm-fonts-ready). */
+html:not(.jm-fonts-ready) .jm-hero-msg,html:not(.jm-fonts-ready) .jm-page-hero>.e-con-inner>.e-con,html:not(.jm-fonts-ready) .jm-page-hero>.e-con-inner>.e-con>.elementor-element{animation-play-state:paused!important}
 /* Inner-page heroes use the same fade-up as the Home hero, one line after another, then the card or
    filters on the right. */
 .jm-page-hero>.e-con-inner>.e-con>.elementor-element{animation:jmHeroMsg .9s ease both}
