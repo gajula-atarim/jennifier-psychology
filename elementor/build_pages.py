@@ -113,7 +113,7 @@ def build_inner_header():
         pad=dims(10, 24), cls="jm-topbar jm-inner-topbar", background_background="classic", background_color=TEAL)
 
     bar = container("ih-bar", [
-        image("ih-logo", "logo_dark", height=72, url=URL["home"], _flex_size="none", cls="jm-inner-logo",
+        image("ih-logo", "logo_light", height=72, url=URL["home"], _flex_size="none", cls="jm-inner-logo",
               height_mobile=px(56)),
         container("ih-actions", [
             html("ih-buttons", f'<div class="jm-rounds"><a class="jm-round" href="{PHONE_URL}" aria-label="Call {PHONE}">'
@@ -123,9 +123,7 @@ def build_inner_header():
         ], row=True, align="center", gap_=10, flex_wrap="nowrap", flex_wrap_mobile="nowrap", grow=0,
             cls="jm-inner-actions"),
     ], boxed=True, row=True, justify="space-between", align="center", gap_=16, pad=dims(10, 24),
-        flex_wrap="nowrap", flex_wrap_mobile="nowrap", cls="jm-inner-bar",
-        background_background="classic", background_color="rgba(247,245,239,0.94)",
-        border_border="solid", border_width=dims(0, 0, 1, 0), border_color=LINE)
+        flex_wrap="nowrap", flex_wrap_mobile="nowrap", cls="jm-inner-bar")
 
     return [crisis, bar]
 

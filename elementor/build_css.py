@@ -313,7 +313,14 @@ body.elementor-editor-active .jm-modal{display:flex!important;padding:24px 16px;
 .jm-inner-topbar .jm-crisis-line p{margin:0;display:flex;flex-wrap:wrap;gap:4px 16px;align-items:center}
 .jm-inner-topbar .jm-urgent{color:#F4E6BF}
 .jm-inner-topbar .jm-crisis-line a{color:#fff;font-weight:700}.jm-inner-topbar .jm-crisis-line a:hover{color:#DDAA33}
-.jm-inner-bar{-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+/* No bar under the crisis line: the white logo and round buttons float over the page hero's photo,
+   as on Home (the hero's top padding leaves room for them). */
+.jm-inner-bar{position:absolute!important;left:0;right:0;z-index:60;background:transparent!important}
+.jm-inner-logo img{filter:drop-shadow(0 2px 8px rgba(0,0,0,.35))}
+.jm-inner-bar .jm-rounds a.jm-round{border-color:rgba(255,255,255,.85);color:#fff}
+.jm-inner-bar .jm-rounds a.jm-round:hover,.jm-inner-bar .jm-rounds a.jm-round:focus-visible{background:#fff;color:#12323F}
+.jm-page-hero{padding-top:calc(clamp(56px,7vw,96px) + 92px)!important}
+@media (max-width:767px){.jm-page-hero{padding-top:calc(48px + 76px)!important}}
 .jm-inner-logo img{width:auto!important;max-width:none}
 .jm-rounds{display:flex;align-items:center;gap:10px}
 .jm-round{width:48px;height:48px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;border:1.5px solid #1D5067;background:transparent;color:#1D5067;cursor:pointer;padding:0;text-decoration:none;flex:none;box-sizing:border-box;transition:background-color .25s,color .25s,transform .25s}
@@ -361,9 +368,7 @@ body.elementor-editor-active .jm-modal{display:flex!important;padding:24px 16px;
    button sits in the light bar beside the phone button, and the panel hangs from the bar. */
 .jm-inner-bar>.e-con-inner{position:relative}
 .jm-inner-actions,.jm-inner-actions>.e-con-inner{position:static!important;width:auto!important;flex:none!important}
-.jm-inner-bar .jm-nav .hfe-nav-menu-icon{width:48px;height:48px;background:#1D5067!important;color:#fff!important;box-shadow:none}
-.jm-inner-bar .jm-nav .hfe-nav-menu-icon svg,.jm-inner-bar .jm-nav .hfe-nav-menu-icon svg *{stroke:#fff}
-.jm-inner-bar .jm-nav .hfe-nav-menu__toggle:hover .hfe-nav-menu-icon,.jm-inner-bar .jm-nav .hfe-nav-menu__toggle:focus-visible .hfe-nav-menu-icon{background:#0d4c5c!important}
+.jm-inner-bar .jm-nav .hfe-nav-menu-icon{width:48px;height:48px}
 .jm-inner-bar .jm-nav nav.hfe-nav-menu__layout-horizontal{top:calc(100% + 18px)!important}
 
 /* Page hero: wave edge into the next section. */
