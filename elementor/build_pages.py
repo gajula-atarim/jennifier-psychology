@@ -9,7 +9,7 @@ import json
 
 from build import (BODY, BODY_DK, DIST, EMAIL, EMAIL_URL, INK, MIST, MIST_LT, MUTED, NAME_TITLE, OCHRE, PHONE,
                    PHONE_URL, AHPRA_REG, SAND, SANS, SERIF, STONE, TEAL, URL, border, button, container, dims,
-                   eyebrow, gap, gradient, grid, heading, html, icon, icon_list, image, modal, pop_text, px,
+                   eyebrow, gap, gradient, grid, heading, html, icon, icon_list, image, main_nav, modal, pop_text, px,
                    sand_bg, section, text, textlink, wave_card, widget)
 
 PAGES = {"about": 50, "services": 51, "fees": 52, "referrers": 53, "gallery": 54,
@@ -115,47 +115,19 @@ def build_inner_header():
     bar = container("ih-bar", [
         image("ih-logo", "logo_dark", height=72, url=URL["home"], _flex_size="none", cls="jm-inner-logo",
               height_mobile=px(56)),
-        html("ih-buttons", f'<div class="jm-rounds"><a class="jm-round" href="{PHONE_URL}" aria-label="Call {PHONE}">'
+        container("ih-actions", [
+            html("ih-buttons", f'<div class="jm-rounds"><a class="jm-round" href="{PHONE_URL}" aria-label="Call {PHONE}">'
                            '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>'
-                           '<a class="jm-round jm-round-solid" href="#jm-pop-menu" aria-label="Open menu" aria-haspopup="dialog">'
-                           '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 9h14M5 15h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a></div>'),
+                           '</div>'),
+            main_nav("ih-nav"),
+        ], row=True, align="center", gap_=10, flex_wrap="nowrap", flex_wrap_mobile="nowrap", grow=0,
+            cls="jm-inner-actions"),
     ], boxed=True, row=True, justify="space-between", align="center", gap_=16, pad=dims(10, 24),
         flex_wrap="nowrap", flex_wrap_mobile="nowrap", cls="jm-inner-bar",
         background_background="classic", background_color="rgba(247,245,239,0.94)",
         border_border="solid", border_width=dims(0, 0, 1, 0), border_color=LINE)
 
-    nav = widget("ih-nav", "navigation-menu", {
-        "menu": "main-menu", "layout": "vertical", "dropdown": "none", "_css_classes": "jm-menu-nav",
-        "color_menu_item": SAND, "color_menu_item_hover": OCHRE, "color_menu_item_active": OCHRE,
-        "bg_color_menu_item": "", "bg_color_menu_item_hover": "", "bg_color_menu_item_active": "",
-        **{f"menu_typography_{k}": v for k, v in {"typography": "custom", "font_family": SERIF,
-                                                   "font_size": px("clamp(30px,3.6vw,46px)"),
-                                                   "font_weight": "600", "line_height": px(1.15, "em")}.items()},
-        "padding_horizontal_menu_item": px(0), "padding_vertical_menu_item": px(4), "menu_space_between": px(6),
-    })
-    overlay = container("jm-pop-menu", [
-        container("ih-menu-panel", [
-            container("ih-menu-top", [
-                image("ih-menu-logo", "logo_light", height=72, _flex_size="none", height_mobile=px(56)),
-                html("ih-menu-close", '<button type="button" class="jm-modal-close jm-round jm-round-light" '
-                                      'aria-label="Close menu"><svg viewBox="0 0 24 24" width="20" height="20" '
-                                      'aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" '
-                                      'stroke-width="2" stroke-linecap="round"/></svg></button>'),
-            ], row=True, justify="space-between", align="center", gap_=16, flex_wrap="nowrap",
-                flex_wrap_mobile="nowrap"),
-            heading("ih-menu-title", "Site menu", "h2", SANS, 13, MIST, weight=600, ls=0.16, transform="uppercase",
-                    cls="jm-modal-title jm-sr-title"),
-            nav,
-            container("ih-menu-cta", [
-                button("ih-menu-call", f"Call {PHONE}", PHONE_URL, "ochre"),
-                button("ih-menu-email", EMAIL, EMAIL_URL, "light"),
-            ], row=True, wrap=True, gap_=12, pad=dims(24, 0, 0, 0),
-                border_border="solid", border_width=dims(1, 0, 0, 0), border_color="rgba(235,231,219,0.2)"),
-            text("ih-menu-crisis", '<p>Need urgent help? Emergency <a href="tel:000">000</a> · Lifeline '
-                                   '<a href="tel:131114">13 11 14</a></p>', 14, MUTED, lh=1.5, cls="jm-menu-crisis"),
-        ], boxed=True, gap_=32, pad=dims(18, 24, 48, 24), cls="jm-modal-panel jm-menu-panel"),
-    ], cls="jm-modal jm-pop-menu jm-menu-overlay", _element_id="jm-pop-menu")
-    return [crisis, bar, overlay]
+    return [crisis, bar]
 
 
 # ---------------------------------------------------------------- About
