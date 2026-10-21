@@ -78,6 +78,15 @@ body .elementor-widget.elementor-widget-icon-list .elementor-icon-list-icon+.ele
 /* The hero message fades up on load and then stays. */
 .jm-hero-msg{position:relative;z-index:2;animation:jmHeroMsg .9s ease both}
 @keyframes jmHeroMsg{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+/* Inner-page heroes use the same fade-up as the Home hero, one line after another, then the card or
+   filters on the right. */
+.jm-page-hero>.e-con-inner>.e-con>.elementor-element{animation:jmHeroMsg .9s ease both}
+.jm-page-hero>.e-con-inner>.e-con>.elementor-element:nth-child(2){animation-delay:.12s}
+.jm-page-hero>.e-con-inner>.e-con>.elementor-element:nth-child(3){animation-delay:.24s}
+.jm-page-hero>.e-con-inner>.e-con>.elementor-element:nth-child(4){animation-delay:.36s}
+.jm-page-hero>.e-con-inner>.e-con>.elementor-element:nth-child(n+5){animation-delay:.48s}
+.jm-page-hero>.e-con-inner>.e-con:nth-child(2){animation:jmHeroMsg .9s ease .4s both}
+@media (prefers-reduced-motion:reduce){.jm-hero-msg,.jm-page-hero>.e-con-inner>.e-con,.jm-page-hero>.e-con-inner>.e-con>.elementor-element{animation:none!important}}
 .jm-lined .elementor-heading-title{display:flex;align-items:center;justify-content:center;gap:14px}
 .jm-lined .elementor-heading-title::before,.jm-lined .elementor-heading-title::after{content:"";display:block;flex:none;width:36px;height:1px;background:#DDAA33}
 
