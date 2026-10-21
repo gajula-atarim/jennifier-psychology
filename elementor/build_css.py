@@ -89,12 +89,12 @@ body .elementor-widget.elementor-widget-icon-list .elementor-icon-list-icon+.ele
 .jm-pill-ochre .elementor-heading-title{background:#DDAA33;padding:8px 16px}
 .jm-pill-ochre .elementor-heading-title::before{width:9px;height:9px;background:#12323F}
 
-/* Cards */
+/* Cards: only cards with something to click (they carry .jm-card) react on hover. */
 .jm-card{transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s ease,border-color .35s ease,background-color .35s ease}
 .jm-card:hover{transform:translateY(-6px);box-shadow:0 20px 44px rgba(18,50,63,.14);border-color:#A2C3D3!important}
 .jm-card .elementor-widget-icon svg{transition:transform .35s ease}
 .jm-card:hover .elementor-widget-icon svg{transform:scale(1.1) rotate(-4deg)}
-.jm-card-dark:hover{background:rgba(247,245,239,.15)!important;box-shadow:0 20px 44px rgba(0,0,0,.28)}
+.jm-card.jm-card-dark:hover{background:rgba(247,245,239,.15)!important;box-shadow:0 20px 44px rgba(0,0,0,.28)}
 
 /* Rolling waves at the foot of a card */
 .jm-wave-card{position:relative;overflow:hidden}
@@ -102,9 +102,9 @@ body .elementor-widget.elementor-widget-icon-list .elementor-icon-list-icon+.ele
 .jm-wave-card::after{content:"";position:absolute;left:0;right:0;bottom:0;height:96px;pointer-events:none;
  background-image:CARD_W3,CARD_W2,CARD_W1;background-size:200% 100%;background-repeat:repeat-x;
  animation:jmCardWaves 4080s linear infinite;transition:height .5s ease}
-.jm-wave-card:hover::after{height:122px}
-.jm-wave-sm::after{height:66px}.jm-wave-sm:hover::after{height:82px}
-.jm-wave-lg::after{height:110px}.jm-wave-lg:hover::after{height:122px}
+.jm-card.jm-wave-card:hover::after{height:122px}
+.jm-wave-sm::after{height:66px}.jm-card.jm-wave-sm:hover::after{height:82px}
+.jm-wave-lg::after{height:110px}.jm-card.jm-wave-lg:hover::after{height:122px}
 /* Each layer drifts one wave period per its design duration (back 48s, middle 40s reversed, front 34s);
    4080s is their least common multiple, so the loop is seamless. */
 @keyframes jmCardWaves{from{background-position:0 0,0 0,0 0}to{background-position:12000% 0,-10200% 0,8500% 0}}

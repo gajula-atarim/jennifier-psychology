@@ -691,7 +691,7 @@ def highlights():
         icon(f"hl-icon-{i}", ico, 34),
         heading(f"hl-h-{i}", title, "h2", SERIF, 28, INK, weight=600, lh=1.15, ls=-0.01),
         text(f"hl-p-{i}", f"<p>{body}</p>", 16, BODY, lh=1.6),
-    ], radius=22, pad=dims(32, 32, 104, 32), gap_=12) for i, (ico, title, body) in enumerate(items)]
+    ], radius=22, pad=dims(32, 32, 104, 32), gap_=12, hover=False) for i, (ico, title, body) in enumerate(items)]
     return section("highlights", [grid("hl-grid", cards, 300, 20)], pad=dims(56, 24, 24, 24))
 
 
@@ -780,7 +780,7 @@ def services():
         icon(f"svc-icon-{i}", ico, 40),
         heading(f"svc-h-{i}", title, "h3", SERIF, 30, INK, weight=600, lh=1.12, ls=-0.01),
         text(f"svc-p-{i}", f"<p>{body}</p>", 16, BODY, lh=1.65),
-    ], radius=24, pad=dims(36, 36, 116, 36), gap_=14) for i, (ico, title, body) in enumerate(items)]
+    ], radius=24, pad=dims(36, 36, 116, 36), gap_=14, hover=False) for i, (ico, title, body) in enumerate(items)]
     return section("services", [head, grid("svc-grid", cards, 320, 20)], pad=dims(96, 24), bg=STONE, gap_=44,
                    cls="jm-tide")
 
@@ -857,13 +857,14 @@ def funding():
         heading(f"fund-h-{i}", title, "h3", SERIF, 24, INK, weight=600, lh=1.2, ls=-0.01),
         text(f"fund-p-{i}", f"<p>{body}</p>", 15, BODY, lh=1.55),
         *([textlink("fund-dva-more", "DVA &amp; Open Arms details", "#jm-pop-dva", arrow=True)] if title == "DVA" else []),
-    ], radius=20, pad=dims(26, 26, 76, 26), gap_=8, size="sm") for i, (title, body) in enumerate(items)]
+    ], radius=20, pad=dims(26, 26, 76, 26), gap_=8, size="sm", hover=title == "DVA")
+        for i, (title, body) in enumerate(items)]
     return section("funding", [head, grid("fund-grid", cards, 220, 16)], pad=dims(0, 24, 104, 24), gap_=36,
                    cls="jm-tide")
 
 
 def referrers():
-    dark = dict(gap_=12, pad=dims(30), cls="jm-card jm-card-dark",
+    dark = dict(gap_=12, pad=dims(30), cls="jm-card-dark",
                 background_background="classic", background_color="rgba(247,245,239,0.08)",
                 **border(1, "rgba(162,195,211,0.35)", 22))
     head = section_head("gp-head", [
