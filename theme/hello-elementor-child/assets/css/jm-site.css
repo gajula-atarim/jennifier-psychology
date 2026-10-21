@@ -390,6 +390,8 @@ a.jm-contact-tile:hover,a.jm-call:hover,a.jm-contact-tile:focus-visible,a.jm-cal
 .jm-res-row:hover .jm-res-go .elementor-icon{background:#DDAA33;border-color:#DDAA33;color:#12323F;transform:rotate(45deg)}
 .jm-filter-sm{font-size:14px;padding:0 18px}
 .jm-tile-value p{word-break:break-word}
+.jm-tile-value p.jm-email-v{word-break:normal;overflow-wrap:normal}
+@media (max-width:420px){.jm-tile-value p.jm-email-v{font-size:17px}}
 .jm-map iframe{border-radius:28px;border:1px solid #CFDCE3!important;display:block}
 .jm-sos-card{text-decoration:none!important;box-shadow:0 24px 60px rgba(0,0,0,.3);max-width:400px;transition:transform .25s}
 .jm-sos-card:hover{transform:translateY(-3px)}

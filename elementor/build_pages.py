@@ -886,7 +886,7 @@ def contact_page():
     address = "Unit 1, 38 Burnett Street, Mooloolaba QLD 4557"
     tiles = container("ct-tiles", [
         contact_tile("ct-phone", "i_phone", "Phone", f"<p>{PHONE}</p>", url=PHONE_URL, size=24),
-        contact_tile("ct-email", "i_mail_line", "Email", f"<p>{EMAIL}</p>", url=EMAIL_URL, size=19),
+        contact_tile("ct-email", "i_mail_line", "Email", "<p class=\"jm-email-v\">" + EMAIL.replace("@", "@<wbr>") + "</p>", url=EMAIL_URL, size=19),
         contact_tile("ct-loc", "i_map_pin", "Practice Location", f"<p>Heart of Mooloolaba<br>{address}</p>",
                      weight=600),
         contact_tile("ct-hours", "i_clock_sm", "Opening Hours", "<p>By Appointment Only</p>", extra=[
