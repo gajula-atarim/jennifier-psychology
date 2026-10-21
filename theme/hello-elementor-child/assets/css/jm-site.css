@@ -58,6 +58,10 @@ body .elementor-widget.elementor-widget-icon-list .elementor-icon-list-icon+.ele
 .jm-nav .hfe-nav-menu__toggle:hover .hfe-nav-menu-icon,.jm-nav .hfe-nav-menu__toggle:focus-visible .hfe-nav-menu-icon{background:#fff;transform:scale(1.05)}
 .jm-nav .hfe-nav-menu-icon svg{fill:none!important}
 @media (max-width:767px){.jm-nav .hfe-nav-menu-icon{width:52px;height:52px}}
+/* Home: the round call button beside the menu button, white outline over the video. */
+#masthead .jm-header-main .jm-rounds a.jm-round-call{width:56px;height:56px;border:1.5px solid rgba(255,255,255,.9);color:#fff;background:rgba(18,50,63,.18);box-shadow:0 8px 24px rgba(10,30,40,.22)}
+#masthead .jm-header-main .jm-rounds a.jm-round-call:hover,#masthead .jm-header-main .jm-rounds a.jm-round-call:focus-visible{background:#fff;color:#12323F}
+@media (max-width:767px){#masthead .jm-header-main .jm-rounds a.jm-round-call{width:52px;height:52px}}
 /* The menu opens as a rounded panel under the button: full width on tablet/phone, a compact
    panel on the right on desktop. */
 .jm-nav,.jm-nav .hfe-nav-menu,.jm-nav .hfe-layout-horizontal{position:static!important}
