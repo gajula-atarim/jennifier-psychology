@@ -691,7 +691,7 @@ def intro_band():
     left = container("intro-left", [
         heading("intro-pill", "Now accepting new clients &amp; referrals — no wait time", "p", SANS, 13, "#4E3A08",
                 weight=600, lh=1.2, cls="jm-pill"),
-        eyebrow("intro-eyebrow", "Psychologist · Mooloolaba, Sunshine Coast"),
+        eyebrow("intro-eyebrow", "Psychologist · Mooloolaba, Sunshine Coast", cls="jm-one-line"),
         h2("intro-h1", "Cultivating healing to help you to <em>reclaim your life</em>",
            size="clamp(38px, 4.6vw, 62px)", lh=1.04, tag="h1", maxw=820, cls="jm-h1"),
         text("intro-lede", "<p>High-quality, personalised care for adults living with trauma, PTSD, depression, "

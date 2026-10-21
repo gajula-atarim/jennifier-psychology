@@ -359,6 +359,9 @@ body.elementor-editor-active .jm-modal{display:flex!important;padding:24px 16px;
 .jm-fit{max-width:100%!important}
 .elementor-widget-divider .elementor-divider-separator{max-width:100%}
 
+/* Phones: keep short label lines (e.g. the Home intro eyebrow) on one line. */
+@media (max-width:767px){.jm-one-line .elementor-heading-title{white-space:nowrap;font-size:11px!important;letter-spacing:.08em!important}}
+
 /* Tablet: card rows marked .jm-tab-row keep all their cards on one line, so a row never ends with an
    orphan card and empty space on the right; the cards get tighter padding and smaller type to fit. */
 @media (min-width:768px) and (max-width:1024px){
