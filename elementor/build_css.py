@@ -122,9 +122,9 @@ body .elementor-widget.elementor-widget-icon-list .elementor-icon-list-icon+.ele
 .jm-wave-card::after{content:"";position:absolute;left:0;right:0;bottom:0;height:96px;pointer-events:none;
  background-image:CARD_W3,CARD_W2,CARD_W1;background-size:200% 100%;background-repeat:repeat-x;
  animation:jmCardWaves 4080s linear infinite;transition:height .5s ease}
-.jm-card.jm-wave-card:hover::after{height:122px}
-.jm-wave-sm::after{height:66px}.jm-card.jm-wave-sm:hover::after{height:82px}
-.jm-wave-lg::after{height:110px}.jm-card.jm-wave-lg:hover::after{height:122px}
+.jm-wave-card:hover::after{height:122px}
+.jm-wave-sm::after{height:66px}.jm-wave-sm:hover::after{height:82px}
+.jm-wave-lg::after{height:110px}.jm-wave-lg:hover::after{height:122px}
 /* Each layer drifts one wave period per its design duration (back 48s, middle 40s reversed, front 34s);
    4080s is their least common multiple, so the loop is seamless. */
 @keyframes jmCardWaves{from{background-position:0 0,0 0,0 0}to{background-position:12000% 0,-10200% 0,8500% 0}}
