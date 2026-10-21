@@ -426,6 +426,16 @@ body.elementor-editor-active .jm-modal{display:flex!important;padding:24px 16px;
 .jm-gallery{align-items:start}
 .jm-g-item.is-hidden{display:none!important}
 .jm-g-img{position:relative;border-radius:24px;overflow:hidden;background:#DCE8EE;cursor:zoom-in}
+/* Tablet and desktop: every gallery thumbnail is square, so the rows line up (the lightbox still shows
+   the whole image); phones keep each image's own shape. */
+@media (min-width:768px){
+ .jm-gallery .jm-g-img img,.jm-gallery .jm-g-placeholder .elementor-heading-title{aspect-ratio:1/1!important;height:auto}
+}
+/* Tablet: the seven Resources topic buttons fit on one line. */
+@media (min-width:768px) and (max-width:1024px){
+ .jm-res-filters{gap:6px}
+ .jm-res-filters .jm-filter{font-size:13px;padding:0 12px;min-height:40px}
+}
 .jm-g-img img{width:100%;display:block;transition:transform .5s ease}
 .jm-g-img:hover img{transform:scale(1.04)}
 .jm-g-img::after{content:"";position:absolute;right:14px;bottom:14px;width:40px;height:40px;border-radius:50%;background:rgba(18,50,63,.75) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7'/%3E%3C/svg%3E") center/18px no-repeat;pointer-events:none}
