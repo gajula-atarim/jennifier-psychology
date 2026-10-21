@@ -555,19 +555,6 @@ def fees_page():
 def referrers_page():
     # Wording from the client's Referrers document (kept as written for AHPRA).
     email = f'<a href="{EMAIL_URL}">{EMAIL}</a>'
-    details = container("rf-details", [
-        h2("rf-details-h", "Referral details", size=30, lh=1.1),
-        container("rf-dl", [
-            label_value("rf-d-cap", "Current Capacity", "Face-to-face consultations (Mondays)<br>"
-                                                        "Telehealth (Tuesday–Friday)"),
-            label_value("rf-d-mo", "Secure Electronic Messaging", "Medical Objects"),
-            label_value("rf-d-email", "Secure Practice Email", email),
-            label_value("rf-d-phone", "Phone", f'<a href="{PHONE_URL}">{PHONE}</a>'),
-            label_value("rf-d-loc", "Medicare location ID", "894363H"),
-            label_value("rf-d-addr", "Address", "Unit 1/38 Burnett Street Mooloolaba 4557", last=True),
-        ], gap_=12),
-    ], gap_=16, pad=dims(32), width=340, grow=1, border_radius=dims(28), tag="aside", cls="jm-ref-details",
-        background_background="classic", background_color=SAND)
     hero = page_hero("rf-hero", [
         heading("rf-pill", "Immediate room for new referrals · no wait time", "p", SANS, 14, INK, weight=700, lh=1.2,
                 cls="jm-pill jm-pill-ochre"),
@@ -577,20 +564,26 @@ def referrers_page():
                         "eating disorders. I provide high-quality, personalised care utilising evidence-based "
                         "frameworks—including Schema Therapy, DBT, and CBT—alongside specialised, embodied practices "
                         "like body mapping to address the deeper roots of distress.", "clamp(17px, 1.4vw, 19px)",
-             MIST_LT, 1.75),
+             MIST_LT, 1.75, maxw=760),
         call_email("rf-hero-btns", "Email a referral", "ochre", "light"),
-    ], details, bg=TEAL, cls="jm-gp jm-ref-hero")
+    ], bg=TEAL, cls="jm-gp jm-ref-hero")
     photo_hero(hero, "photo_cartwright", "center 22%")
-    hero["settings"]["flex_align_items"] = "flex-start"
 
-    step = lambda n, t, p: container(f"rf-step-{n}", [
-        heading(f"rf-step-{n}-n", str(n), "span", SERIF, 20, "#ffffff", weight=700, lh=1, cls="jm-step-num",
-                _flex_size="none"),
-        container(f"rf-step-{n}-t", [h3(f"rf-step-{n}-h", t, size=24, lh=1.2),
-                                     para(f"rf-step-{n}-p", p, 16, GREY_BODY, 1.5, cls="jm-inline-links")],
-                  gap_=4, grow=1, width=px(0, "%"), mobile_width=False),
-    ], row=True, gap_=18, align="flex-start", pad=dims(22, 24), border_radius=dims(20), flex_wrap="nowrap",
-        flex_wrap_mobile="nowrap", background_background="classic", background_color=SAND)
+    # Referral details sit beside the How to Refer text: two columns of label and value on desktop.
+    details = container("rf-details", [
+        h3("rf-details-h", "Referral details", size=28, lh=1.15),
+        grid("rf-dl", [
+            label_value("rf-d-cap", "Current Capacity", "Active availability for face-to-face consultations "
+                                                        "(Mondays) and Telehealth (Tuesday–Friday)."),
+            label_value("rf-d-mo", "Secure Electronic Messaging", "Medical Objects"),
+            label_value("rf-d-email", "Secure Practice Email", email),
+            label_value("rf-d-phone", "Phone", f'<a href="{PHONE_URL}">{PHONE}</a>'),
+            label_value("rf-d-loc", "Medicare location ID", "894363H"),
+            label_value("rf-d-addr", "Address", "Unit 1/38 Burnett Street Mooloolaba 4557"),
+        ], 240, 0, grid_gaps={"row": "14", "column": "32", "isLinked": False, "unit": "px", "size": 32},
+            css_classes="jm-inline-links"),
+    ], gap_=18, pad=dims(32), width=520, grow=999, cls="jm-ref-card",
+        background_background="classic", background_color="#ffffff", **border(1, LINE, 26))
     how = section("rf-how", [
         container("rf-how-head", [
             eyebrow("rf-how-eyebrow", "Referral pathways"),
@@ -599,12 +592,7 @@ def referrers_page():
                              "directly via secure electronic messaging.", 17, GREY_BODY, 1.75),
             more("rf-how-more", "Practice areas", "#jm-pop-areas"),
         ], gap_=16, width=320, grow=1),
-        container("rf-how-steps", [
-            step(1, "Secure Electronic Messaging", "Medical Objects"),
-            step(2, "Secure Practice Email", email),
-            step(3, "Current Capacity", "Active availability for face-to-face consultations (Mondays) and Telehealth "
-                                        "(Tuesday–Friday)."),
-        ], gap_=14, width=520, grow=999),
+        details,
     ], pad=dims("clamp(56px,7vw,96px)", 24), bg=STONE, row=True, wrap=True, gap_=gap(32, 64), align="flex-start",
         cls="jm-tide")
 
