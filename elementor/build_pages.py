@@ -938,6 +938,7 @@ def support_page():
              "clamp(17px, 1.4vw, 19px)", MIST_LT, 1.75),
         para("sp-note", "This practice is not a crisis service.", 15, MUTED, 1.6),
     ], sos, bg=INK, pad=dims("clamp(56px,7vw,96px)", 24, "clamp(96px,10vw,130px)", 24))
+    photo_hero(hero, "hero_poster", "center 45%")
     hero["elements"][0]["settings"]["flex_gap"] = gap(18)
 
     calls = [call_card(f"sp-call-{tel}", n, d, num, tel) for n, d, num, tel in CRISIS_LINES + [OPEN_ARMS]]
