@@ -373,13 +373,42 @@ body.elementor-editor-active .jm-modal{display:flex!important;padding:24px 16px;
 .jm-lightbox figcaption{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;justify-content:space-between;width:100%;color:#F7F5EF;font-size:16px}
 .jm-lightbox .jm-lb-btns{display:flex;gap:10px}
 
+/* Resources, Contact, Support, Privacy */
+.jm-line,.jm-contact-tile,.jm-call{text-decoration:none!important;transition:border-color .25s,transform .25s,box-shadow .25s}
+a.jm-line:hover,a.jm-line:focus-visible{border-color:#1D5067!important}
+a.jm-contact-tile:hover,a.jm-call:hover,a.jm-contact-tile:focus-visible,a.jm-call:focus-visible{border-color:#1D5067!important;transform:translateY(-3px);box-shadow:0 12px 28px rgba(18,50,63,.12)}
+.jm-res-cols{display:block!important;columns:2 440px;column-gap:20px}
+.jm-res-cols>.jm-res-card{break-inside:avoid;margin-bottom:20px!important;display:flex!important}
+.jm-res-card.is-hidden{display:none!important}
+.jm-res-card{transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s ease}
+.jm-res-card:hover{transform:translateY(-5px);box-shadow:0 20px 44px rgba(18,50,63,.12)}
+.jm-res-card::after{height:80px}
+.jm-blob .elementor-icon{border-radius:50% 46% 52% 48%/48% 52% 46% 50%!important}
+.jm-res-row{text-decoration:none!important;transition:background-color .25s,border-color .25s}
+.jm-res-row:hover,.jm-res-row:focus-visible{background-color:#fff!important;border-color:#1D5067!important}
+.jm-res-go .elementor-icon{transition:background-color .25s,color .25s,transform .25s,border-color .25s}
+.jm-res-row:hover .jm-res-go .elementor-icon{background:#DDAA33;border-color:#DDAA33;color:#12323F;transform:rotate(45deg)}
+.jm-filter-sm{font-size:14px;padding:0 18px}
+.jm-tile-value p{word-break:break-word}
+.jm-map iframe{border-radius:28px;border:1px solid #CFDCE3!important;display:block}
+.jm-sos-card{text-decoration:none!important;box-shadow:0 24px 60px rgba(0,0,0,.3);max-width:400px;transition:transform .25s}
+.jm-sos-card:hover{transform:translateY(-3px)}
+.jm-tap-pill .elementor-heading-title{display:inline-block;background:#12323F;border-radius:999px;padding:10px 18px}
+.jm-placeholder-box{background:#fff;border:2px dashed #A2C3D3;border-radius:16px;padding:20px 22px}
+.jm-placeholder-box p{margin:0}
+.jm-inline-links a{color:#1D5067;text-decoration:underline;text-underline-offset:3px}
+.jm-bar-links a{color:#fff}
+.jm-bar-links p{margin:0}
+.jm-prose p{margin:0 0 .9em}.jm-prose p:last-child{margin-bottom:0}
+.jm-anchor{scroll-margin-top:24px}
+
 /* Motion preferences */
 @media (prefers-reduced-motion:reduce){
  .jm-rise,.jm-tide,.jm-chips-dark .elementor-icon-list-item,.jm-wave-card::after,.jm-ice-top::after,.jm-breath-waves{animation:none!important}
  .jm-swap-a{animation:none;opacity:1}.jm-swap-b{animation:none;opacity:0}
  .jm-prints svg{animation:none;opacity:.85}
- .jm-g-img img,.jm-round,.jm-areas .elementor-icon-list-item{transition:none!important}
- .jm-g-img:hover img{transform:none}
+ .jm-res-card,.jm-res-go .elementor-icon,.jm-line,.jm-contact-tile,.jm-call,.jm-sos-card,.jm-g-img img,.jm-round,.jm-areas .elementor-icon-list-item{transition:none!important}
+ .jm-g-img:hover img,.jm-res-card:hover,.jm-res-row:hover .jm-res-go .elementor-icon,a.jm-contact-tile:hover,a.jm-call:hover,.jm-sos-card:hover{transform:none}
  .jm-card,.jm-tile,.jm-card .elementor-widget-icon svg,.jm-wave-card::after,.jm-stop,.jm-stone .elementor-heading-title,.jm-stop-arrow{transition:none}
  .jm-card:hover,.jm-tile:hover,.jm-card:hover .elementor-widget-icon svg{transform:none}
  .elementor-button,.elementor-button:hover,.elementor-button:focus-visible,.jm-textlink .elementor-button-icon{transform:none!important}

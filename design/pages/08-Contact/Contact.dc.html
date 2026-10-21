@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<title>Contact — Jennifer Malecki, Psychologist, PhD</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&amp;family=Figtree:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#F7F5EF;color:#12323F;font-family:'Figtree',system-ui,-apple-system,'Segoe UI',sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#1D5067}a:hover{color:#0d4c5c}
+h1,h2,h3{font-family:'Cormorant Garamond',Georgia,'Times New Roman',serif;font-weight:600;letter-spacing:-0.01em;text-wrap:balance}
+p,li{text-wrap:pretty}
+.crisis a{color:#ffffff;font-weight:700;text-decoration:none}.crisis a:hover{color:#DDAA33}
+.round{width:48px;height:48px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;border:1.5px solid #1D5067;background:transparent;color:#1D5067;cursor:pointer;padding:0;text-decoration:none;flex:none;transition:background-color .25s,color .25s,transform .25s}
+.round:hover{background:#1D5067;color:#ffffff;transform:scale(1.05)}
+.round-solid{background:#1D5067;color:#ffffff}.round-solid:hover{background:#0d4c5c}
+.round-light{border-color:#EBE7DB;color:#F7F5EF}.round-light:hover{background:#EBE7DB;color:#12323F}
+.menu-link{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(30px,3.6vw,46px);font-weight:600;color:#F7F5EF;text-decoration:none;line-height:1.15;display:inline-flex;align-items:center;min-height:44px}
+.menu-link:hover{color:#DDAA33}.menu-link[aria-current="page"]{color:#DDAA33}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 26px;border-radius:999px;font-weight:600;font-size:16px;text-decoration:none;box-sizing:border-box;border:2px solid transparent;white-space:nowrap;cursor:pointer;font-family:inherit;transition:background-color .2s,color .2s}
+.btn-primary{background:#1D5067;color:#ffffff}.btn-primary:hover{background:#0d4c5c;color:#ffffff}
+.btn-ochre{background:#DDAA33;color:#12323F}.btn-ochre:hover{background:#E8BE57;color:#12323F}
+.btn-ghost{border-color:#1D5067;color:#1D5067;background:transparent}.btn-ghost:hover{background:#1D5067;color:#ffffff}
+.btn-light{border-color:#EBE7DB;color:#F7F5EF;background:transparent}.btn-light:hover{background:#EBE7DB;color:#12323F}
+.contact-tile{display:flex;gap:16px;align-items:flex-start;padding:24px;background:#ffffff;border:1px solid #E2DCCD;border-radius:20px;text-decoration:none;color:#12323F;transition:border-color .25s,transform .25s,box-shadow .25s}
+a.contact-tile:hover{border-color:#1D5067;transform:translateY(-3px);box-shadow:0 12px 28px rgba(18,50,63,0.12)}
+.ic{flex:none;width:48px;height:48px;border-radius:50%;background:#EEF4F6;color:#1D5067;display:flex;align-items:center;justify-content:center}
+.footer a{color:#EBE7DB;text-decoration:none}.footer a:hover{color:#DDAA33}
+.sand-bg{background-image:url(./assets/153b261812e240df1b74fe80acadd8df.jpg);background-size:800px 800px;background-repeat:repeat}
+.modal-wrap{animation:fadeIn .25s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@media (max-width:640px){.hide-sm{display:none !important}}
+@media (prefers-reduced-motion:reduce){.modal-wrap{animation:none}.round,.contact-tile{transition:none}a.contact-tile:hover{transform:none}}
+</style>
+</helmet>
+<div style="min-width:0">
+
+<!-- Crisis bar -->
+<div class="crisis" style="background:#1D5067;color:#F7F5EF;font-size:14px">
+<div style="max-width:1240px;margin:0 auto;padding:10px 24px;display:flex;flex-wrap:wrap;gap:6px 24px;justify-content:space-between;align-items:center">
+<p style="margin:0;display:flex;flex-wrap:wrap;gap:4px 16px;align-items:center"><strong style="color:#F4E6BF">Need urgent help?</strong><span>Emergency <a href="tel:000">000</a></span><span>Lifeline <a href="tel:131114">13 11 14</a></span><a href="Support.dc.html">All support lines →</a></p>
+<p class="hide-sm" style="margin:0;display:flex;gap:6px 20px;flex-wrap:wrap"><a href="tel:0404174184" style="font-weight:600">0404 174 184</a><a href="mailto:psych@jennifermalecki.com.au" style="font-weight:600">psych@jennifermalecki.com.au</a></p>
+</div>
+</div>
+
+<!-- Header -->
+<header style="position:sticky;top:0;z-index:20;background:rgba(247,245,239,0.94);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid #E2DCCD">
+<div style="max-width:1240px;margin:0 auto;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px">
+<a href="Main.dc.html" aria-label="Jennifer Malecki Psychologist — home" style="display:block;flex:none"><img src="./assets/f62654420d62c50e1bf97ada5a2329f7.png" alt="Jennifer Malecki Psychologist" style="height:72px;width:auto;display:block"></a>
+<div style="display:flex;align-items:center;gap:10px">
+<a class="round" href="tel:0404174184" aria-label="Call 0404 174 184"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"></path></svg></a>
+<button type="button" class="round round-solid" aria-label="Open menu" aria-expanded="{{menuExpanded}}" onClick="{{openMenu}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 8h16M4 16h16"></path></svg></button>
+</div>
+</div>
+</header>
+
+<!-- Menu overlay -->
+<sc-if value="{{menuOpen}}" hint-placeholder-val="{{ false }}">
+<div class="modal-wrap" role="dialog" aria-modal="true" aria-label="Site menu" style="position:fixed;inset:0;z-index:80;background:#12323F;color:#F7F5EF;overflow:auto">
+<div style="max-width:1240px;margin:0 auto;padding:18px 24px 48px;display:flex;flex-direction:column;gap:32px;box-sizing:border-box;min-height:100%">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:16px">
+<img src="./assets/b391974488085834f3b0b65becb969cb.png" alt="Jennifer Malecki Psychologist" style="height:72px;width:auto;display:block">
+<button type="button" class="round round-light" aria-label="Close menu" onClick="{{closeMenu}}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+</div>
+<nav aria-label="Main" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:6px 40px">
+<a class="menu-link" href="Main.dc.html">Home</a>
+<a class="menu-link" href="About.dc.html">About</a>
+<a class="menu-link" href="Services.dc.html">Services</a>
+<a class="menu-link" href="Fees.dc.html">Fees &amp; Rebates</a>
+<a class="menu-link" href="Referrers.dc.html">For Referrers</a>
+<a class="menu-link" href="Gallery.dc.html">Gallery</a>
+<a class="menu-link" href="Resources.dc.html">Resources</a>
+<a class="menu-link" href="Support.dc.html">Support</a>
+<a class="menu-link" href="Contact.dc.html" aria-current="page">Contact</a>
+</nav>
+<div style="display:flex;flex-wrap:wrap;gap:12px;border-top:1px solid rgba(235,231,219,0.2);padding-top:24px">
+<a class="btn btn-ochre" href="tel:0404174184">Call 0404 174 184</a>
+<a class="btn btn-light" href="mailto:psych@jennifermalecki.com.au">psych@jennifermalecki.com.au</a>
+</div>
+<p style="margin:0;font-size:14px;color:#C9D6DC">Need urgent help? Emergency <a href="tel:000" style="color:#ffffff">000</a> · Lifeline <a href="tel:131114" style="color:#ffffff">13 11 14</a></p>
+</div>
+</div>
+</sc-if>
+
+<main>
+
+<!-- Hero -->
+<section aria-labelledby="con-h" style="position:relative;background:#EBE7DB;padding:clamp(56px,7vw,96px) 24px clamp(96px,10vw,130px)">
+<div style="max-width:1240px;margin:0 auto;display:flex;flex-direction:column;gap:18px">
+<p style="margin:0;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#1D5067">Contact</p>
+<h1 id="con-h" style="margin:0;font-size:clamp(42px,5.4vw,72px);line-height:1.02">Contact Me</h1>
+<p style="margin:0;font-size:clamp(17px,1.4vw,19px);line-height:1.75;color:#22414D;max-width:820px">Feel free to reach out by email or phone to ask any questions or to discuss taking the next step toward your healing.</p>
+<p style="margin:0;font-size:17px;line-height:1.75;color:#3E5A66;max-width:820px">When you reach out by phone, you will speak directly with me. I manage my own enquiries to ensure that from your very first phone call, you are met with a safe, confidential, and deeply personalised introduction to care.</p>
+</div>
+<svg aria-hidden="true" viewBox="0 0 1440 80" preserveAspectRatio="none" style="position:absolute;left:0;right:0;bottom:-1px;width:100%;height:clamp(36px,5vw,72px);display:block"><path d="M0 46 C180 14 360 14 540 40 C720 66 900 70 1080 44 C1240 22 1360 24 1440 36 V80 H0 Z" fill="#F7F5EF"></path></svg>
+</section>
+
+<!-- Details + map -->
+<section aria-label="Contact details and location" style="padding:clamp(40px,5vw,72px) 24px clamp(56px,7vw,96px)">
+<div style="max-width:1240px;margin:0 auto;display:flex;flex-wrap:wrap;gap:32px;align-items:stretch">
+
+<div style="flex:1 1 380px;min-width:0;display:flex;flex-direction:column;gap:12px">
+<a class="contact-tile" href="tel:0404174184"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"></path></svg></span><span style="display:flex;flex-direction:column;gap:2px"><span style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:#1D5067">Phone</span><span style="font-size:24px;font-weight:700">0404 174 184</span></span></a>
+<a class="contact-tile" href="mailto:psych@jennifermalecki.com.au"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg></span><span style="display:flex;flex-direction:column;gap:2px;min-width:0"><span style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:#1D5067">Email</span><span style="font-size:19px;font-weight:700;word-break:break-all">psych@jennifermalecki.com.au</span></span></a>
+<div class="contact-tile"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg></span><span style="display:flex;flex-direction:column;gap:2px"><span style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:#1D5067">Practice Location</span><span style="font-size:18px;font-weight:600;line-height:1.5">Heart of Mooloolaba<br>Unit 1, 38 Burnett Street, Mooloolaba QLD 4557</span></span></div>
+<div class="contact-tile"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></span><span style="display:flex;flex-direction:column;gap:4px"><span style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:#1D5067">Opening Hours</span><span style="font-size:18px;font-weight:700">By Appointment Only</span><span style="font-size:16px;line-height:1.6;color:#3E5A66">Monday: Face-to-face Consultations (In-Clinic)<br>Tuesday – Friday: Telehealth Consultations (Online)</span></span></div>
+</div>
+
+<div style="flex:999 1 520px;min-width:0;display:flex;flex-direction:column;gap:16px">
+<div role="img" aria-label="Map showing Unit 1, 38 Burnett Street, Mooloolaba QLD 4557" style="position:relative;flex:1;min-height:420px;border-radius:28px;overflow:hidden;background:#DCE8EE;border:1px solid #CFDCE3">
+<svg aria-hidden="true" viewBox="0 0 800 520" preserveAspectRatio="xMidYMid slice" style="position:absolute;inset:0;width:100%;height:100%;display:block">
+<rect width="800" height="520" fill="#E8EEEA"></rect>
+<path d="M520 0 C560 120 600 200 660 260 C720 320 760 420 800 470 L800 0 Z" fill="#A2C3D3"></path>
+<path d="M520 0 C560 120 600 200 660 260 C720 320 760 420 800 470" fill="none" stroke="#E4D4B2" stroke-width="14"></path>
+<path d="M0 300 L520 230" stroke="#ffffff" stroke-width="16" stroke-linecap="round"></path>
+<path d="M300 0 L340 520" stroke="#ffffff" stroke-width="12" stroke-linecap="round"></path>
+<path d="M80 0 L140 520" stroke="#ffffff" stroke-width="9" stroke-linecap="round"></path>
+<path d="M0 120 L560 70" stroke="#ffffff" stroke-width="9" stroke-linecap="round"></path>
+<path d="M0 440 L620 380" stroke="#ffffff" stroke-width="9" stroke-linecap="round"></path>
+</svg>
+<div style="position:absolute;left:50%;top:44%;transform:translate(-50%,-100%);display:flex;flex-direction:column;align-items:center;gap:6px">
+<span style="background:#12323F;color:#ffffff;font-size:14px;font-weight:600;padding:8px 14px;border-radius:999px;white-space:nowrap">Unit 1, 38 Burnett Street</span>
+<svg width="44" height="54" viewBox="0 0 24 30" aria-hidden="true"><path d="M12 29s-10-9-10-16a10 10 0 0 1 20 0c0 7-10 16-10 16z" fill="#1D5067"></path><circle cx="12" cy="12" r="4" fill="#DDAA33"></circle></svg>
+</div>
+<p style="position:absolute;left:16px;bottom:16px;margin:0;background:rgba(247,245,239,0.92);font-size:13px;color:#3E5A66;padding:6px 12px;border-radius:999px">Map preview · interactive Google Map on the live site</p>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:12px">
+<a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&amp;query=Unit+1%2C+38+Burnett+Street%2C+Mooloolaba+QLD+4557">Open in Google Maps</a>
+<a class="btn btn-ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=Unit+1%2C+38+Burnett+Street%2C+Mooloolaba+QLD+4557">Get directions</a>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- Privacy note -->
+<section class="sand-bg" aria-labelledby="enq-h" style="position:relative;background-color:#E4D4B2;padding:clamp(96px,10vw,136px) 24px clamp(72px,8vw,112px)">
+<svg aria-hidden="true" viewBox="0 0 1440 90" preserveAspectRatio="none" style="position:absolute;left:0;right:0;top:-1px;width:100%;height:clamp(40px,5.5vw,84px);display:block"><path d="M0 0 H1440 V40 C1300 70 1160 72 1010 52 C860 32 720 30 560 52 C400 74 220 76 0 50 Z" fill="#F7F5EF"></path><path d="M0 50 C220 76 400 74 560 52 C720 30 860 32 1010 52 C1160 72 1300 70 1440 40" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" opacity="0.9"></path></svg>
+<div style="max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:18px">
+<div style="display:flex;gap:14px;align-items:center"><span class="ic" style="background:#F7F5EF"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg></span><h2 id="enq-h" style="margin:0;font-size:clamp(32px,3.8vw,48px);line-height:1.08">Making an Enquiry</h2></div>
+<p style="margin:0;font-size:18px;line-height:1.8;color:#22414D">To protect your privacy, please limit initial text or email messages to basic contact details and scheduling requests. We will safely discuss your clinical history and personal goals together during your initial consultation.</p>
+<div style="display:flex;flex-wrap:wrap;gap:12px;padding-top:4px">
+<a class="btn btn-primary" href="tel:0404174184">Call 0404 174 184</a>
+<a class="btn btn-ghost" href="mailto:psych@jennifermalecki.com.au">Email Jennifer</a>
+</div>
+<p style="margin:8px 0 0;font-size:15px;line-height:1.6;color:#33475A">If you need help right now, please call 000 or Lifeline on 13 11 14, or see the <a href="Support.dc.html" style="font-weight:600">Support page</a>.</p>
+</div>
+</section>
+
+</main>
+
+<!-- Footer -->
+<footer class="footer" style="background:#12323F;color:#EBE7DB">
+<div style="max-width:1240px;margin:0 auto;padding:72px 24px 36px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:40px">
+<div style="display:flex;flex-direction:column;gap:14px">
+<img src="./assets/b391974488085834f3b0b65becb969cb.png" alt="Jennifer Malecki Psychologist" style="width:170px;height:auto;display:block">
+<p style="margin:0;font-size:14px;line-height:1.6;color:#C9D6DC">Jennifer Malecki, Psychologist, PhD<br>J. Malecki &amp; Associates Pty Ltd</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<h2 style="margin:0;font-size:24px;color:#ffffff">Visit</h2>
+<p style="margin:0;font-size:15px;line-height:1.7;color:#C9D6DC">Unit 1, 38 Burnett Street<br>Mooloolaba QLD 4557</p>
+<p style="margin:0;font-size:14px;line-height:1.7;color:#C9D6DC">By Appointment Only<br>Monday: In-Clinic<br>Tuesday – Friday: Telehealth</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<h2 style="margin:0;font-size:24px;color:#ffffff">Contact</h2>
+<a href="tel:0404174184" style="font-size:15px">0404 174 184</a>
+<a href="mailto:psych@jennifermalecki.com.au" style="font-size:15px">psych@jennifermalecki.com.au</a>
+</div>
+<nav aria-label="Footer" style="display:flex;flex-direction:column;gap:8px">
+<h2 style="margin:0;font-size:24px;color:#ffffff">Explore</h2>
+<a href="About.dc.html" style="font-size:15px">About</a>
+<a href="Services.dc.html" style="font-size:15px">Services</a>
+<a href="Fees.dc.html" style="font-size:15px">Fees &amp; Rebates</a>
+<a href="Referrers.dc.html" style="font-size:15px">For Referrers</a>
+<a href="Gallery.dc.html" style="font-size:15px">Gallery</a>
+<a href="Resources.dc.html" style="font-size:15px">Resources</a>
+<a href="Support.dc.html" style="font-size:15px">Support</a>
+<a href="Contact.dc.html" style="font-size:15px">Contact</a>
+</nav>
+</div>
+<div style="max-width:1240px;margin:0 auto;padding:0 24px">
+<div style="border-top:1px solid rgba(235,231,219,0.2);padding:24px 0 36px;display:flex;flex-direction:column;gap:12px;font-size:13px;line-height:1.6;color:#C9D6DC">
+<p style="margin:0">This website is not a crisis service. If you are in immediate danger call 000, or Lifeline on 13 11 14.</p>
+<p style="margin:0">ABN 63 687 967 193 · Medicare Provider No. 1894363H · AHPRA PSY0001410118</p>
+<div style="display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between">
+<p style="margin:0">© 2026 J. Malecki &amp; Associates Pty Ltd · Artwork © Jennifer Malecki, not for reproduction</p>
+<div style="display:flex;gap:20px;flex-wrap:wrap"><a href="Privacy.dc.html">Privacy policy</a><a href="Privacy.dc.html">Website disclaimer</a></div>
+</div>
+</div>
+</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":3400}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { menu: false };
+  }
+  renderVals() {
+    return {
+      menuOpen: this.state.menu,
+      menuExpanded: this.state.menu ? 'true' : 'false',
+      openMenu: () => this.setState({ menu: true }),
+      closeMenu: () => this.setState({ menu: false })
+    };
+  }
+}
+</script>
+</body>
+</html>

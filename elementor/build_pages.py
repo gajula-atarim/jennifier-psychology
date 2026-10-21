@@ -12,7 +12,8 @@ from build import (BODY, BODY_DK, DIST, EMAIL, EMAIL_URL, INK, MIST, MIST_LT, MU
                    eyebrow, gap, gradient, grid, heading, html, icon, icon_list, image, modal, pop_text, px,
                    sand_bg, section, text, textlink, wave_card, widget)
 
-PAGES = {"about": 50, "services": 51, "fees": 52, "referrers": 53, "gallery": 54}
+PAGES = {"about": 50, "services": 51, "fees": 52, "referrers": 53, "gallery": 54,
+         "resources": 67, "contact": 68, "support": 69, "privacy": 70}
 INNER_HEADER = 55
 GREY_BODY = "#3E5A66"
 LINE = "#E2DCCD"
@@ -708,10 +709,353 @@ def gallery_page():
     return [hero, grid_, cta]
 
 
+# ---------------------------------------------------------------- shared for the last four pages
+
+CRISIS_LINES = [
+    ("Lifeline", "24/7 crisis support and suicide prevention", "13 11 14", "131114"),
+    ("Beyond Blue", "24/7 mental health information and advice", "1300 22 4636", "1300224636"),
+    ("13YARN", "24/7 crisis support for Aboriginal and Torres Strait Islander people", "13 92 76", "139276"),
+    ("Suicide Call Back Service", "24/7 telephone and online counselling", "1300 659 467", "1300659467"),
+    ("DVConnect Womensline", "24/7 Queensland domestic violence and safety support", "1800 811 811", "1800811811"),
+]
+OPEN_ARMS = ("Open Arms – Veterans &amp; Families Counselling",
+             "An additional or after-hours resource for veterans and their families.", "1800 011 046", "1800011046")
+WHITE_CARD = dict(background_background="classic", background_color="#ffffff")
+
+
+def link_box(name, kids, url, *, external=False, cls="", **kw):
+    """A whole card that is one link (Elementor container rendered as <a>)."""
+    return container(name, kids, tag="a", link={"url": url, "is_external": "on" if external else ""},
+                     cls=cls, **kw)
+
+
+def hero_text_only(name, kids, *, bg=STONE, maxw=None, pad=None):
+    sec = section(name, [container(f"{name}-text", kids, gap_=18, **({"width": maxw, "grow": 0} if maxw else {}))],
+                  pad=pad or dims("clamp(56px,7vw,96px)", 24, "clamp(96px,10vw,130px)", 24), bg=bg,
+                  cls="jm-page-hero")
+    return sec
+
+
+# ---------------------------------------------------------------- Resources
+
+RESOURCE_GROUPS = [
+    ("trauma", "i_res_heart", "#DCE8EE", "Trauma &amp; Specialized Information", [
+        ("Blue Knot Foundation", "National Centre of Excellence for Complex Trauma support and resources",
+         "https://blueknot.org.au/"),
+        ("The Butterfly Foundation", "National support and information for eating disorders and body image concerns",
+         "https://butterfly.org.au/"),
+        ("SANE Australia", "Resources, guidance, and peer support forums for complex mental health",
+         "https://www.sane.org/")]),
+    ("ground", "i_sprout", "#E6EFE6", "Grounding &amp; Mindfulness Tools", [
+        ("Smiling Mind", "A free, Australian-developed mobile application offering evidence-based mindfulness "
+                         "practices to help ground the nervous system.", "https://www.smilingmind.com.au/"),
+        ("BeyondNow", "An interactive app created by Beyond Blue to help you easily build and keep a personal safety "
+                      "plan on your phone for times of high distress.",
+         "https://www.beyondblue.org.au/get-support/beyondnow-suicide-safety-planning")]),
+    ("dissoc", "i_layers", "#E4E1EE", "Trauma &amp; Dissociation Support", [
+        ("Phoenix Australia", "The National Centre for Excellence in Post-Traumatic Mental Health, providing "
+                              "evidence-based recovery information for individuals experiencing PTSD.",
+         "https://www.phoenixaustralia.org/")]),
+    ("eating", "i_person", "#F4E6BF", "Eating Disorders &amp; Body Experience", [
+        ("Eating Disorders Queensland (EDQ)", "A fantastic state-based organisation providing community support, "
+                                              "resources, and hope for individuals living with eating disorders and "
+                                              "their support networks.", "https://eatingdisordersqueensland.org.au/"),
+        ("National Eating Disorders Collaboration (NEDC)", "A federally funded body offering clean, evidence-based "
+                                                            "fact sheets about eating disorders.",
+         "https://nedc.com.au/")]),
+    ("complex", "i_signal", "#EBE7DB", "Complex Mental Health &amp; Personality Dynamics", [
+        ("Project Air Strategy", "A universally respected Australian initiative providing high-quality personality "
+                                 "disorder resources, fact sheets, and guidebooks for individuals and families.",
+         "https://www.projectairstrategy.org/")]),
+    ("apps", "i_smartphone", "#DDEBEF", "Practical Grounding Apps (Mind-Body Connection)", [
+        ("The Tapping Solution App", "An introductory tool utilizing Emotional Freedom Techniques (EFT) that clients can "
+                                     "use independently to explore somatic grounding and lower acute physiological "
+                                     "stress.", "https://www.thetappingsolution.com/")]),
+]
+RES_FILTERS = [("all", "All"), ("trauma", "Trauma"), ("ground", "Grounding"), ("dissoc", "Dissociation"),
+               ("eating", "Eating disorders"), ("complex", "Complex mental health"), ("apps", "Apps")]
+
+
+def line_card(name, label, number, tel, *, ochre=False):
+    return link_box(name, [
+        text(f"{name}-l", f"<p>{label}</p>", 14, "#3A2C08" if ochre else GREY_BODY, lh=1.45),
+        heading(f"{name}-n", number, "p", SANS, 26, INK, weight=700, lh=1.1),
+    ], f"tel:{tel}", cls="jm-line", gap_=10, justify="space-between", min_height=px(120), pad=dims(20, 22),
+        background_background="classic", background_color=OCHRE if ochre else "#ffffff",
+        **border(1, OCHRE if ochre else LINE, 18))
+
+
+def resources_page():
+    hero = hero_text_only("rs-hero", [
+        eyebrow("rs-eyebrow", "Resources"),
+        h1("rs-h1", "Resources"),
+        para("rs-lede", "The informational resources and external links provided below are intended for educational "
+                        "and support purposes only, and do not replace professional psychological care or medical "
+                        "advice. If you or someone you know is in acute distress or experiencing an immediate safety "
+                        "risk, please utilise the crisis contacts below or present to your nearest hospital emergency "
+                        "department.", "clamp(17px, 1.4vw, 19px)", BODY_DK, 1.75, maxw=860),
+    ])
+
+    lines = [line_card("rs-line-000", "Emergency Services · immediate danger or medical emergencies", "000", "000",
+                       ochre=True)] + [
+        line_card(f"rs-line-{tel}", f"{name} · {desc}", num, tel) for name, desc, num, tel in CRISIS_LINES]
+    crisis = section("rs-crisis", [container("rs-crisis-panel", [
+        container("rs-crisis-head", [
+            h2("rs-crisis-h", "Immediate Crisis &amp; 24/7 Support", size="clamp(32px, 3.6vw, 46px)", color="#ffffff",
+               lh=1.1),
+            button("rs-crisis-btn", "Open the Support page", URL["support"], "ochre"),
+        ], row=True, wrap=True, justify="space-between", align="flex-end", gap_=gap(16, 40)),
+        grid("rs-crisis-grid", lines, 0, 12, grid_columns_grid=px("repeat(3, minmax(0, 1fr))"),
+             grid_columns_grid_tablet=px("repeat(2, minmax(0, 1fr))"),
+             grid_columns_grid_mobile={"unit": "fr", "size": 1, "sizes": []}),
+    ], gap_=24, pad=dims("clamp(28px,4vw,48px)"), border_radius=dims(28), background_background="classic",
+        background_color=INK)], pad=dims("clamp(40px,5vw,64px)", 24, 24, 24))
+
+    cards = []
+    for i, (key, ico, tint, title, rows) in enumerate(RESOURCE_GROUPS, 1):
+        row_els = [link_box(f"rs-{key}-row-{j}", [
+            container(f"rs-{key}-row-{j}-t", [
+                heading(f"rs-{key}-row-{j}-n", n, "p", SANS, 17, INK, weight=700, lh=1.35),
+                text(f"rs-{key}-row-{j}-d", f"<p>{d}</p>", 15, GREY_BODY, lh=1.6),
+            ], gap_=3, grow=1, width=px(0, "%"), mobile_width=False),
+            icon(f"rs-{key}-row-{j}-go", "i_up_right", 16, view="framed", shape="circle", primary_color=TEAL,
+                 icon_padding=px(9), border_width=dims(1.5), cls="jm-res-go", _flex_size="none"),
+        ], u, external=True, cls="jm-res-row", row=True, align="center", gap_=14, pad=dims(16, 18),
+            flex_wrap="nowrap", flex_wrap_mobile="nowrap", background_background="classic",
+            background_color="rgba(255,255,255,0.78)", **border(1, "rgba(29,80,103,0.12)", 16))
+            for j, (n, d, u) in enumerate(rows, 1)]
+        card = wave_card(f"rs-card-{key}", [
+            container(f"rs-card-{key}-top", [
+                icon(f"rs-card-{key}-i", ico, 24, view="stacked", shape="circle", primary_color=TEAL,
+                     secondary_color=SAND, icon_padding=px(14), cls="jm-blob", _flex_size="none"),
+                heading(f"rs-card-{key}-num", f"0{i}", "span", SERIF, 15, "#6A8CA3", weight=700, ls=0.08),
+            ], row=True, align="center", gap_=14, flex_wrap="nowrap", flex_wrap_mobile="nowrap"),
+            h2(f"rs-card-{key}-h", title, size="clamp(26px, 2.6vw, 34px)", lh=1.12),
+            container(f"rs-card-{key}-rows", row_els, gap_=10),
+        ], radius=28, pad=dims(30, 30, 100, 30), gap_=16, hover=False)
+        card["settings"].update({**gradient("#FBFAF6", tint), **border(1, "#D9D3C4", 28),
+                                 "css_classes": card["settings"]["css_classes"] + f" jm-res-card jm-res-{key}"})
+        cards.append(card)
+
+    chips = html("rs-filters", '<div class="jm-filters jm-res-filters" role="group" aria-label="Filter resources">' +
+                 "".join(f'<button type="button" class="jm-filter jm-filter-sm" data-filter="{k}" '
+                         f'aria-pressed="{"true" if k == "all" else "false"}">{l}</button>' for k, l in RES_FILTERS) +
+                 '</div>')
+    tools = section("rs-tools", [
+        container("rs-tools-head", [
+            container("rs-tools-head-text", [eyebrow("rs-tools-eyebrow", "Further support"),
+                                             h2("rs-tools-h", "Trusted resources &amp; tools")], gap_=12, width=620,
+                      grow=0),
+            chips,
+        ], row=True, wrap=True, justify="space-between", align="flex-end", gap_=gap(20, 40)),
+        container("rs-cards", cards, cls="jm-res-cols"),
+    ], pad=dims("clamp(48px,6vw,88px)", 24, "clamp(56px,7vw,96px)", 24), gap_=28)
+
+    cta = sand_cta("rs-cta", "I am here to listen and support your next step",
+                   "I invite you to reach out by email or phone for a chat.")
+    return [hero, crisis, tools, cta]
+
+
+# ---------------------------------------------------------------- Contact
+
+def contact_tile(name, key, label, value_html, *, url=None, size=18, weight=700, extra=None):
+    kids = [
+        icon(f"{name}-i", key, 22, view="stacked", shape="circle", primary_color="#EEF4F6", secondary_color=TEAL,
+             icon_padding=px(13), _flex_size="none"),
+        container(f"{name}-t", [
+            eyebrow(f"{name}-l", label, ls=0.12),
+            text(f"{name}-v", value_html, size, INK, weight=weight, lh=1.5, cls="jm-tile-value"),
+            *(extra or []),
+        ], gap_=4, grow=1, width=px(0, "%"), mobile_width=False),
+    ]
+    common = dict(row=True, gap_=16, align="flex-start", pad=dims(24), flex_wrap="nowrap", flex_wrap_mobile="nowrap",
+                  cls="jm-contact-tile", **WHITE_CARD, **border(1, LINE, 20))
+    return link_box(name, kids, url, **common) if url else container(name, kids, **common)
+
+
+def contact_page():
+    hero = hero_text_only("ct-hero", [
+        eyebrow("ct-eyebrow", "Contact"),
+        h1("ct-h1", "Contact Me"),
+        para("ct-lede", "Feel free to reach out by email or phone to ask any questions or to discuss taking the next "
+                        "step toward your healing.", "clamp(17px, 1.4vw, 19px)", BODY_DK, 1.75, maxw=820),
+        para("ct-p", "When you reach out by phone, you will speak directly with me. I manage my own enquiries to ensure "
+                     "that from your very first phone call, you are met with a safe, confidential, and deeply "
+                     "personalised introduction to care.", 17, GREY_BODY, 1.75, maxw=820),
+    ])
+    address = "Unit 1, 38 Burnett Street, Mooloolaba QLD 4557"
+    tiles = container("ct-tiles", [
+        contact_tile("ct-phone", "i_phone", "Phone", f"<p>{PHONE}</p>", url=PHONE_URL, size=24),
+        contact_tile("ct-email", "i_mail_line", "Email", f"<p>{EMAIL}</p>", url=EMAIL_URL, size=19),
+        contact_tile("ct-loc", "i_map_pin", "Practice Location", f"<p>Heart of Mooloolaba<br>{address}</p>",
+                     weight=600),
+        contact_tile("ct-hours", "i_clock_sm", "Opening Hours", "<p>By Appointment Only</p>", extra=[
+            para("ct-hours-p", "Monday: Face-to-face Consultations (In-Clinic)<br>Tuesday – Friday: Telehealth "
+                               "Consultations (Online)", 16, GREY_BODY, 1.6)]),
+    ], gap_=12, width=380, grow=1)
+    q = "Unit+1%2C+38+Burnett+Street%2C+Mooloolaba+QLD+4557"
+    map_col = container("ct-map-col", [
+        widget("ct-map", "google_maps", {"address": address, "zoom": {"unit": "px", "size": 16},
+                                        "height": {"unit": "px", "size": 420}, "_css_classes": "jm-map",
+                                        "prevent_scroll": "yes"}),
+        container("ct-map-btns", [
+            button("ct-map-open", "Open in Google Maps", f"https://www.google.com/maps/search/?api=1&query={q}",
+                   "primary"),
+            button("ct-map-dir", "Get directions", f"https://www.google.com/maps/dir/?api=1&destination={q}", "ghost"),
+        ], row=True, wrap=True, gap_=12),
+    ], gap_=16, width=520, grow=999)
+    for b in map_col["elements"][1]["elements"]:
+        b["settings"]["link"]["is_external"] = "on"
+    details = section("ct-details", [tiles, map_col], pad=dims("clamp(40px,5vw,72px)", 24, "clamp(56px,7vw,96px)", 24),
+                      row=True, wrap=True, gap_=32, align="stretch", cls="jm-tide")
+
+    enquiry = sand_cta("ct-enq", "", "", center=False, kids=[
+        container("ct-enq-head", [
+            icon("ct-enq-i", "i_lock", 22, view="stacked", shape="circle", primary_color=SAND, secondary_color=TEAL,
+                 icon_padding=px(13), _flex_size="none"),
+            h2("ct-enq-h", "Making an Enquiry", size="clamp(32px, 3.8vw, 48px)"),
+        ], row=True, align="center", gap_=14, flex_wrap="nowrap", flex_wrap_mobile="nowrap"),
+        para("ct-enq-p", "To protect your privacy, please limit initial text or email messages to basic contact details "
+                         "and scheduling requests. We will safely discuss your clinical history and personal goals "
+                         "together during your initial consultation.", 18, BODY_DK, 1.8),
+        call_email("ct-enq-btns"),
+        para("ct-enq-help", f'If you need help right now, please call 000 or Lifeline on 13 11 14, or see the '
+                            f'<a href="{URL["support"]}"><strong>Support page</strong></a>.', 15, "#33475A", 1.6,
+             cls="jm-inline-links"),
+    ])
+    return [hero, details, enquiry]
+
+
+# ---------------------------------------------------------------- Support
+
+def call_card(name, title, desc, number, tel):
+    return link_box(name, [
+        container(f"{name}-t", [
+            heading(f"{name}-h", title, "p", SANS, 20, INK, weight=700, lh=1.3),
+            text(f"{name}-d", f"<p>{desc}</p>", 15, GREY_BODY, lh=1.5),
+            heading(f"{name}-n", number, "p", SANS, 26, TEAL, weight=700, lh=1.2),
+        ], gap_=4, grow=1, width=px(0, "%"), mobile_width=False),
+        icon(f"{name}-i", "i_phone", 20, view="stacked", shape="circle", primary_color=TEAL, secondary_color="#ffffff",
+             icon_padding=px(14), _flex_size="none"),
+    ], f"tel:{tel}", cls="jm-call", row=True, justify="space-between", align="center", gap_=16, pad=dims(22, 24),
+        flex_wrap="nowrap", flex_wrap_mobile="nowrap", **WHITE_CARD, **border(1, LINE, 20))
+
+
+def support_page():
+    sos = link_box("sp-000", [
+        heading("sp-000-l", "Emergency Services", "p", SANS, 14, INK, weight=700, ls=0.12, transform="uppercase"),
+        heading("sp-000-n", "000", "p", SERIF, "clamp(72px, 8vw, 104px)", INK, weight=700, lh=1),
+        text("sp-000-d", "<p>For immediate danger or medical emergencies</p>", 16, INK, lh=1.5),
+        heading("sp-000-tap", "Tap to call", "span", SANS, 15, "#ffffff", weight=600, lh=1.2, cls="jm-tap-pill",
+                _margin=dims(8, 0, 0, 0)),
+    ], "tel:000", cls="jm-sos-card", gap_=6, pad=dims(32), width=300, grow=1, border_radius=dims(28),
+        background_background="classic", background_color=OCHRE)
+    hero = page_hero("sp-hero", [
+        eyebrow("sp-eyebrow", "Support", color=MIST),
+        h1("sp-h1", "If you need help right now", color="#ffffff"),
+        para("sp-lede", "If you or someone you know is in acute distress or experiencing an immediate safety risk, please "
+                        "utilise the crisis contacts below or present to your nearest hospital emergency department.",
+             "clamp(17px, 1.4vw, 19px)", MIST_LT, 1.75),
+        para("sp-note", "This practice is not a crisis service.", 15, MUTED, 1.6),
+    ], sos, bg=INK, pad=dims("clamp(56px,7vw,96px)", 24, "clamp(96px,10vw,130px)", 24))
+    hero["elements"][0]["settings"]["flex_gap"] = gap(18)
+
+    calls = [call_card(f"sp-call-{tel}", n, d, num, tel) for n, d, num, tel in CRISIS_LINES + [OPEN_ARMS]]
+    lines = section("sp-lines", [
+        h2("sp-lines-h", "Immediate Crisis &amp; 24/7 Support", size="clamp(32px, 3.8vw, 48px)"),
+        grid("sp-lines-grid", calls, 440, 14),
+    ], pad=dims("clamp(48px,6vw,80px)", 24, "clamp(56px,7vw,96px)", 24), gap_=28)
+
+    card = lambda n, title, body, btns: container(f"sp-next-{n}", [
+        h2(f"sp-next-{n}-h", title, size=30, lh=1.15), para(f"sp-next-{n}-p", body, 16, GREY_BODY, 1.7),
+        container(f"sp-next-{n}-btns", btns, row=True, wrap=True, gap_=10),
+    ], gap_=12, pad=dims(32), border_radius=dims(24), background_background="classic", background_color=SAND)
+    beyond = button("sp-bn-btn", "Open BeyondNow ↗", "https://www.beyondblue.org.au/get-support/"
+                    "beyondnow-suicide-safety-planning", "ghost")
+    beyond["settings"]["link"]["is_external"] = "on"
+    after = section("sp-next", [grid("sp-next-grid", [
+        card("bn", "BeyondNow", "An interactive app created by Beyond Blue to help you easily build and keep a personal "
+                                "safety plan on your phone for times of high distress.", [beyond]),
+        card("res", "More resources", "Trauma, eating disorders, complex mental health and grounding tools.",
+             [button("sp-res-btn", "Go to Resources", URL["resources"], "ghost")]),
+        card("con", "Contact Jennifer", "By Appointment Only. For non-urgent enquiries, reach out by email or phone.",
+             [button("sp-con-call", PHONE, PHONE_URL, "primary"), button("sp-con-email", "Email", EMAIL_URL, "ghost")]),
+    ], 340, 20)], pad=dims("clamp(56px,7vw,88px)", 24), bg=STONE)
+    return [hero, lines, after]
+
+
+# ---------------------------------------------------------------- Privacy & disclaimer
+
+def toc_pill(name, label, url):
+    return button(name, label, url, "ghost", button_text_color=INK, background_color=SAND, border_width=dims(1),
+                  border_color="#D6CFBD", button_background_hover_color=SAND, hover_color=TEAL_DK_,
+                  button_hover_border_color=TEAL, text_padding=dims(13, 18), typography_font_size=px(15))
+
+
+TEAL_DK_ = "#0d4c5c"
+
+
+def privacy_page():
+    narrow = dict(boxed_width=880)
+    hero = section("pv-hero", [container("pv-hero-text", [
+        eyebrow("pv-eyebrow", "Legal"),
+        heading("pv-h1", "Privacy policy &amp; website disclaimer", "h1", SERIF, "clamp(40px, 5vw, 64px)", INK,
+                weight=600, lh=1.04, ls=-0.01),
+        container("pv-toc", [toc_pill("pv-toc-p", "Privacy policy", "#privacy"),
+                             toc_pill("pv-toc-d", "Website disclaimer", "#disclaimer")],
+                  row=True, wrap=True, gap_=10, pad=dims(6, 0, 0, 0), tag="nav"),
+    ], gap_=18)], pad=dims("clamp(56px,7vw,88px)", 24, "clamp(88px,9vw,120px)", 24), bg=STONE, cls="jm-page-hero",
+        **narrow)
+
+    privacy = section("pv-privacy", [
+        h2("pv-p-h", "Privacy policy", size="clamp(32px, 3.6vw, 46px)", lh=1.1),
+        para("pv-p-p", "To protect your privacy, please limit initial text or email messages to basic contact details "
+                       "and scheduling requests. We will safely discuss your clinical history and personal goals "
+                       "together during your initial consultation.", 17, BODY_DK, 1.8),
+        text("pv-p-ph", "<p>[Jennifer's full privacy policy text — to be supplied]</p>", 16, TEAL, lh=1.6,
+             cls="jm-placeholder-box"),
+        container("pv-p-enq", [
+            eyebrow("pv-p-enq-l", "Privacy enquiries", ls=0.12),
+            text("pv-p-enq-t", f"<p>Jennifer Malecki &amp; Associates Pty Ltd · ABN 63 687 967 193<br>"
+                               f"Unit 1, 38 Burnett Street, Mooloolaba QLD 4557<br>"
+                               f'<a href="{PHONE_URL}">{PHONE}</a> · <a href="{EMAIL_URL}">{EMAIL}</a></p>', 16, BODY_DK,
+                 lh=1.7, cls="jm-inline-links"),
+        ], gap_=6, pad=dims(24), **WHITE_CARD, **border(1, LINE, 20)),
+    ], pad=dims("clamp(48px,6vw,80px)", 24, 24, 24), gap_=20, _element_id="privacy", cls="jm-anchor", **narrow)
+
+    bar = container("pv-d-bar", [
+        text("pv-d-bar-t", '<p>This website is not a crisis service. In an emergency call <a href="tel:000">'
+                           '<strong>000</strong></a>.</p>', 16, SAND, lh=1.6, cls="jm-bar-links"),
+        button("pv-d-bar-btn", "Support lines", URL["support"], "ochre"),
+    ], row=True, wrap=True, justify="space-between", align="center", gap_=gap(12, 24), pad=dims(24),
+        border_radius=dims(20), background_background="classic", background_color=INK)
+    disclaimer = section("pv-disclaimer", [
+        h2("pv-d-h", "Website disclaimer", size="clamp(32px, 3.6vw, 46px)", lh=1.1),
+        text("pv-d-body", f"<p><strong>{NAME_TITLE}</strong> | AHPRA Reg: PSY 0001410118</p>"
+                          "<p><em>Educational Content Only: The information on this website is not a substitute for "
+                          "professional psychological treatment and does not constitute a clinical relationship. This "
+                          "site is not monitored 24/7.</em></p>"
+                          "<p><strong>In a Crisis?</strong> This is not an emergency service. If you are in immediate "
+                          'danger, please call <a href="tel:000"><strong>000</strong></a>, visit an emergency '
+                          'department, or contact <a href="https://www.lifeline.org.au/" target="_blank" '
+                          'rel="noopener">Lifeline</a> <strong>on <a href="tel:131114">13 11 14</a></strong> or '
+                          '<a href="https://www.beyondblue.org.au/" target="_blank" rel="noopener">Beyond Blue</a> '
+                          '<strong>on <a href="tel:1300224636">1300 22 4636</a></strong>.</p>', 17, BODY_DK, lh=1.8,
+             cls="jm-inline-links jm-prose"),
+        para("pv-d-copy", "Artworks and photographs on this website are © Jennifer Malecki and may not be copied, "
+                          "downloaded, reproduced or used in any form without written permission.", 17, BODY_DK, 1.8),
+        bar,
+    ], pad=dims("clamp(40px,5vw,64px)", 24, "clamp(56px,7vw,96px)", 24), gap_=20, _element_id="disclaimer",
+        cls="jm-anchor", **narrow)
+    return [hero, privacy, disclaimer]
+
+
 if __name__ == "__main__":
     DIST.mkdir(exist_ok=True)
     out = {"header-inner": build_inner_header(), "about": about_page(), "services": services_page(),
-           "fees": fees_page(), "referrers": referrers_page(), "gallery": gallery_page()}
+           "fees": fees_page(), "referrers": referrers_page(), "gallery": gallery_page(),
+           "resources": resources_page(), "contact": contact_page(), "support": support_page(),
+           "privacy": privacy_page()}
     for name, data in out.items():
         path = DIST / f"{name}.json"
         path.write_text(json.dumps(data, ensure_ascii=False, separators=(",", ":")))

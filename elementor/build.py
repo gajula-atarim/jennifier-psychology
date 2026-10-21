@@ -40,6 +40,15 @@ MEDIA = {
     "i_calendar": (45, "jm-icon-calendar.svg"),
     "i_clock_sm": (46, "jm-icon-clock-small.svg"),
     "i_wave_mini": (47, "jm-icon-wave-mini.svg"),
+    "i_res_heart": (58, "jm-icon-res-heart.svg"),
+    "i_sprout": (59, "jm-icon-sprout.svg"),
+    "i_layers": (60, "jm-icon-layers.svg"),
+    "i_person": (61, "jm-icon-person.svg"),
+    "i_signal": (62, "jm-icon-signal.svg"),
+    "i_smartphone": (63, "jm-icon-smartphone.svg"),
+    "i_lock": (64, "jm-icon-lock.svg"),
+    "i_up_right": (65, "jm-icon-arrow-up-right.svg"),
+    "i_mail_line": (66, "jm-icon-mail-line.svg"),
     "photo_cartwright": (48, "jm-photo-point-cartwright.jpg"),
     "photo_beach": (49, "jm-photo-mooloolaba-beach.jpg"),
 }
@@ -56,11 +65,10 @@ EMAIL = "psych@jennifermalecki.com.au"
 EMAIL_URL = f"mailto:{EMAIL}"
 NAME_TITLE = "Jennifer Malecki, Psychologist, PhD"  # AHPRA: no "Dr" title
 AHPRA_REG, ABN = "PSY0001410118", "63 687 967 193"
-# Built pages use their real paths; the rest stay "#" until they go live.
 URL = {
     "home": "/", "about": "/about/", "services": "/services/", "fees": "/fees-rebates/",
-    "referrers": "/for-referrers/", "gallery": "/gallery/", "resources": "#", "support": "/#jm-support",
-    "contact": "#", "privacy": "#",
+    "referrers": "/for-referrers/", "gallery": "/gallery/", "resources": "/resources/", "support": "/support/",
+    "contact": "/contact/", "privacy": "/privacy/#privacy", "disclaimer": "/privacy/#disclaimer",
 }
 
 _ids: set = set()
@@ -502,7 +510,7 @@ def build_footer():
             container("ftr-legal", [
                 text("ftr-copy", "<p>© 2026 Jennifer Malecki &amp; Associates Pty Ltd · Artwork © Jennifer Malecki, "
                                  "not for reproduction</p>", 13, MUTED, lh=1.6, _flex_size="shrink"),
-                icon_list("ftr-policies", [("Privacy policy", URL["privacy"]), ("Website disclaimer", "#jm-pop-disclaimer")],
+                icon_list("ftr-policies", [("Privacy policy", URL["privacy"]), ("Website disclaimer", URL["disclaimer"])],
                           inline=True, size=13, color=STONE, hover=OCHRE, lh=1.6, space=20, _flex_size="none"),
             ], row=True, wrap=True, justify="space-between", gap_=gap(8, 24)),
         ], gap_=12, pad=dims(24, 0, 36, 0),
@@ -512,7 +520,7 @@ def build_footer():
     for c in (main, bottom):
         c["settings"]["css_classes"] = "jm-footer"
         c["settings"]["html_tag"] = "div"
-    return [main, bottom, disclaimer_modal()]
+    return [main, bottom]
 
 
 # ---------------------------------------------------------------- pop-ups
@@ -937,7 +945,7 @@ def support_now():
         h2("sos-h", "Need support right now?", size="clamp(32px, 3.2vw, 44px)", lh=1.1),
         text("sos-p", "<p>This practice is not a crisis service. If you or someone else is in immediate danger, call "
                       "000 or go to your nearest hospital emergency department.</p>", 16, BODY, lh=1.65),
-        textlink("sos-more", "More support services", URL["resources"], arrow=True),
+        textlink("sos-more", "More support services", URL["support"], arrow=True),
     ], gap_=14, width=320, grow=1)
     tile_grid = grid("sos-grid", tile_els, 0, 12, cols_mobile=1, width=px(520), _flex_size="custom",
                      _flex_grow=999, _flex_shrink=1, width_mobile=px(100, "%"))

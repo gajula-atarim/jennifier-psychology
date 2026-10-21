@@ -254,7 +254,7 @@
 		if ( ! items.length ) {
 			return;
 		}
-		var filters = document.querySelectorAll( '.jm-filter' );
+		var filters = document.querySelectorAll( '.jm-filters:not(.jm-res-filters) .jm-filter' );
 		filters.forEach( function ( btn ) {
 			btn.addEventListener( 'click', function () {
 				var f = btn.getAttribute( 'data-filter' );
@@ -362,6 +362,23 @@
 		} );
 	}
 
+	// Resources: topic chips show one group of resource cards at a time.
+	function initResourceFilters() {
+		var cards = document.querySelectorAll( '.jm-res-card' );
+		var chips = document.querySelectorAll( '.jm-res-filters .jm-filter' );
+		chips.forEach( function ( chip ) {
+			chip.addEventListener( 'click', function () {
+				var f = chip.getAttribute( 'data-filter' );
+				chips.forEach( function ( c ) {
+					c.setAttribute( 'aria-pressed', c === chip ? 'true' : 'false' );
+				} );
+				cards.forEach( function ( card ) {
+					card.classList.toggle( 'is-hidden', 'all' !== f && ! card.classList.contains( 'jm-res-' + f ) );
+				} );
+			} );
+		} );
+	}
+
 	function init() {
 		document.querySelectorAll( '.jm-breath-toggle' ).forEach( initBreath );
 		document.querySelectorAll( '.jm-hero video' ).forEach( initHeroVideo );
@@ -369,6 +386,7 @@
 		initModals();
 		initDesktopMenu();
 		initGallery();
+		initResourceFilters();
 	}
 
 	if ( 'loading' === document.readyState ) {

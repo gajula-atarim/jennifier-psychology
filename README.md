@@ -11,20 +11,20 @@ Site: https://jennifermalecki.wsdfy.com (Atarim workspace: VentraIP)
 - Elementor 4.3 (free): containers plus core widgets, so every section is editable in the Elementor editor
 - Ultimate Addons for Elementor (UAE): Site Header (post 33) and Site Footer (post 34), shown site-wide
 - Home page: post 14, set as the static front page
-- Inner pages: About (50), Services (51), Fees & Rebates (52), For Referrers (53), Gallery (54)
+- Inner pages: About (50), Services (51), Fees & Rebates (52), For Referrers (53), Gallery (54), Resources (67), Contact (68), Support (69), Privacy Policy & Website Disclaimer (70)
 - Headers: Home uses post 33 (front page only); inner pages use post 55 (crisis bar, cream bar, full-screen menu)
 
 ## Source
 
 - `design/home/` holds the design reference (`Main.dc.html`). Every value in the build comes from it.
 - `assets/` holds the images, video and line icons uploaded to the media library.
-- `design/pages/` holds the inner-page design exports (About, Services, Fees & Rebates, For Referrers, Gallery).
+- `design/pages/` holds the inner-page design exports (About, Services, Fees & Rebates, For Referrers, Gallery, Resources, Contact, Support, Privacy).
 - `elementor/build.py` generates the Elementor data into `elementor/dist/`:
   - `home.json`, `header.json`, `footer.json`
   - `kit.json`: Site Settings (colours, Cormorant Garamond and Figtree fonts, container defaults)
 - `elementor/build_css.py` generates `theme/hello-elementor-child/assets/css/jm-site.css`, inlining the decorative SVGs from `elementor/svg.py`.
 
-- `elementor/build_pages.py` generates the inner pages and their header: `about.json`, `services.json`, `fees.json`, `referrers.json`, `gallery.json`, `header-inner.json`.
+- `elementor/build_pages.py` generates the inner pages and their header: `about.json`, `services.json`, `fees.json`, `referrers.json`, `gallery.json`, `resources.json`, `contact.json`, `support.json`, `privacy.json`, `header-inner.json`.
 
 ```sh
 python3 elementor/build.py && python3 elementor/build_pages.py && python3 elementor/build_css.py
