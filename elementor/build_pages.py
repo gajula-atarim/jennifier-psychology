@@ -240,10 +240,11 @@ def about_page():
         heading(f"ab-day-{n}-t", title, "p", SERIF, 24, INK if mon else "#ffffff", weight=700, lh=1.1,
                 cls="jm-card-title"),
         heading(f"ab-day-{n}-s", sub, "p", SANS, 14, INK if mon else MIST_LT, lh=1.3),
-    ], gap_=8, pad=dims(20), justify="space-between", min_height=px(150), border_radius=dims(22),
-        background_background="classic", background_color=OCHRE if mon else TEAL)
-    days = [day("mon", "Monday", "Face-to-face", "In-Clinic", "i_map_pin", True)] + [
-        day(d.lower(), d, "Telehealth", "Online", "i_monitor") for d in ("Tuesday", "Wednesday", "Thursday", "Friday")]
+    ], gap_=8, pad=dims(24, 26), justify="space-between", min_height=px(150), border_radius=dims(22),
+        background_background="classic", background_color=SOFT_GOLD if mon else TEAL)
+    # Two cards: Monday in clinic, Tuesday to Friday by telehealth.
+    days = [day("mon", "Monday", "Face-to-face", "In-Clinic", "i_map_pin", True),
+            day("tf", "Tuesday – Friday", "Telehealth", "Online", "i_monitor")]
 
     in_person = container("ab-inperson", [
         container("ab-inperson-cap", [
@@ -279,7 +280,8 @@ def about_page():
             heading("ab-week-appt", "By Appointment Only", "p", SANS, 15, TEAL, weight=600, lh=1.2,
                     cls="jm-appt-pill", _flex_size="none"),
         ], row=True, wrap=True, justify="space-between", align="flex-end", gap_=gap(14, 40)),
-        tablet_row(grid("ab-days", days, 170, 12), 5),
+        grid("ab-days", days, 0, 16, grid_columns_grid=px("1fr 2fr"), grid_columns_grid_tablet=px("1fr 2fr"),
+             grid_columns_grid_mobile={"unit": "fr", "size": 1, "sizes": []}),
         container("ab-week-cards", [in_person, telehealth], row=True, wrap=True, gap_=20, align="stretch"),
     ], pad=dims("clamp(64px,8vw,112px)", 24, "clamp(64px,8vw,112px)", 24), gap_=28, cls="jm-tide")
 
@@ -974,6 +976,7 @@ def toc_pill(name, label, url):
 
 
 TEAL_DK_ = "#0d4c5c"
+SOFT_GOLD = "#E4C98F"  # a calmer gold than OCHRE, for large filled cards
 
 
 def privacy_page():
