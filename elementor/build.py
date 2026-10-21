@@ -739,12 +739,10 @@ def welcome():
                        "help you heal and reclaim your life.</p>", 17, BODY, lh=1.75),
     ], gap_=22, width=520, grow=999)
     right = container("wel-right", [
+        # Jennifer's blue painting in a rounded box (it replaced her portrait).
         container("wel-art", [
-            container("wel-art-a", [image("wel-art-a-img", "art_ocean")], cls="jm-art", border_radius=dims(160, 160, 24, 24),
+            container("wel-art-a", [image("wel-art-a-img", "art_ocean")], cls="jm-art", border_radius=dims(28),
                       overflow="hidden", background_background="classic", background_color=TEAL),
-            container("wel-art-b", [image("wel-art-b-img", "art_wave")], cls="jm-art jm-art-low",
-                      border_radius=dims(160, 160, 24, 24), overflow="hidden", background_background="classic",
-                      background_color=TEAL),
         ], row=True, gap_=16, cls="jm-wel-art", flex_wrap="nowrap", flex_wrap_mobile="nowrap"),
         text("wel-caption", "<p>Original artwork © Jennifer Malecki</p>", 14, BODY, lh=1.5, cls="jm-caption",
              align="center"),
