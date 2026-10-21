@@ -279,6 +279,8 @@ body.elementor-editor-active .jm-modal{display:flex!important;padding:24px 16px;
 .jm-round{width:48px;height:48px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;border:1.5px solid #1D5067;background:transparent;color:#1D5067;cursor:pointer;padding:0;text-decoration:none;flex:none;box-sizing:border-box;transition:background-color .25s,color .25s,transform .25s}
 .jm-round:hover,.jm-round:focus-visible{background:#1D5067;color:#fff;transform:scale(1.05)}
 .jm-round-solid{background:#1D5067;color:#fff}.jm-round-solid:hover,.jm-round-solid:focus-visible{background:#0d4c5c}
+/* Beat the kit's link colour, which would turn the icons teal. */
+.jm-rounds a.jm-round{color:#1D5067}.jm-rounds a.jm-round:hover,.jm-rounds a.jm-round:focus-visible,.jm-rounds a.jm-round-solid{color:#fff}
 .jm-round-light{border-color:#EBE7DB!important;color:#F7F5EF!important;background:transparent!important}
 .jm-round-light:hover,.jm-round-light:focus-visible{background:#EBE7DB!important;color:#12323F!important}
 
@@ -307,9 +309,9 @@ body.elementor-editor-active .jm-modal{display:flex!important;padding:24px 16px;
 .jm-figure{position:relative}
 .jm-figure-img,.jm-figure-img img{width:100%;display:block}
 .jm-figure-img img,.jm-g-img img{object-fit:cover;max-width:none;pointer-events:none;user-select:none;-webkit-user-drag:none}
-.jm-ar-45 img,.jm-ar-45 .elementor-heading-title{aspect-ratio:4/5}
-.jm-ar-43 img,.jm-ar-43 .elementor-heading-title{aspect-ratio:4/3}
-.jm-ar-11 img,.jm-ar-11 .elementor-heading-title{aspect-ratio:1/1}
+.jm-ar-45 img,.jm-g-placeholder.jm-ar-45 .elementor-heading-title{aspect-ratio:4/5}
+.jm-ar-43 img,.jm-g-placeholder.jm-ar-43 .elementor-heading-title{aspect-ratio:4/3}
+.jm-ar-11 img,.jm-g-placeholder.jm-ar-11 .elementor-heading-title{aspect-ratio:1/1}
 .jm-arch img{border-radius:200px 200px 28px 28px}
 .jm-arch-wide img{border-radius:220px 220px 28px 28px}
 .jm-arch-round img{border-radius:50% 50% 28px 28px}
