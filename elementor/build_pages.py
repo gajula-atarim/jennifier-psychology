@@ -148,9 +148,7 @@ def about_page():
         para("ab-lede", "I invite you to reach out by email or phone for a confidential chat. I am here to listen and "
                         "support your next step.", "clamp(17px, 1.4vw, 19px)", SAND, 1.7, maxw=640),
         call_email("ab-hero-btns", call_style="ochre", email_style="light"),
-    ], container("ab-hero-art", [figure("ab-hero-fig", "art_ocean", "Original artwork © Jennifer Malecki",
-                                        "jm-ar-45 jm-arch")], width=340, grow=1, _element_custom_width=px(440),
-                 cls="jm-fig-col jm-fig-col-440"))
+    ])
     photo_hero(hero, "hero_poster", "center 60%")
 
     practice = section("ab-practice", [
@@ -372,10 +370,9 @@ def services_page():
                         "and personal growth. My approach incorporates schema therapy, cognitive behavioural therapy "
                         "(CBT), and dialectical behaviour therapy (DBT). I aim to look beyond symptoms, asking holistic "
                         "questions to understand your whole story and help you truly reclaim your life.",
-             "clamp(17px, 1.4vw, 19px)", SAND, 1.75),
+             "clamp(17px, 1.4vw, 19px)", SAND, 1.75, maxw=760),
         call_email("sv-hero-btns", call_style="ochre", email_style="light"),
-    ], container("sv-hero-art", [figure("sv-hero-fig", "art_wave", "Original artwork © Jennifer Malecki",
-                                        "jm-ar-11 jm-arch-round")], width=340, grow=1, cls="jm-fig-col jm-fig-col-460"))
+    ])
     photo_hero(hero, "hero_poster", "center 35%")
 
     cards = [wave_card(f"sv-card-{key}", [
