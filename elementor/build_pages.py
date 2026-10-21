@@ -234,7 +234,8 @@ def about_page():
     day = lambda n, label, title, sub, key, mon=False: container(f"ab-day-{n}", [
         heading(f"ab-day-{n}-d", label, "p", SANS, 13, INK if mon else MIST, weight=700, ls=0.12, transform="uppercase"),
         icon(f"ab-day-{n}-i", key, 26, color=INK if mon else "#ffffff"),
-        heading(f"ab-day-{n}-t", title, "p", SERIF, 24, INK if mon else "#ffffff", weight=700, lh=1.1),
+        heading(f"ab-day-{n}-t", title, "p", SERIF, 24, INK if mon else "#ffffff", weight=700, lh=1.1,
+                cls="jm-card-title"),
         heading(f"ab-day-{n}-s", sub, "p", SANS, 14, INK if mon else MIST_LT, lh=1.3),
     ], gap_=8, pad=dims(20), justify="space-between", min_height=px(150), border_radius=dims(22),
         background_background="classic", background_color=OCHRE if mon else TEAL)
@@ -476,7 +477,7 @@ def fees_page():
     ], 340, 20), 3)], pad=dims("clamp(56px,7vw,96px)", 24), cls="jm-tide")
 
     way = lambda n, title, sub, target=None: wave_card(f"fe-way-{n}", [
-        heading(f"fe-way-{n}-h", title, "p", SERIF, 26, INK, weight=600, lh=1.15),
+        heading(f"fe-way-{n}-h", title, "p", SERIF, 26, INK, weight=600, lh=1.15, cls="jm-card-title"),
         para(f"fe-way-{n}-s", sub, 15, GREY_BODY, 1.5),
         *([textlink(f"fe-way-{n}-more", "Details +", target, text_padding=dims(4, 0), typography_font_size=px(14))]
           if target else []),

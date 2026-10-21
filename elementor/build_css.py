@@ -298,7 +298,7 @@ body.elementor-editor-active .jm-modal{display:flex!important;padding:24px 16px;
 @media (min-width:768px) and (max-width:1024px){
  .jm-tab-row{--gap:12px 12px;--row-gap:12px;--column-gap:12px;gap:12px!important}
  .jm-tab-row>.e-con{padding-top:22px!important;padding-left:16px!important;padding-right:16px!important;min-width:0}
- .jm-tab-row h2.elementor-heading-title,.jm-tab-row h3.elementor-heading-title{font-size:20px!important;line-height:1.2!important;overflow-wrap:anywhere}
+ .jm-tab-row h2.elementor-heading-title,.jm-tab-row h3.elementor-heading-title,.jm-tab-row .jm-card-title .elementor-heading-title{font-size:20px!important;line-height:1.2!important;overflow-wrap:anywhere}
  .jm-tab-row .elementor-widget-text-editor,.jm-tab-row .elementor-widget-text-editor p{font-size:14px!important;line-height:1.5!important}
  .jm-tab-row .elementor-button{padding:11px 16px!important;font-size:14px!important}
  .jm-tab-row .jm-textlink .elementor-button{padding:6px 0!important}
