@@ -626,7 +626,6 @@ GALLERY = [
     ("art", "art_wave", "[Artwork title]", "Acrylic, palette knife", "43"),
     ("coast", "photo_cartwright", "Point Cartwright", "Photograph", "45"),
     ("art", None, "[Artwork title]", "[Medium]", "11"),
-    ("coast", None, "[Rainforest image]", "Photograph", "43"),
 ]
 
 
