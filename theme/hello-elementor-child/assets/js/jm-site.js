@@ -379,6 +379,56 @@
 		} );
 	}
 
+	// Card rows: give the titles in each visual row of a card grid the same height, so the text under
+	// them starts on one line whatever wraps (buttons are pinned to the card foot in jm-site.css).
+	function initCardAlign() {
+		var grids = document.querySelectorAll( '.e-grid' );
+		if ( ! grids.length ) {
+			return;
+		}
+		function titleOf( card ) {
+			var t = card.querySelector( '.jm-card-title, h2.elementor-heading-title, h3.elementor-heading-title' );
+			return t ? t.closest( '.elementor-widget' ) : null;
+		}
+		function align() {
+			grids.forEach( function ( grid ) {
+				var rows = {};
+				Array.prototype.forEach.call( grid.children, function ( card ) {
+					var title = titleOf( card );
+					if ( ! title ) {
+						return;
+					}
+					title.style.minHeight = '';
+					var top = Math.round( card.getBoundingClientRect().top + window.scrollY );
+					( rows[ top ] = rows[ top ] || [] ).push( title );
+				} );
+				Object.keys( rows ).forEach( function ( top ) {
+					var titles = rows[ top ];
+					if ( titles.length < 2 ) {
+						return;
+					}
+					var tallest = Math.max.apply( null, titles.map( function ( t ) {
+						return t.getBoundingClientRect().height;
+					} ) );
+					titles.forEach( function ( t ) {
+						t.style.minHeight = tallest + 'px';
+					} );
+				} );
+			} );
+		}
+		var timer;
+		function later() {
+			clearTimeout( timer );
+			timer = setTimeout( align, 120 );
+		}
+		align();
+		window.addEventListener( 'resize', later );
+		window.addEventListener( 'load', align );
+		if ( document.fonts && document.fonts.ready ) {
+			document.fonts.ready.then( align );
+		}
+	}
+
 	function init() {
 		document.querySelectorAll( '.jm-breath-toggle' ).forEach( initBreath );
 		document.querySelectorAll( '.jm-hero video' ).forEach( initHeroVideo );
@@ -387,6 +437,7 @@
 		initDesktopMenu();
 		initGallery();
 		initResourceFilters();
+		initCardAlign();
 	}
 
 	if ( 'loading' === document.readyState ) {

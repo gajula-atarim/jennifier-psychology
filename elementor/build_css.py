@@ -293,6 +293,14 @@ body.elementor-editor-active .jm-modal{display:flex!important;padding:24px 16px;
 .jm-inline-links a:hover,.jm-modal-text a:hover,.jm-prose a:hover,.jm-inline-links a:focus-visible,.jm-modal-text a:focus-visible{color:#12323F;text-decoration-color:#DDAA33;text-decoration-thickness:2px}
 .jm-bar-links a:hover,.jm-bar-links a:focus-visible,.jm-modal-bignum a:hover,.jm-modal-bignum a:focus-visible{color:#DDAA33!important}
 
+/* Card grids: the card's button (or row of buttons) sits at the foot of the card, so buttons line up
+   across a row; links inside cards are left-aligned with the card text. Title heights are evened out
+   per row in jm-site.js. */
+.e-grid>.e-con>.elementor-widget-button:last-child,.e-grid>.e-con>.e-con:last-child:has(.elementor-widget-button){margin-top:auto}
+.e-grid .jm-textlink .elementor-button-wrapper{text-align:left}
+.e-grid .jm-textlink .elementor-button{text-align:left}
+.e-grid .jm-textlink .elementor-button-content-wrapper{justify-content:flex-start}
+
 /* Blocks with a fixed width over 720px, and dividers, never grow wider than the space they sit in
    (otherwise they overflow small tablets). */
 .jm-fit{max-width:100%!important}
