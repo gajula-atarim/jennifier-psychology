@@ -850,18 +850,19 @@ def resources_page():
 
 # ---------------------------------------------------------------- Contact
 
-def contact_tile(name, key, label, value_html, *, url=None, size=18, weight=700, extra=None):
+def contact_tile(name, key, label, value_html, *, url=None, size=18, dark=False, extra=None):
+    """One of the four Contact tiles: icon, label and value stacked; the phone tile is solid teal."""
     kids = [
-        icon(f"{name}-i", key, 22, view="stacked", shape="circle", primary_color="#EEF4F6", secondary_color=TEAL,
-             icon_padding=px(13), _flex_size="none"),
-        container(f"{name}-t", [
-            eyebrow(f"{name}-l", label, ls=0.12),
-            text(f"{name}-v", value_html, size, INK, weight=weight, lh=1.5, cls="jm-tile-value"),
-            *(extra or []),
-        ], gap_=4, grow=1, width=px(0, "%"), mobile_width=False),
+        icon(f"{name}-i", key, 22, view="stacked", shape="circle",
+             primary_color="rgba(255,255,255,0.14)" if dark else "#EEF4F6",
+             secondary_color="#ffffff" if dark else TEAL, icon_padding=px(13), _flex_size="none"),
+        eyebrow(f"{name}-l", label, color=MIST if dark else TEAL, ls=0.12, _margin=dims(6, 0, 0, 0)),
+        text(f"{name}-v", value_html, size, "#ffffff" if dark else INK, weight=700, lh=1.45, cls="jm-tile-value"),
+        *(extra or []),
     ]
-    common = dict(row=True, gap_=16, align="flex-start", pad=dims(24), flex_wrap="nowrap", flex_wrap_mobile="nowrap",
-                  cls="jm-contact-tile", **WHITE_CARD, **border(1, LINE, 20))
+    common = dict(gap_=8, pad=dims(26), cls="jm-contact-tile" + (" jm-contact-tile-dark" if dark else ""),
+                  background_background="classic", background_color=TEAL if dark else "#ffffff",
+                  **border(1, TEAL if dark else LINE, 22))
     return link_box(name, kids, url, **common) if url else container(name, kids, **common)
 
 
@@ -877,30 +878,34 @@ def contact_page():
     ])
     photo_hero(hero, "photo_beach", "center 55%")
     address = "Unit 1, 38 Burnett Street, Mooloolaba QLD 4557"
-    tiles = container("ct-tiles", [
-        contact_tile("ct-phone", "i_phone", "Phone", f"<p>{PHONE}</p>", url=PHONE_URL, size=24),
-        contact_tile("ct-email", "i_mail_line", "Email", "<p class=\"jm-email-v\">" + EMAIL.replace("@", "@<wbr>") + "</p>", url=EMAIL_URL, size=19),
-        contact_tile("ct-loc", "i_map_pin", "Practice Location", f"<p>Heart of Mooloolaba<br>{address}</p>",
-                     weight=600),
+    tiles = grid("ct-tiles", [
+        contact_tile("ct-phone", "i_phone", "Phone", f"<p>{PHONE}</p>", url=PHONE_URL, size=24, dark=True),
+        contact_tile("ct-email", "i_mail_line", "Email", "<p class=\"jm-email-v\">" + EMAIL.replace("@", "@<wbr>") + "</p>",
+                     url=EMAIL_URL, size=17),
+        contact_tile("ct-loc", "i_map_pin", "Practice Location", "<p>Heart of Mooloolaba</p>", extra=[
+            para("ct-loc-p", "Unit 1, 38 Burnett Street,<br>Mooloolaba QLD 4557", 15, GREY_BODY, 1.6)]),
         contact_tile("ct-hours", "i_clock_sm", "Opening Hours", "<p>By Appointment Only</p>", extra=[
             para("ct-hours-p", "Monday: Face-to-face Consultations (In-Clinic)<br>Tuesday – Friday: Telehealth "
-                               "Consultations (Online)", 16, GREY_BODY, 1.6)]),
-    ], gap_=12, width=380, grow=1)
+                               "Consultations (Online)", 15, GREY_BODY, 1.6)]),
+    ], 240, 16, grid_columns_grid=px("repeat(4, minmax(0, 1fr))"),
+        grid_columns_grid_tablet=px("repeat(2, minmax(0, 1fr))"),
+        grid_columns_grid_mobile={"unit": "fr", "size": 1, "sizes": []})
     q = "Unit+1%2C+38+Burnett+Street%2C+Mooloolaba+QLD+4557"
-    map_col = container("ct-map-col", [
+    map_wrap = container("ct-map-wrap", [
         widget("ct-map", "google_maps", {"address": address, "zoom": {"unit": "px", "size": 16},
-                                        "height": {"unit": "px", "size": 420}, "_css_classes": "jm-map",
-                                        "prevent_scroll": "yes"}),
+                                        "height": {"unit": "px", "size": 460}, "height_mobile": {"unit": "px", "size": 340},
+                                        "_css_classes": "jm-map", "prevent_scroll": "yes"}),
         container("ct-map-btns", [
-            button("ct-map-open", "Open in Google Maps", f"https://www.google.com/maps/search/?api=1&query={q}",
+            button("ct-map-dir", "Get directions", f"https://www.google.com/maps/dir/?api=1&destination={q}",
                    "primary"),
-            button("ct-map-dir", "Get directions", f"https://www.google.com/maps/dir/?api=1&destination={q}", "ghost"),
-        ], row=True, wrap=True, gap_=12),
-    ], gap_=16, width=520, grow=999)
-    for b in map_col["elements"][1]["elements"]:
+            button("ct-map-open", "Open in Google Maps", f"https://www.google.com/maps/search/?api=1&query={q}",
+                   "ghost", background_color="#ffffff"),
+        ], row=True, wrap=True, gap_=12, cls="jm-map-btns"),
+    ], gap_=16, cls="jm-map-wrap")
+    for b in map_wrap["elements"][1]["elements"]:
         b["settings"]["link"]["is_external"] = "on"
-    details = section("ct-details", [tiles, map_col], pad=dims("clamp(40px,5vw,72px)", 24, "clamp(56px,7vw,96px)", 24),
-                      row=True, wrap=True, gap_=32, align="stretch", cls="jm-tide")
+    details = section("ct-details", [tiles, map_wrap],
+                      pad=dims("clamp(40px,5vw,72px)", 24, "clamp(56px,7vw,96px)", 24), gap_=24, cls="jm-tide")
 
     enquiry = sand_cta("ct-enq", "", "", center=False, kids=[
         container("ct-enq-head", [
