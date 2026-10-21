@@ -49,6 +49,18 @@ body .elementor-widget.elementor-widget-icon-list .elementor-icon-list-icon+.ele
 .jm-topbar a{color:#EBE7DB}.jm-topbar a:hover{color:#DDAA33}
 /* When the crisis line wraps (tablet/phone), split it into two even lines. */
 .jm-topbar .elementor-widget-text-editor p{text-wrap:balance}
+/* Tablet (768–1024px): the crisis bar stays on one line, a size smaller; below 920px the email is
+   dropped there (it is in the menu, the page buttons and the footer). */
+@media (min-width:768px) and (max-width:1024px){
+ .jm-topbar>.e-con-inner{flex-wrap:nowrap!important;justify-content:space-between!important;column-gap:16px!important}
+ .jm-topbar .elementor-widget{min-width:0;flex:0 1 auto!important;width:auto!important}
+ .jm-topbar .elementor-widget-text-editor p,.jm-topbar .elementor-icon-list-text{font-size:13px!important;white-space:nowrap}
+ .jm-topbar .elementor-widget-text-editor{text-align:left!important}
+ .jm-inner-topbar .jm-crisis-line p{flex-wrap:nowrap;gap:12px}
+ .jm-topbar .elementor-icon-list-items{flex-wrap:nowrap!important;gap:16px}
+ .jm-topbar .elementor-icon-list-items .elementor-icon-list-item{margin-inline:0!important}
+}
+@media (min-width:768px) and (max-width:920px){.jm-topbar .elementor-icon-list-item:nth-child(2){display:none!important}}
 /* The menu button. */
 .jm-nav .hfe-nav-menu__toggle{display:flex!important;visibility:visible!important;opacity:1!important;cursor:pointer;margin:0!important}
 .jm-nav .hfe-nav-menu-icon{display:flex;align-items:center;justify-content:center;width:56px;height:56px;padding:0;border-radius:999px;box-sizing:border-box;background:rgba(232,240,243,.94);color:#12323F;box-shadow:0 8px 24px rgba(10,30,40,.22);transition:background-color .2s,transform .2s}
