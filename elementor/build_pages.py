@@ -517,15 +517,15 @@ def fees_page():
         grid("fe-ways-grid", [way("medicare", "Medicare", "Mental Health Care Plans", "#jm-pop-medicare"),
                               way("ed", "ED Plan", "Eating Disorder Plan"),
                               way("dva", "DVA &amp; Open Arms", "Veterans and their families", "#jm-pop-dva-fees"),
-                              way("ndis", "NDIS", "Self-Managed or Plan-Managed", "#jm-pop-ndis"),
-                              way("private", "Private clients", "No GP referral needed", "#jm-pop-private")], 220, 16),
+                              way("ndis", "NDIS", "Self-managed and plan-managed participants"),
+                              way("private", "Private clients", "No referral needed; claim through your extras cover")],
+             220, 16),
     ], pad=dims("clamp(56px,7vw,96px)", 24), bg=STONE, gap_=32, cls="jm-tide")
 
     cta = sand_cta("fe-cta", "Questions about fees or rebates?",
                    "Feel free to reach out by email or phone to ask any questions or to discuss taking the next step "
                    "toward your healing.", stone_above=True)
 
-    note = lambda n, t: text(n, f"<p>{t}</p>", 16, "#4E3A08", lh=1.7, cls="jm-modal-note")
     open_arms = container("dva-openarms", [
         heading("dva-oa-l", "Open Arms – Veterans &amp; Families Counselling", "p", SANS, 13, MIST, weight=600, ls=0.12,
                 transform="uppercase", lh=1.3),
@@ -544,24 +544,29 @@ def fees_page():
             "your GP or psychiatrist prior to your first session.",
             "Under this plan, eligible clients can receive a Medicare rebate for up to 10 individual psychology sessions "
             "per calendar year."],
-            [note("medicare-note", "Please note: The rebate will cover a portion of the session cost, leaving a residual "
-                                   "out-of-pocket gap fee.")]),
-        pop("jm-pop-dva-fees", "DVA (Department of Veterans' Affairs)", [
-            "As a registered provider, I offer psychological support to eligible veterans and their families through "
-            "the DVA framework.",
-            "If you hold a Gold Card or an approved White Card for mental health conditions, your consultations may be "
-            "fully covered with no out-of-pocket expenses, provided you have a valid D904 referral from your GP."],
-            [open_arms]),
-        pop("jm-pop-ndis", "NDIS Participants (National Disability Insurance Scheme)", [
-            "I welcome clients who participate in the NDIS.",
-            "Services can be provided to participants whose funding is Self-Managed or Plan-Managed.",
-            "Sessions are focused on helping you build capacity, manage emotional distress, and work toward the personal "
-            "goals outlined in your NDIS plan."]),
-        pop("jm-pop-private", "Private clients", [
-            "If you do not have a GP referral or a Medicare plan, you can still attend sessions as a private client.",
-            "Once your invoice is settled, we will issue a formal receipt so you can claim your private health insurance "
-            "rebate directly with your fund. (Please note: Health insurance funds generally do not cover cancellation "
-            "fees)."]),
+            [pop_text("medicare-how", "<ul>"
+                      "<li><strong>How it Works:</strong> You pay the session fee on the day, and the rebate is processed "
+                      "directly back into your bank account via Medicare—usually within 3 days.</li>"
+                      "<li><strong>Easy Payments:</strong> All payments are securely processed at the end of your session "
+                      "using digital payment options.</li>"
+                      "<li><strong>No Complex Forms:</strong> You don't need to fill out any compliance paperwork online. "
+                      "We will sort out all the details together during our initial phone call or first session.</li>"
+                      "</ul>")]),
+        modal("jm-pop-dva-fees", "DVA (Department of Veterans' Affairs)", [
+            pop_text("dva-fees-body", "<ul>"
+                     "<li><strong>Accepted DVA Cards:</strong> We accept <strong>Gold</strong> and <strong>White</strong> "
+                     "Veteran Cards, including treatment provided under <strong>Non-Liability Health Care (NLHC)</strong> "
+                     "arrangements (which covers all mental health conditions for eligible current or former ADF members "
+                     "who have served at least one day).</li>"
+                     "<li><strong>No-Gap / Bulk Billing Policy:</strong> We bill DVA directly with <strong>no out-of-pocket "
+                     "gap fees or co-payments</strong> for eligible services.</li>"
+                     "<li><strong>Referral Requirements:</strong> We require a referral from your General Practitioner "
+                     "(GP), psychiatrist, or medical specialist.</li>"
+                     "<li><strong>Provider Registration Status:</strong> I am registered with Medicare under the "
+                     "<strong>Better Access</strong> scheme as a psychologist (which is a statutory requirement for DVA "
+                     "allied mental health services).</li>"
+                     "</ul>"),
+            open_arms]),
     ]
     return [hero, pay, ways, cta, *pops]
 
