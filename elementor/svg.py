@@ -34,6 +34,11 @@ HERO_EDGE = data_uri(
     "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'>"
     "<path d='M0 46 C180 14 360 14 540 40 C720 66 900 70 1080 44 C1240 22 1360 24 1440 36 V80 H0 Z' fill='#F7F5EF'/></svg>")
 
+# The same edge in stone, for a hero followed by a stone section (For Referrers).
+HERO_EDGE_STONE = data_uri(
+    "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'>"
+    "<path d='M0 46 C180 14 360 14 540 40 C720 66 900 70 1080 44 C1240 22 1360 24 1440 36 V80 H0 Z' fill='#EBE7DB'/></svg>")
+
 CTA_EDGE = data_uri(
     "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 90' preserveAspectRatio='none'>"
     "<path d='M0 0 H1440 V40 C1300 70 1160 72 1010 52 C860 32 720 30 560 52 C400 74 220 76 0 50 Z' fill='#F7F5EF'/>"

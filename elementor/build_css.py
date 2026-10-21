@@ -3,7 +3,7 @@
 from pathlib import Path
 
 from svg import (data_uri, BREATH_W1, BREATH_W2, BREATH_W3, CARD_W1, CARD_W2, CARD_W3, CARE_LINE, CARE_PRINTS, CTA_EDGE, CTA_EDGE_STONE,
-                 GP_MARK, HERO_EDGE, ICE_BELOW, ICE_TIP, PORTRAIT_LINES, SURF_W1, SURF_W2, SURF_W3)
+                 GP_MARK, HERO_EDGE, HERO_EDGE_STONE, ICE_BELOW, ICE_TIP, PORTRAIT_LINES, SURF_W1, SURF_W2, SURF_W3)
 
 OUT = Path(__file__).resolve().parent.parent / "theme/hello-elementor-child/assets/css/jm-site.css"
 
@@ -396,7 +396,7 @@ body.elementor-editor-active .jm-modal{display:flex!important;padding:24px 16px;
 .jm-hero-photo .jm-ref-details p,.jm-hero-photo .jm-ref-details a,.jm-hero-photo .jm-ref-details .elementor-widget-text-editor{color:#F7F5EF!important}
 .jm-hero-photo .jm-ref-details a:hover{color:#DDAA33!important}
 .jm-hero-photo .jm-ref-details .e-con{border-color:rgba(247,245,239,.2)!important}
-.jm-ref-hero::after{background:HERO_EDGE center bottom/100% 100% no-repeat;right:0;top:auto;width:auto;height:clamp(36px,5vw,72px);opacity:1}
+.jm-ref-hero::after{background:HERO_EDGE_STONE center bottom/100% 100% no-repeat;right:0;top:auto;width:auto;height:clamp(36px,5vw,72px);opacity:1}
 .jm-ref-hero::before{content:"";position:absolute;right:-160px;top:-160px;width:620px;height:620px;opacity:.1;background:GP_MARK center/contain no-repeat;pointer-events:none}
 .jm-areas-section::after{right:auto;left:-180px;top:auto;bottom:-200px;opacity:.09}
 
@@ -541,7 +541,7 @@ a.jm-contact-tile-dark:hover,a.jm-contact-tile-dark:focus-visible{border-color:#
 """
 
 TOKENS = {
-    "HERO_EDGE": HERO_EDGE, "CTA_EDGE": CTA_EDGE, "CTA_EDGE_STONE": CTA_EDGE_STONE,
+    "HERO_EDGE": HERO_EDGE, "HERO_EDGE_STONE": HERO_EDGE_STONE, "CTA_EDGE": CTA_EDGE, "CTA_EDGE_STONE": CTA_EDGE_STONE,
     "CLOCK_ICON": data_uri("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231D5067' "
                            "stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='9'/>"
                            "<path d='M12 7v5l3 2'/></svg>".replace("%23", "#")),
