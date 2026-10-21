@@ -32,6 +32,16 @@ MEDIA = {
     "i_wave_line": (32, "jm-icon-wave-line.svg"),
     "i_menu": (36, "jm-icon-menu.svg"),
     "i_close": (37, "jm-icon-close.svg"),
+    "i_plus": (40, "jm-icon-plus.svg"),
+    "i_map_pin": (41, "jm-icon-map-pin.svg"),
+    "i_monitor": (42, "jm-icon-monitor.svg"),
+    "i_card": (43, "jm-icon-credit-card.svg"),
+    "i_shield": (44, "jm-icon-shield-check.svg"),
+    "i_calendar": (45, "jm-icon-calendar.svg"),
+    "i_clock_sm": (46, "jm-icon-clock-small.svg"),
+    "i_wave_mini": (47, "jm-icon-wave-mini.svg"),
+    "photo_cartwright": (48, "jm-photo-point-cartwright.jpg"),
+    "photo_beach": (49, "jm-photo-mooloolaba-beach.jpg"),
 }
 HERO_VIDEO = UPLOADS + "jm-hero-ocean.mp4"
 
@@ -46,12 +56,11 @@ EMAIL = "psych@jennifermalecki.com.au"
 EMAIL_URL = f"mailto:{EMAIL}"
 NAME_TITLE = "Jennifer Malecki, Psychologist, PhD"  # AHPRA: no "Dr" title
 AHPRA_REG, ABN = "PSY0001410118", "63 687 967 193"
-# Inner pages aren't built yet, so their links are "#" placeholders for now. Swap in the real
-# paths (/about/, /services/, /fees-rebates/, /for-referrers/, /gallery/, /resources/,
-# /contact/) as each page goes live.
+# Built pages use their real paths; the rest stay "#" until they go live.
 URL = {
-    "home": "/", "about": "#", "services": "#", "fees": "#",
-    "referrers": "#", "gallery": "#", "resources": "#", "contact": "#",
+    "home": "/", "about": "/about/", "services": "/services/", "fees": "/fees-rebates/",
+    "referrers": "/for-referrers/", "gallery": "/gallery/", "resources": "#", "support": "/#jm-support",
+    "contact": "#", "privacy": "#",
 }
 
 _ids: set = set()
@@ -453,32 +462,30 @@ def build_header():
 
 def build_footer():
     h = lambda n, t: heading(n, t, "h2", SERIF, 24, "#ffffff", weight=600, lh=1.2, ls=-0.01)
+    links = dict(size=15, color=STONE, hover=OCHRE, lh=1.2)
     cols = grid("ftr-grid", [
         container("ftr-col-brand", [
             image("ftr-logo", "logo_light", width=170),
-            text("ftr-entity", "<p>Jennifer Malecki – Psychologist<br>"
-                               "Jennifer Malecki &amp; Associates Pty Ltd</p>", 14, MUTED, lh=1.6),
-        ], gap_=16),
+            text("ftr-entity", f"<p>{NAME_TITLE}<br>Jennifer Malecki &amp; Associates Pty Ltd</p>", 14, MUTED, lh=1.6),
+        ], gap_=14),
         container("ftr-col-visit", [
             h("ftr-visit-h", "Visit"),
-            text("ftr-address", "<p>Unit 1 / 38 Burnett Street<br>Mooloolaba QLD 4557</p>", 15, MUTED, lh=1.7),
-            text("ftr-mode", "<p>In person in Mooloolaba and secure telehealth</p>", 15, MUTED, lh=1.7),
-        ], gap_=12),
+            text("ftr-address", "<p>Unit 1, 38 Burnett Street<br>Mooloolaba QLD 4557</p>", 15, MUTED, lh=1.7),
+            text("ftr-mode", "<p>By Appointment Only<br>Monday: In-Clinic<br>Tuesday – Friday: Telehealth</p>",
+                 14, MUTED, lh=1.7),
+        ], gap_=10),
         container("ftr-col-contact", [
             h("ftr-contact-h", "Contact"),
-            icon_list("ftr-contact-links", [(PHONE, PHONE_URL), (EMAIL, f"mailto:{EMAIL}")],
-                      size=15, color=STONE, hover=OCHRE, lh=1.2, space=12),
-            text("ftr-reg", f"<p>Provider No. 1894363H<br>AHPRA Reg. {AHPRA_REG}</p>", 14, MUTED, lh=1.6),
-        ], gap_=12),
+            icon_list("ftr-contact-links", [(PHONE, PHONE_URL), (EMAIL, EMAIL_URL)], space=10, **links),
+        ], gap_=10),
         container("ftr-col-explore", [
             h("ftr-explore-h", "Explore"),
             icon_list("ftr-explore-links", [
-                ("About Jennifer", URL["about"]), ("Services &amp; approach", URL["services"]),
-                ("Fees &amp; rebates", URL["fees"]), ("For GPs &amp; referrers", URL["referrers"]),
-                ("Gallery", URL["gallery"]), ("Resources &amp; support", URL["resources"]),
-                ("Contact", URL["contact"]),
-            ], size=15, color=STONE, hover=OCHRE, lh=1.2, space=10),
-        ], gap_=10, tag="nav"),
+                ("About", URL["about"]), ("Services", URL["services"]), ("Fees &amp; Rebates", URL["fees"]),
+                ("For Referrers", URL["referrers"]), ("Gallery", URL["gallery"]), ("Resources", URL["resources"]),
+                ("Support", URL["support"]), ("Contact", URL["contact"]),
+            ], space=8, **links),
+        ], gap_=8, tag="nav"),
     ], 220, 40)
 
     main = container("ftr-main", [cols], boxed=True, pad=dims(72, 24, 36, 24),
@@ -488,14 +495,14 @@ def build_footer():
         container("ftr-bottom-inner", [
             text("ftr-crisis", "<p>This website is not a crisis service. If you are in immediate danger call 000, "
                                "or Lifeline on 13 11 14.</p>", 13, MUTED, lh=1.6),
+            text("ftr-reg", f"<p>ABN {ABN} · Medicare Provider No. 1894363H · AHPRA {AHPRA_REG}</p>", 13, MUTED, lh=1.6),
             container("ftr-legal", [
-                text("ftr-copy", f"<p>© 2026 Jennifer Malecki &amp; Associates Pty Ltd · ABN {ABN} · Artwork and "
-                                 "images © Jennifer Malecki, not for reproduction</p>", 13, MUTED, lh=1.6,
-                     _flex_size="shrink"),
-                icon_list("ftr-policies", [("Privacy policy", "#"), ("Website disclaimer", "#jm-pop-disclaimer")], inline=True,
-                          size=13, color=STONE, hover=OCHRE, lh=1.6, space=20, _flex_size="none"),
+                text("ftr-copy", "<p>© 2026 Jennifer Malecki &amp; Associates Pty Ltd · Artwork © Jennifer Malecki, "
+                                 "not for reproduction</p>", 13, MUTED, lh=1.6, _flex_size="shrink"),
+                icon_list("ftr-policies", [("Privacy policy", URL["privacy"]), ("Website disclaimer", "#jm-pop-disclaimer")],
+                          inline=True, size=13, color=STONE, hover=OCHRE, lh=1.6, space=20, _flex_size="none"),
             ], row=True, wrap=True, justify="space-between", gap_=gap(8, 24)),
-        ], gap_=14, pad=dims(24, 0, 36, 0),
+        ], gap_=12, pad=dims(24, 0, 36, 0),
             border_border="solid", border_width=dims(1, 0, 0, 0), border_color="rgba(235,231,219,0.2)"),
     ], boxed=True, pad=dims(0, 24), background_background="classic", background_color=INK)
 
@@ -936,7 +943,7 @@ def support_now():
                      pad=dims("clamp(28px, 4vw, 52px)", "clamp(28px, 4vw, 52px)", "120px", "clamp(28px, 4vw, 52px)"),
                      gap_=gap(32, 56), size="lg", hover=False)
     card["settings"].update({"flex_direction": "row", "flex_wrap": "wrap", "flex_align_items": "center"})
-    return section("support-now", [card], pad=dims(0, 24, 104, 24), cls="jm-tide")
+    return section("support-now", [card], pad=dims(0, 24, 104, 24), cls="jm-tide", _element_id="jm-support")
 
 
 def closing_cta():

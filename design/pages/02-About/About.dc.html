@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<title>About — Jennifer Malecki, Psychologist, PhD</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&amp;family=Figtree:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#F7F5EF;color:#12323F;font-family:'Figtree',system-ui,-apple-system,'Segoe UI',sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#1D5067}a:hover{color:#0d4c5c}
+h1,h2,h3{font-family:'Cormorant Garamond',Georgia,'Times New Roman',serif;font-weight:600;letter-spacing:-0.01em;text-wrap:balance}
+p,li{text-wrap:pretty}
+.crisis a{color:#ffffff;font-weight:700;text-decoration:none}.crisis a:hover{color:#DDAA33}
+.round{width:48px;height:48px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;border:1.5px solid #1D5067;background:transparent;color:#1D5067;cursor:pointer;padding:0;text-decoration:none;flex:none;transition:background-color .25s,color .25s,transform .25s}
+.round:hover{background:#1D5067;color:#ffffff;transform:scale(1.05)}
+.round-solid{background:#1D5067;color:#ffffff}.round-solid:hover{background:#0d4c5c}
+.round-light{border-color:#EBE7DB;color:#F7F5EF}.round-light:hover{background:#EBE7DB;color:#12323F}
+.menu-link{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(30px,3.6vw,46px);font-weight:600;color:#F7F5EF;text-decoration:none;line-height:1.15;display:inline-flex;align-items:center;min-height:44px}
+.menu-link:hover{color:#DDAA33}.menu-link[aria-current="page"]{color:#DDAA33}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 26px;border-radius:999px;font-weight:600;font-size:16px;text-decoration:none;box-sizing:border-box;border:2px solid transparent;white-space:nowrap;cursor:pointer;font-family:inherit;transition:background-color .2s,color .2s}
+.btn-primary{background:#1D5067;color:#ffffff}.btn-primary:hover{background:#0d4c5c;color:#ffffff}
+.btn-ochre{background:#DDAA33;color:#12323F}.btn-ochre:hover{background:#E8BE57;color:#12323F}
+.btn-ghost{border-color:#1D5067;color:#1D5067;background:transparent}.btn-ghost:hover{background:#1D5067;color:#ffffff}
+.btn-light{border-color:#EBE7DB;color:#F7F5EF;background:transparent}.btn-light:hover{background:#EBE7DB;color:#12323F}
+.more{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border-radius:999px;border:1.5px solid #1D5067;background:transparent;color:#1D5067;font:600 15px 'Figtree',system-ui,sans-serif;cursor:pointer;transition:background-color .25s,color .25s}
+.more:hover{background:#1D5067;color:#ffffff}
+.pill{display:inline-flex;align-items:center;min-height:40px;padding:8px 16px;border-radius:999px;background:#ffffff;border:1px solid #CFDCE3;font-size:15px;font-weight:500;color:#12323F;box-sizing:border-box}
+.footer a{color:#EBE7DB;text-decoration:none}.footer a:hover{color:#DDAA33}
+.card{transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s ease,border-color .35s ease}
+.card:hover{transform:translateY(-6px);box-shadow:0 20px 44px rgba(18,50,63,0.14);border-color:#A2C3D3 !important}
+.wave-card{position:relative;overflow:hidden}.wave-card>*:not(.card-waves){position:relative}
+.card-waves{position:absolute;left:0;right:0;bottom:0;height:96px;overflow:hidden;pointer-events:none;transition:height .5s ease}
+.wave-card:hover .card-waves{height:116px}
+.wave{position:absolute;left:0;bottom:0;width:200%;height:100%;animation:waveX 44s linear infinite}
+.wave.w2{animation-duration:36s;animation-direction:reverse}.wave.w3{animation-duration:30s}
+@keyframes waveX{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.sand-bg{background-image:url(./assets/153b261812e240df1b74fe80acadd8df.jpg);background-size:800px 800px;background-repeat:repeat}
+.area{display:flex;align-items:center;gap:14px;break-inside:avoid;padding:14px 10px;border-bottom:1px solid rgba(162,195,211,0.28);font-size:17px;font-weight:500;color:#F7F5EF;border-radius:10px;transition:background-color .25s,padding-left .25s}
+.area:hover{background:rgba(247,245,239,0.08);padding-left:16px}
+.stop{display:flex;align-items:center;gap:16px;width:100%;min-height:60px;padding:6px 14px 6px 0;border-radius:16px;text-decoration:none;color:#12323F;transition:background-color .3s ease}
+.stone{flex:none;width:48px;height:48px;border-radius:50% 46% 52% 48%/48% 52% 46% 50%;background:#EBE7DB;border:2px solid #1D5067;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',Georgia,serif;font-size:20px;font-weight:700;color:#1D5067;box-shadow:0 0 0 6px #EBE7DB;transition:background-color .3s,color .3s,transform .3s,border-color .3s}
+.stop-name{font-size:17px;font-weight:600;line-height:1.25}
+.stop-sub{font-size:14px;line-height:1.35;color:#3E5A66}
+.stop-arrow{flex:none;color:#1D5067;opacity:0;transform:translateX(-8px);transition:opacity .3s,transform .3s}
+.stop:hover,.stop:focus-visible{background:rgba(247,245,239,0.7)}
+.stop:hover .stone,.stop:focus-visible .stone{background:#DDAA33;border-color:#DDAA33;color:#12323F;transform:scale(1.08)}
+.stop:hover .stop-arrow,.stop:focus-visible .stop-arrow{opacity:1;transform:none}
+@media (max-width:560px){.path-wrap + *{margin-top:0}}
+.day{display:flex;flex-direction:column;gap:8px;padding:20px;border-radius:22px;min-height:150px;box-sizing:border-box;justify-content:space-between}
+.modal-wrap{animation:fadeIn .25s ease}.modal{animation:riseIn .3s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes riseIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.protect{pointer-events:none;user-select:none;-webkit-user-drag:none}
+@media (max-width:640px){.hide-sm{display:none !important}}
+@media (prefers-reduced-motion:reduce){.wave,.modal-wrap,.modal{animation:none}.card,.round,.card-waves{transition:none}.card:hover{transform:none}}
+</style>
+</helmet>
+<div style="min-width:0">
+
+<!-- Crisis bar -->
+<div class="crisis" style="background:#1D5067;color:#F7F5EF;font-size:14px">
+<div style="max-width:1240px;margin:0 auto;padding:10px 24px;display:flex;flex-wrap:wrap;gap:6px 24px;justify-content:space-between;align-items:center">
+<p style="margin:0;display:flex;flex-wrap:wrap;gap:4px 16px;align-items:center"><strong style="color:#F4E6BF">Need urgent help?</strong><span>Emergency <a href="tel:000">000</a></span><span>Lifeline <a href="tel:131114">13 11 14</a></span><a href="Support.dc.html">All support lines →</a></p>
+<p class="hide-sm" style="margin:0;display:flex;gap:6px 20px;flex-wrap:wrap"><a href="tel:0404174184" style="font-weight:600">0404 174 184</a><a href="mailto:psych@jennifermalecki.com.au" style="font-weight:600">psych@jennifermalecki.com.au</a></p>
+</div>
+</div>
+
+<!-- Header: logo + round buttons -->
+<header style="position:sticky;top:0;z-index:20;background:rgba(247,245,239,0.94);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid #E2DCCD">
+<div style="max-width:1240px;margin:0 auto;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px">
+<a href="Main.dc.html" aria-label="Jennifer Malecki Psychologist — home" style="display:block;flex:none"><img src="./assets/f62654420d62c50e1bf97ada5a2329f7.png" alt="Jennifer Malecki Psychologist" style="height:72px;width:auto;display:block"></a>
+<div style="display:flex;align-items:center;gap:10px">
+<a class="round" href="tel:0404174184" aria-label="Call 0404 174 184"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"></path></svg></a>
+<button type="button" class="round round-solid" aria-label="Open menu" aria-expanded="{{menuExpanded}}" onClick="{{openMenu}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 8h16M4 16h16"></path></svg></button>
+</div>
+</div>
+</header>
+
+<!-- Menu overlay -->
+<sc-if value="{{menuOpen}}" hint-placeholder-val="{{ false }}">
+<div class="modal-wrap" role="dialog" aria-modal="true" aria-label="Site menu" style="position:fixed;inset:0;z-index:80;background:#12323F;color:#F7F5EF;overflow:auto">
+<div style="max-width:1240px;margin:0 auto;padding:18px 24px 48px;display:flex;flex-direction:column;gap:32px;box-sizing:border-box;min-height:100%">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:16px">
+<img src="./assets/b391974488085834f3b0b65becb969cb.png" alt="Jennifer Malecki Psychologist" style="height:72px;width:auto;display:block">
+<button type="button" class="round round-light" aria-label="Close menu" onClick="{{closeMenu}}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+</div>
+<nav aria-label="Main" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:6px 40px">
+<a class="menu-link" href="Main.dc.html">Home</a>
+<a class="menu-link" href="About.dc.html" aria-current="page">About</a>
+<a class="menu-link" href="Services.dc.html">Services</a>
+<a class="menu-link" href="Fees.dc.html">Fees &amp; Rebates</a>
+<a class="menu-link" href="Referrers.dc.html">For Referrers</a>
+<a class="menu-link" href="Gallery.dc.html">Gallery</a>
+<a class="menu-link" href="Resources.dc.html">Resources</a>
+<a class="menu-link" href="Support.dc.html">Support</a>
+<a class="menu-link" href="Contact.dc.html">Contact</a>
+</nav>
+<div style="display:flex;flex-wrap:wrap;gap:12px;border-top:1px solid rgba(235,231,219,0.2);padding-top:24px">
+<a class="btn btn-ochre" href="tel:0404174184">Call 0404 174 184</a>
+<a class="btn btn-light" href="mailto:psych@jennifermalecki.com.au">psych@jennifermalecki.com.au</a>
+</div>
+<p style="margin:0;font-size:14px;color:#C9D6DC">Need urgent help? Emergency <a href="tel:000" style="color:#ffffff">000</a> · Lifeline <a href="tel:131114" style="color:#ffffff">13 11 14</a></p>
+</div>
+</div>
+</sc-if>
+
+<main>
+
+<!-- Page hero -->
+<section aria-labelledby="about-h" style="position:relative;background:#EBE7DB;padding:clamp(56px,7vw,96px) 24px clamp(96px,10vw,140px)">
+<div style="max-width:1240px;margin:0 auto;display:flex;flex-wrap:wrap;gap:48px 64px;align-items:center">
+<div style="flex:999 1 560px;min-width:0;display:flex;flex-direction:column;gap:20px">
+<p style="margin:0;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#1D5067">About</p>
+<h1 id="about-h" style="margin:0;font-size:clamp(42px,5.4vw,72px);line-height:1.02">Jennifer Malecki, Psychologist, PhD</h1>
+<p style="margin:0;font-size:18px;font-weight:600;color:#1D5067">Principal Psychologist | AAPi (General Psychologist)</p>
+<p style="margin:0;font-size:clamp(17px,1.4vw,19px);line-height:1.7;color:#22414D;max-width:640px">I invite you to reach out by email or phone for a confidential chat. I am here to listen and support your next step.</p>
+<div style="display:flex;flex-wrap:wrap;gap:12px;padding-top:4px">
+<a class="btn btn-primary" href="tel:0404174184">Call 0404 174 184</a>
+<a class="btn btn-ghost" href="mailto:psych@jennifermalecki.com.au">Email Jennifer</a>
+</div>
+</div>
+<figure style="flex:1 1 340px;min-width:0;max-width:440px;margin:0;position:relative">
+<img class="protect" src="./assets/7a4f4012a169383dccc12cc6500cd55c.jpg" alt="Detail of an original acrylic artwork by Jennifer Malecki in deep ocean blues, teal and ochre" draggable="false" style="width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:200px 200px 28px 28px;display:block">
+<figcaption style="position:absolute;left:50%;bottom:18px;transform:translateX(-50%);white-space:nowrap;background:rgba(18,50,63,0.82);color:#F7F5EF;font-size:13px;padding:8px 14px;border-radius:999px">Original artwork © Jennifer Malecki</figcaption>
+</figure>
+</div>
+<svg aria-hidden="true" viewBox="0 0 1440 80" preserveAspectRatio="none" style="position:absolute;left:0;right:0;bottom:-1px;width:100%;height:clamp(36px,5vw,72px);display:block"><path d="M0 46 C180 14 360 14 540 40 C720 66 900 70 1080 44 C1240 22 1360 24 1440 36 V80 H0 Z" fill="#F7F5EF"></path></svg>
+</section>
+
+<!-- About the Practice -->
+<section aria-labelledby="practice-h" style="padding:clamp(56px,7vw,96px) 24px">
+<div style="max-width:1240px;margin:0 auto;display:flex;flex-wrap:wrap;gap:32px 64px">
+<div style="flex:1 1 300px;min-width:0;display:flex;flex-direction:column;gap:14px">
+<p style="margin:0;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#1D5067">The practice</p>
+<h2 id="practice-h" style="margin:0;font-size:clamp(34px,4vw,52px);line-height:1.08">About the Practice</h2>
+</div>
+<div style="flex:999 1 600px;min-width:0;display:flex;flex-direction:column;gap:18px;font-size:17px;line-height:1.8;color:#3E5A66">
+<p style="margin:0;font-size:19px;color:#22414D">The clinic is located in the heart of Mooloolaba, where I offer a high-quality, personalised approach to mental health care. You will receive active, one-to-one care from an experienced psychologist dedicated to assessing and treating a range of mental health concerns, including PTSD, depression, anxiety, personality dynamics, and eating disorders.</p>
+<p style="margin:0">I treat adults from all walks of life. I have also published research on how early life experiences affect our experience of the body.</p>
+<p style="margin:0">My goal is to assist you to make sense of the origins of your difficulties, helping you build practical skills and make the changes needed to work towards a more meaningful life.</p>
+<div style="display:flex;flex-wrap:wrap;gap:10px;padding-top:6px">
+<button type="button" class="more" onClick="{{openQual}}">Qualifications &amp; registration<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button>
+<button type="button" class="more" onClick="{{openResearch}}">Research &amp; publications<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button>
+</div>
+</div>
+</div>
+</section>
+
+<!-- About My Approach -->
+<section aria-labelledby="approach-h" style="position:relative;background:#EBE7DB;padding:clamp(64px,8vw,112px) 24px">
+<div style="max-width:1240px;margin:0 auto;display:flex;flex-wrap:wrap;gap:48px 72px;align-items:center">
+
+<div style="flex:1 1 380px;min-width:0;max-width:500px;position:relative;padding-bottom:56px">
+<figure style="margin:0;position:relative">
+<img class="protect" src="./assets/48be7c1a34151223a70d2d609c886ddf.jpg" alt="Detail of an original artwork by Jennifer Malecki: icy blue and white layers over ochre, like a breaking wave" draggable="false" style="width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:220px 220px 28px 28px;display:block">
+<figcaption style="position:absolute;left:50%;top:22px;transform:translateX(-50%);white-space:nowrap;background:rgba(18,50,63,0.82);color:#F7F5EF;font-size:13px;padding:8px 14px;border-radius:999px">Original artwork © Jennifer Malecki</figcaption>
+</figure>
+<blockquote style="position:absolute;right:-12px;bottom:0;width:min(78%,360px);margin:0;background:#1D5067;color:#F7F5EF;border-radius:24px;padding:24px 26px;box-sizing:border-box;box-shadow:0 24px 50px rgba(18,50,63,0.28);font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(20px,1.9vw,25px);font-style:italic;font-weight:500;line-height:1.3">“I aim to look beyond symptoms, asking holistic questions to understand your whole story.”</blockquote>
+</div>
+
+<div style="flex:999 1 520px;min-width:0;display:flex;flex-direction:column;gap:20px">
+<p style="margin:0;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#1D5067">How I work</p>
+<h2 id="approach-h" style="margin:0;font-size:clamp(36px,4.2vw,56px);line-height:1.05">About My Approach</h2>
+<p style="margin:0;font-size:17px;line-height:1.8;color:#3E5A66">I use a range of evidence-based therapies to support clients on their journey towards healing and personal growth. My approach incorporates Schema Therapy, Cognitive Behavioural Therapy (CBT), and Dialectical Behaviour Therapy (DBT). I aim to look beyond symptoms, asking holistic questions to understand your whole story and help you truly reclaim your life.</p>
+<div class="path-wrap" style="position:relative;margin-top:4px">
+<svg aria-hidden="true" viewBox="0 0 48 400" preserveAspectRatio="none" style="position:absolute;left:0;top:0;width:48px;height:100%;overflow:visible"><path d="M24 0 C 40 20 40 30 24 50 C 8 70 8 80 24 100 C 40 120 40 130 24 150 C 8 170 8 180 24 200 C 40 220 40 230 24 250 C 8 270 8 280 24 300 C 40 320 40 330 24 350 C 8 370 8 380 24 400" fill="none" stroke="#6A8CA3" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="1 9" vector-effect="non-scaling-stroke"></path></svg>
+<ol aria-label="Therapies — each links to the Services page" style="position:relative;list-style:none;margin:0;padding:0;display:grid;grid-auto-rows:1fr">
+<li style="display:flex"><a class="stop" href="Services.dc.html"><span class="stone" aria-hidden="true">01</span><span style="display:flex;flex-direction:column;gap:2px;flex:1;min-width:0"><span class="stop-name">Schema Therapy</span><span class="stop-sub">Patterns, origins and root emotional wounds</span></span><svg class="stop-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></li>
+<li style="display:flex"><a class="stop" href="Services.dc.html"><span class="stone" aria-hidden="true">02</span><span style="display:flex;flex-direction:column;gap:2px;flex:1;min-width:0"><span class="stop-name">Cognitive Behavioural Therapy (CBT)</span><span class="stop-sub">Thoughts, feelings and behaviours</span></span><svg class="stop-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></li>
+<li style="display:flex"><a class="stop" href="Services.dc.html"><span class="stone" aria-hidden="true">03</span><span style="display:flex;flex-direction:column;gap:2px;flex:1;min-width:0"><span class="stop-name">Dialectical Behaviour Therapy (DBT)</span><span class="stop-sub">Mindfulness, emotional regulation and distress tolerance</span></span><svg class="stop-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></li>
+<li style="display:flex"><a class="stop" href="Services.dc.html"><span class="stone" aria-hidden="true">04</span><span style="display:flex;flex-direction:column;gap:2px;flex:1;min-width:0"><span class="stop-name">Body mapping</span><span class="stop-sub">Arts-based, embodied exploration of the self</span></span><svg class="stop-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></li>
+</ol>
+</div>
+<div class="sand-bg" style="background-color:#E4D4B2;border-radius:22px;padding:24px 26px;display:flex;gap:16px;align-items:flex-start">
+<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#1D5067" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none"><path d="M12 3a9 9 0 1 0 0 18c1 0 1.5-.8 1.5-1.6 0-.5-.2-.8-.5-1.2-.3-.3-.4-.7-.4-1.1 0-.9.7-1.6 1.6-1.6H16a5 5 0 0 0 5-5c0-4-4-7.5-9-7.5z"></path><circle cx="7.5" cy="11" r="1"></circle><circle cx="10" cy="7" r="1"></circle><circle cx="15" cy="7.5" r="1"></circle></svg>
+<p style="margin:0;font-size:16px;line-height:1.75;color:#22414D">To enrich the therapeutic process, you may choose to integrate arts-based techniques into your sessions. Body mapping is used to explore and express aspects of the self, supporting your therapy goals and fostering deep healing.</p>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- Practice Areas -->
+<section aria-labelledby="areas-h" style="position:relative;background:#1D5067;color:#F7F5EF;padding:clamp(64px,8vw,112px) 24px;overflow:hidden">
+<svg viewBox="0 0 600 600" width="560" height="560" aria-hidden="true" style="position:absolute;left:-180px;bottom:-200px;opacity:0.09"><path d="M40 420 C 140 300, 220 240, 330 260 C 260 300, 250 380, 320 420" fill="none" stroke="#A2C3D3" stroke-width="22" stroke-linecap="round"></path><path d="M300 80 A 260 260 0 1 1 120 520" fill="none" stroke="#A2C3D3" stroke-width="22" stroke-linecap="round"></path></svg>
+<div style="position:relative;max-width:1240px;margin:0 auto;display:flex;flex-wrap:wrap;gap:40px 64px;align-items:flex-start">
+<div style="flex:1 1 300px;min-width:0;display:flex;flex-direction:column;gap:16px">
+<p style="margin:0;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#A2C3D3">What I can help with</p>
+<h2 id="areas-h" style="margin:0;font-size:clamp(36px,4.2vw,56px);line-height:1.05;color:#ffffff">Practice Areas</h2>
+<p style="margin:0;font-size:17px;line-height:1.75;color:#DCE8EE">I treat adults from all walks of life.</p>
+<p style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(64px,7vw,96px);font-weight:700;line-height:1;color:#DDAA33">22</p>
+<p style="margin:-8px 0 0;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:#A2C3D3">areas of practice</p>
+<div style="display:flex;flex-wrap:wrap;gap:12px;padding-top:8px">
+<a class="btn btn-ochre" href="tel:0404174184">Call 0404 174 184</a>
+<a class="btn btn-light" href="mailto:psych@jennifermalecki.com.au">Email Jennifer</a>
+</div>
+</div>
+<ul aria-label="Practice areas" class="areas" style="flex:999 1 620px;min-width:0;list-style:none;margin:0;padding:0;columns:3 210px;column-gap:28px">
+<li class="area"><svg width="22" height="12" viewBox="0 0 22 12" fill="none" stroke="#DDAA33" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" style="flex:none"><path d="M1 7c2.5 0 2.5-4 5-4s2.5 4 5 4 2.5-4 5-4 2.5 4 5 4"></path></svg><span>Alcohol Use</span></li>
+<li class="area"><svg width="22" height="12" viewBox="0 0 22 12" fill="none" stroke="#DDAA33" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" style="flex:none"><path d="M1 7c2.5 0 2.5-4 5-4s2.5 4 5 4 2.5-4 5-4 2.5 4 5 4"></path></svg><span>Anger Management</span></li>
+<li class="area"><svg width="22" height="12" viewBox="0 0 22 12" fill="none" stroke="#DDAA33" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" style="flex:none"><path d="M1 7c2.5 0 2.5-4 5-4s2.5 4 5 4 2.5-4 5-4 2.5 4 5 4"></path></svg><span>Anxiety</span></li>
+<li class="area"><svg width="22" height="12" viewBox="0 0 22 12" fill="none" stroke="#DDAA33" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" style="flex:none"><path d="M1 7c2.5 0 2.5-4 5-4s2.5 4 5 4 2.5-4 5-4 2.5 4 5 4"></path></svg><span>Behavioural Issues</span></li>
+<li class="area"><svg width="22" height="12" viewBox="0 0 22 12" fill="none" stroke="#DDAA33" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" style="flex:none"><path d="M1 7c2.5 0 2.5-4 5-4s2.5 4 5 4 2.5-4 5-4 2.5 4 5 4"></path></svg><span>Bipolar Disorder</span></li>
+<li class="area"><svg width="22" height="12" viewBox="0 0 22 12" fill="none" stroke="#DDAA33" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" style="flex:none"><path d="M1 7c2.5 0 2.5-4 5-4s2.5 4 5 4 2.5-4 5-4 2.5 4 5 4"></path></svg><span>Body Image</span></li>
+<li class="area"><svg width="22" height="12" viewBox="0 0 22 12" fill="none" stroke="#DDAA33" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" style="flex:none"><path d="M1 7c2.5 0 2.5-4 5-4s2.5 4 5 4 2.5-4 5-4 2.5 4 5 4"></path></svg><span>Depression</span></li>
+<li class="area"><svg width="22" height="12" viewBox="0 0 22 12" fill="none" stroke="#DDAA33" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" style="flex:none"><path d="M1 7c2.5 0 2.5-4 5-4s2.5 4 5 4 2.5-4 5-4 2.5 4 5 4"></path></svg><span>Dissociative Disorders (DID)</span></li>
+<li class="area"><svg width="22" height="12" viewBox="0 0 22 12" fill="none" stroke="#DDAA33" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" style="flex:none"><path d="M1 7c2.5 0 2.5-4 5-4s2.5 4 5 4 2.5-4 5-4 2.5 4 5 4"></path></svg><span>Domestic Violence</span></li>
+<li class="area"><svg width="22" height="12" viewBox="0 0 22 12" fill="none" stroke="#DDAA33" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" style="flex:none"><path d="M1 7c2.5 0 2.5-4 5-4s2.5 4 5 4 2.5-4 5-4 2.5 4 5 4"></path></svg><span>Drug Abuse</span></li>
+<li class="area"><svg width="22" height="12" viewBox="0 0 22 12" fill="none" stroke="#DDAA33" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" style="flex:none"><path d="M1 7c2.5 0 2.5-4 5-4s2.5 4 5 4 2.5-4 5-4 2.5 4 5 4"></path></svg><span>Emotional Disturbance</span></li>
+<li class="area"><svg width="22" height="12" viewBox="0 0 22 12" fill="none" stroke="#DDAA33" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" style="flex:none"><path d="M1 7c2.5 0 2.5-4 5-4s2.5 4 5 4 2.5-4 5-4 2.5 4 5 4"></path></svg><span>Grief</span></li>
+<li class="area"><svg width="22" height="12" viewBox="0 0 22 12" fill="none" stroke="#DDAA33" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" style="flex:none"><path d="M1 7c2.5 0 2.5-4 5-4s2.5 4 5 4 2.5-4 5-4 2.5 4 5 4"></path></svg><span>Impulse Control Disorders</span></li>
+<li class="area"><svg width="22" height="12" viewBox="0 0 22 12" fill="none" stroke="#DDAA33" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" style="flex:none"><path d="M1 7c2.5 0 2.5-4 5-4s2.5 4 5 4 2.5-4 5-4 2.5 4 5 4"></path></svg><span>Mood Disorders</span></li>
+<li class="area"><svg width="22" height="12" viewBox="0 0 22 12" fill="none" stroke="#DDAA33" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" style="flex:none"><path d="M1 7c2.5 0 2.5-4 5-4s2.5 4 5 4 2.5-4 5-4 2.5 4 5 4"></path></svg><span>Narcissistic Personality (NPD)</span></li>
+<li class="area"><svg width="22" height="12" viewBox="0 0 22 12" fill="none" stroke="#DDAA33" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" style="flex:none"><path d="M1 7c2.5 0 2.5-4 5-4s2.5 4 5 4 2.5-4 5-4 2.5 4 5 4"></path></svg><span>Personality Disorders</span></li>
+<li class="area"><svg width="22" height="12" viewBox="0 0 22 12" fill="none" stroke="#DDAA33" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" style="flex:none"><path d="M1 7c2.5 0 2.5-4 5-4s2.5 4 5 4 2.5-4 5-4 2.5 4 5 4"></path></svg><span>Psychosis</span></li>
+<li class="area"><svg width="22" height="12" viewBox="0 0 22 12" fill="none" stroke="#DDAA33" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" style="flex:none"><path d="M1 7c2.5 0 2.5-4 5-4s2.5 4 5 4 2.5-4 5-4 2.5 4 5 4"></path></svg><span>Self-Harming</span></li>
+<li class="area"><svg width="22" height="12" viewBox="0 0 22 12" fill="none" stroke="#DDAA33" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" style="flex:none"><path d="M1 7c2.5 0 2.5-4 5-4s2.5 4 5 4 2.5-4 5-4 2.5 4 5 4"></path></svg><span>Sexual Abuse</span></li>
+<li class="area"><svg width="22" height="12" viewBox="0 0 22 12" fill="none" stroke="#DDAA33" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" style="flex:none"><path d="M1 7c2.5 0 2.5-4 5-4s2.5 4 5 4 2.5-4 5-4 2.5 4 5 4"></path></svg><span>Suicidal Ideation</span></li>
+<li class="area"><svg width="22" height="12" viewBox="0 0 22 12" fill="none" stroke="#DDAA33" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" style="flex:none"><path d="M1 7c2.5 0 2.5-4 5-4s2.5 4 5 4 2.5-4 5-4 2.5 4 5 4"></path></svg><span>Thinking Disorders</span></li>
+<li class="area"><svg width="22" height="12" viewBox="0 0 22 12" fill="none" stroke="#DDAA33" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" style="flex:none"><path d="M1 7c2.5 0 2.5-4 5-4s2.5 4 5 4 2.5-4 5-4 2.5 4 5 4"></path></svg><span>Veterans</span></li>
+</ul>
+</div>
+</section>
+
+<!-- In person + telehealth -->
+<section aria-labelledby="sessions-h" style="padding:0 24px clamp(64px,8vw,112px)">
+<div style="max-width:1240px;margin:0 auto;display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;flex-wrap:wrap;gap:14px 40px;justify-content:space-between;align-items:flex-end">
+<div style="display:flex;flex-direction:column;gap:12px;max-width:720px">
+<p style="margin:0;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#1D5067">Your week</p>
+<h2 id="sessions-h" style="margin:0;font-size:clamp(34px,4vw,52px);line-height:1.08">In person and by Telehealth</h2>
+<p style="margin:0;font-size:17px;line-height:1.75;color:#3E5A66">I offer therapy sessions by Telehealth and in person at Mooloolaba in a supportive environment.</p>
+</div>
+<p style="margin:0;display:inline-flex;align-items:center;gap:10px;background:#ffffff;border:1px solid #E2DCCD;border-radius:999px;padding:10px 18px;font-size:15px;font-weight:600;color:#1D5067"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>By Appointment Only</p>
+</div>
+<ol aria-label="Weekly consultation days" style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(170px,100%),1fr));gap:12px">
+<li class="day" style="background:#DDAA33;color:#12323F"><span style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;font-weight:700">Monday</span><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg><span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:24px;font-weight:700;line-height:1.1">Face-to-face</span><span style="font-size:14px">In-Clinic</span></li><li class="day" style="background:#1D5067;color:#F7F5EF"><span style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;font-weight:700;color:#A2C3D3">Tuesday</span><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"></rect><path d="M8 20h8M12 16v4"></path></svg><span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:24px;font-weight:700;line-height:1.1;color:#ffffff">Telehealth</span><span style="font-size:14px;color:#DCE8EE">Online</span></li><li class="day" style="background:#1D5067;color:#F7F5EF"><span style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;font-weight:700;color:#A2C3D3">Wednesday</span><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"></rect><path d="M8 20h8M12 16v4"></path></svg><span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:24px;font-weight:700;line-height:1.1;color:#ffffff">Telehealth</span><span style="font-size:14px;color:#DCE8EE">Online</span></li><li class="day" style="background:#1D5067;color:#F7F5EF"><span style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;font-weight:700;color:#A2C3D3">Thursday</span><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"></rect><path d="M8 20h8M12 16v4"></path></svg><span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:24px;font-weight:700;line-height:1.1;color:#ffffff">Telehealth</span><span style="font-size:14px;color:#DCE8EE">Online</span></li><li class="day" style="background:#1D5067;color:#F7F5EF"><span style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;font-weight:700;color:#A2C3D3">Friday</span><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"></rect><path d="M8 20h8M12 16v4"></path></svg><span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:24px;font-weight:700;line-height:1.1;color:#ffffff">Telehealth</span><span style="font-size:14px;color:#DCE8EE">Online</span></li>
+</ol>
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:stretch">
+<figure style="flex:1 1 320px;min-width:0;margin:0;position:relative;border-radius:28px;overflow:hidden;min-height:360px">
+<img class="protect" src="./assets/8f67a63c22ff7ef59eb249ec646d2d96.jpg" alt="Waves near Mooloolaba with the Point Cartwright headland across the water" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block">
+<figcaption style="position:absolute;left:16px;right:16px;bottom:16px;background:rgba(247,245,239,0.94);border-radius:20px;padding:20px 22px;display:flex;flex-direction:column;gap:4px">
+<span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;font-weight:600;color:#12323F">In person at Mooloolaba</span>
+<span style="font-size:15px;color:#3E5A66">Unit 1, 38 Burnett Street, Mooloolaba QLD 4557</span>
+</figcaption>
+</figure>
+<div class="wave-card" style="flex:999 1 480px;min-width:0;background:linear-gradient(180deg,#FBFAF6 0%,#EEF4F6 100%);border:1px solid #D5E2E8;border-radius:28px;padding:clamp(28px,3.4vw,44px) clamp(28px,3.4vw,44px) 120px;display:flex;flex-direction:column;gap:16px;box-sizing:border-box">
+<div class="card-waves" aria-hidden="true"><svg class="wave w1" viewBox="0 0 2880 120" preserveAspectRatio="none"><path d="M0 50 C240 10 480 10 720 50 C960 90 1200 90 1440 50 C1680 10 1920 10 2160 50 C2400 90 2640 90 2880 50 V120 H0 Z" fill="#A2C3D3" fill-opacity="0.35"></path></svg><svg class="wave w2" viewBox="0 0 2880 120" preserveAspectRatio="none"><path d="M0 72 C240 40 480 40 720 72 C960 104 1200 104 1440 72 C1680 40 1920 40 2160 72 C2400 104 2640 104 2880 72 V120 H0 Z" fill="#7eb1cb" fill-opacity="0.28"></path></svg><svg class="wave w3" viewBox="0 0 2880 120" preserveAspectRatio="none"><path d="M0 92 C240 72 480 72 720 92 C960 112 1200 112 1440 92 C1680 72 1920 72 2160 92 C2400 112 2640 112 2880 92 V120 H0 Z" fill="#6A8CA3" fill-opacity="0.22"></path></svg></div>
+<span style="width:56px;height:56px;border-radius:50%;background:#1D5067;color:#ffffff;display:flex;align-items:center;justify-content:center"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"></rect><path d="M8 20h8M12 16v4"></path></svg></span>
+<h3 style="margin:0;font-size:clamp(28px,3vw,38px);line-height:1.1">Telehealth</h3>
+<p style="margin:0;font-size:17px;line-height:1.8;color:#3E5A66">Telehealth allows clients to access psychological support from the comfort and privacy of their own home, reducing travel time and increasing accessibility for individuals with busy schedules, health concerns, caregiving responsibilities, or those living in rural and regional areas.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- What Next -->
+<section class="sand-bg" aria-labelledby="next-h" style="position:relative;background-color:#E4D4B2;padding:clamp(96px,10vw,136px) 24px clamp(72px,8vw,112px)">
+<svg aria-hidden="true" viewBox="0 0 1440 90" preserveAspectRatio="none" style="position:absolute;left:0;right:0;top:-1px;width:100%;height:clamp(40px,5.5vw,84px);display:block"><path d="M0 0 H1440 V40 C1300 70 1160 72 1010 52 C860 32 720 30 560 52 C400 74 220 76 0 50 Z" fill="#F7F5EF"></path><path d="M0 50 C220 76 400 74 560 52 C720 30 860 32 1010 52 C1160 72 1300 70 1440 40" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" opacity="0.9"></path></svg>
+<div style="max-width:880px;margin:0 auto;display:flex;flex-direction:column;gap:20px">
+<p style="margin:0;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;font-weight:700;color:#1D5067">Your next step</p>
+<h2 id="next-h" style="margin:0;font-size:clamp(36px,4.4vw,58px);line-height:1.06">What Next</h2>
+<p style="margin:0;font-size:18px;line-height:1.8;color:#22414D">In our initial sessions, we will work collaboratively to understand your unique needs and establish clear, meaningful treatment goals. Together, we will map out a personalised treatment plan—drawing on evidence-based therapies and embodied insights—to serve as a clear roadmap guiding our way forward on your journey to healing.</p>
+<p style="margin:0;font-size:17px;line-height:1.8;color:#33475A">Your therapeutic timeline is flexible and uniquely tailored to your pace and clinical needs. If you are accessing care under a Medicare Mental Health Care Plan, we will structure our initial timing around your allocated subsidised sessions, regularly reviewing your goals together to ensure your plan continues to support your ongoing healing.</p>
+<div style="display:flex;flex-wrap:wrap;gap:12px;padding-top:6px">
+<a class="btn btn-primary" href="tel:0404174184">Call 0404 174 184</a>
+<a class="btn btn-ghost" href="mailto:psych@jennifermalecki.com.au">Email Jennifer</a>
+</div>
+</div>
+</section>
+
+</main>
+
+<!-- Pop-up: qualifications -->
+<sc-if value="{{mQual}}" hint-placeholder-val="{{ false }}">
+<div class="modal-wrap" style="position:fixed;inset:0;z-index:90;background:rgba(18,50,63,0.55);display:flex;align-items:center;justify-content:center;padding:24px;box-sizing:border-box">
+<div class="modal" role="dialog" aria-modal="true" aria-labelledby="qual-title" style="position:relative;background:#F7F5EF;border-radius:24px;max-width:620px;width:100%;max-height:85vh;overflow:auto;padding:clamp(28px,4vw,44px);box-sizing:border-box;box-shadow:0 30px 80px rgba(18,50,63,0.35)">
+<button type="button" class="round" aria-label="Close" onClick="{{closeModal}}" style="position:absolute;top:16px;right:16px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+<h2 id="qual-title" style="margin:0 56px 20px 0;font-size:36px;line-height:1.1">Qualifications &amp; registration</h2>
+<dl style="margin:0;display:flex;flex-direction:column;gap:16px;font-size:16px;line-height:1.6">
+<div><dt style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:#1D5067">Qualifications</dt><dd style="margin:4px 0 0">Bachelor of Social Science (Psychology)<br>Bachelor of Arts Honours (Psychology)<br>Doctor of Philosophy (PhD)</dd></div>
+<div><dt style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:#1D5067">Registration</dt><dd style="margin:4px 0 0">General Psychologist, Psychology Board of Australia (AHPRA)<br>AHPRA PSY0001410118</dd></div>
+<div><dt style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:#1D5067">Membership</dt><dd style="margin:4px 0 0">Australian Association of Psychologists Inc. (AAPi)</dd></div>
+<div><dt style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:#1D5067">Medicare</dt><dd style="margin:4px 0 0">Provider No. 1894363H</dd></div>
+</dl>
+</div>
+</div>
+</sc-if>
+
+<!-- Pop-up: research -->
+<sc-if value="{{mResearch}}" hint-placeholder-val="{{ false }}">
+<div class="modal-wrap" style="position:fixed;inset:0;z-index:90;background:rgba(18,50,63,0.55);display:flex;align-items:center;justify-content:center;padding:24px;box-sizing:border-box">
+<div class="modal" role="dialog" aria-modal="true" aria-labelledby="res-title" style="position:relative;background:#F7F5EF;border-radius:24px;max-width:620px;width:100%;max-height:85vh;overflow:auto;padding:clamp(28px,4vw,44px);box-sizing:border-box;box-shadow:0 30px 80px rgba(18,50,63,0.35)">
+<button type="button" class="round" aria-label="Close" onClick="{{closeModal}}" style="position:absolute;top:16px;right:16px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+<h2 id="res-title" style="margin:0 56px 12px 0;font-size:36px;line-height:1.1">Research &amp; publications</h2>
+<p style="margin:0 0 20px;font-size:16px;line-height:1.7;color:#3E5A66">I have also published research on how early life experiences affect our experience of the body.</p>
+<ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px">
+<li><a class="more" style="width:100%;justify-content:space-between;box-sizing:border-box" href="https://scholar.google.com/citations?user=Icxwr4UAAAAJ&amp;hl=en">Google Scholar<span aria-hidden="true">↗</span></a></li>
+<li><a class="more" style="width:100%;justify-content:space-between;box-sizing:border-box" href="https://www.psychologytoday.com/au/counselling/jennifer-malecki-assoc-pty-ltd-mooloolaba-qld/1722996">Psychology Today<span aria-hidden="true">↗</span></a></li>
+<li><a class="more" style="width:100%;justify-content:space-between;box-sizing:border-box" href="https://www.traumasupport.com.au/practitioner-directory/practitioner/jennifer-malecki/">Trauma Support directory<span aria-hidden="true">↗</span></a></li>
+<li><a class="more" style="width:100%;justify-content:space-between;box-sizing:border-box" href="https://www.sphereintheknow.com/jennifer-malecki">Sphere in the Know<span aria-hidden="true">↗</span></a></li>
+<li><a class="more" style="width:100%;justify-content:space-between;box-sizing:border-box" href="https://www.aapi.org.au/Web/Shared_Content/Smart-Suite/Smart-Maps/Public/Find_a_Psychologist_Profile.aspx?Practice=8094">AAPi Find a Psychologist<span aria-hidden="true">↗</span></a></li>
+<li><a class="more" style="width:100%;justify-content:space-between;box-sizing:border-box" href="https://www.linkedin.com/in/jennifer-malecki-97749095/">LinkedIn<span aria-hidden="true">↗</span></a></li>
+</ul>
+</div>
+</div>
+</sc-if>
+
+<!-- Footer -->
+<footer class="footer" style="background:#12323F;color:#EBE7DB">
+<div style="max-width:1240px;margin:0 auto;padding:72px 24px 36px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:40px">
+<div style="display:flex;flex-direction:column;gap:14px">
+<img src="./assets/b391974488085834f3b0b65becb969cb.png" alt="Jennifer Malecki Psychologist" style="width:170px;height:auto;display:block">
+<p style="margin:0;font-size:14px;line-height:1.6;color:#C9D6DC">Jennifer Malecki, Psychologist, PhD<br>J. Malecki &amp; Associates Pty Ltd</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<h2 style="margin:0;font-size:24px;color:#ffffff">Visit</h2>
+<p style="margin:0;font-size:15px;line-height:1.7;color:#C9D6DC">Unit 1, 38 Burnett Street<br>Mooloolaba QLD 4557</p>
+<p style="margin:0;font-size:14px;line-height:1.7;color:#C9D6DC">By Appointment Only<br>Monday: In-Clinic<br>Tuesday – Friday: Telehealth</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<h2 style="margin:0;font-size:24px;color:#ffffff">Contact</h2>
+<a href="tel:0404174184" style="font-size:15px">0404 174 184</a>
+<a href="mailto:psych@jennifermalecki.com.au" style="font-size:15px">psych@jennifermalecki.com.au</a>
+</div>
+<nav aria-label="Footer" style="display:flex;flex-direction:column;gap:8px">
+<h2 style="margin:0;font-size:24px;color:#ffffff">Explore</h2>
+<a href="About.dc.html" style="font-size:15px">About</a>
+<a href="Services.dc.html" style="font-size:15px">Services</a>
+<a href="Fees.dc.html" style="font-size:15px">Fees &amp; Rebates</a>
+<a href="Referrers.dc.html" style="font-size:15px">For Referrers</a>
+<a href="Gallery.dc.html" style="font-size:15px">Gallery</a>
+<a href="Resources.dc.html" style="font-size:15px">Resources</a>
+<a href="Support.dc.html" style="font-size:15px">Support</a>
+<a href="Contact.dc.html" style="font-size:15px">Contact</a>
+</nav>
+</div>
+<div style="max-width:1240px;margin:0 auto;padding:0 24px">
+<div style="border-top:1px solid rgba(235,231,219,0.2);padding:24px 0 36px;display:flex;flex-direction:column;gap:12px;font-size:13px;line-height:1.6;color:#C9D6DC">
+<p style="margin:0">This website is not a crisis service. If you are in immediate danger call 000, or Lifeline on 13 11 14.</p>
+<p style="margin:0">ABN 63 687 967 193 · Medicare Provider No. 1894363H · AHPRA PSY0001410118</p>
+<div style="display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between">
+<p style="margin:0">© 2026 J. Malecki &amp; Associates Pty Ltd · Artwork © Jennifer Malecki, not for reproduction</p>
+<div style="display:flex;gap:20px;flex-wrap:wrap"><a href="Privacy.dc.html">Privacy policy</a><a href="Privacy.dc.html">Website disclaimer</a></div>
+</div>
+</div>
+</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":5200}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { menu: false, modal: null };
+  }
+  renderVals() {
+    const m = this.state.modal;
+    const open = (id) => () => this.setState({ modal: id });
+    return {
+      menuOpen: this.state.menu,
+      menuExpanded: this.state.menu ? 'true' : 'false',
+      openMenu: () => this.setState({ menu: true }),
+      closeMenu: () => this.setState({ menu: false }),
+      closeModal: () => this.setState({ modal: null }),
+      mQual: m === 'qual', openQual: open('qual'),
+      mResearch: m === 'research', openResearch: open('research')
+    };
+  }
+}
+</script>
+</body>
+</html>

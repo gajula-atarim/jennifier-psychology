@@ -40,6 +40,9 @@ CTA_EDGE = data_uri(
     "<path d='M0 50 C220 76 400 74 560 52 C720 30 860 32 1010 52 C1160 72 1300 70 1440 40' fill='none' stroke='#ffffff' stroke-width='5' stroke-linecap='round' opacity='0.9'/>"
     "<path d='M0 62 C220 86 400 84 560 64 C720 44 860 46 1010 64 C1160 82 1300 80 1440 54' fill='none' stroke='#ffffff' stroke-width='2' stroke-linecap='round' opacity='0.5'/></svg>")
 
+# Same edge where the section above the sand is stone-coloured.
+CTA_EDGE_STONE = CTA_EDGE.replace("%23F7F5EF", "%23EBE7DB")
+
 GP_MARK = data_uri(
     "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'>"
     "<path d='M40 420 C 140 300, 220 240, 330 260 C 260 300, 250 380, 320 420' fill='none' stroke='#A2C3D3' stroke-width='22' stroke-linecap='round'/>"

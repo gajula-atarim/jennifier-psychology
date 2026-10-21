@@ -1,0 +1,718 @@
+"""Inner pages (About, Services, Fees & Rebates, For Referrers, Gallery) and their header.
+
+Values come from the design exports in design/pages/. Shared helpers, colours and pop-ups come from
+build.py, so every section stays an editable Elementor block in the same system as the Home page.
+
+    python3 elementor/build_pages.py
+"""
+import json
+
+from build import (BODY, BODY_DK, DIST, EMAIL, EMAIL_URL, INK, MIST, MIST_LT, MUTED, NAME_TITLE, OCHRE, PHONE,
+                   PHONE_URL, AHPRA_REG, SAND, SANS, SERIF, STONE, TEAL, URL, border, button, container, dims,
+                   eyebrow, gap, gradient, grid, heading, html, icon, icon_list, image, modal, pop_text, px,
+                   sand_bg, section, text, textlink, wave_card, widget)
+
+PAGES = {"about": 50, "services": 51, "fees": 52, "referrers": 53, "gallery": 54}
+INNER_HEADER = 55
+GREY_BODY = "#3E5A66"
+LINE = "#E2DCCD"
+
+
+# ---------------------------------------------------------------- small building blocks
+
+def h1(name, label, color=INK):
+    return heading(name, label, "h1", SERIF, "clamp(42px, 5.4vw, 72px)", color, weight=600, lh=1.02, ls=-0.01)
+
+
+def h2(name, label, size="clamp(34px, 4vw, 52px)", color=INK, lh=1.08, **kw):
+    return heading(name, label, "h2", SERIF, size, color, weight=600, lh=lh, ls=-0.01, **kw)
+
+
+def h3(name, label, size=30, color=INK, lh=1.12, **kw):
+    return heading(name, label, "h3", SERIF, size, color, weight=600, lh=lh, ls=-0.01, **kw)
+
+
+def para(name, html_, size=17, color=GREY_BODY, lh=1.75, **kw):
+    return text(name, html_ if html_.startswith("<") else f"<p>{html_}</p>", size, color, lh=lh, **kw)
+
+
+def call_email(name, email_label="Email Jennifer", call_style="primary", email_style="ghost", center=False):
+    return container(name, [
+        button(f"{name}-call", f"Call {PHONE}", PHONE_URL, call_style),
+        button(f"{name}-email", email_label, EMAIL_URL, email_style),
+    ], row=True, wrap=True, gap_=12, justify="center" if center else None)
+
+
+def more(name, label, target):
+    """Outline pill with a plus, opening a pop-up (the design's ".more" button)."""
+    return button(name, label, target, "ghost", text_padding=dims(13, 18), border_width=dims(1.5),
+                  selected_icon={"value": {"url": "https://jennifermalecki.wsdfy.com/wp-content/uploads/2026/10/"
+                                           "jm-icon-plus.svg", "id": 40}, "library": "svg"},
+                  icon_align="row-reverse", icon_indent=px(8), cls="jm-more",
+                  typography_font_size=px(15))
+
+
+def figure(name, key, caption, cls, *, cap_pos="bottom-center"):
+    """Artwork in a shaped frame with the copyright caption over it (shape via cls in jm-site.css)."""
+    return container(name, [
+        image(f"{name}-img", key, cls="jm-figure-img"),
+        heading(f"{name}-cap", caption, "p", SANS, 13, SAND, lh=1.2, cls=f"jm-fig-cap jm-fig-cap-{cap_pos}"),
+    ], cls=f"jm-figure {cls}")
+
+
+def page_hero(name, left, right=None, *, bg=STONE, cls="", pad=None):
+    kids = [container(f"{name}-text", left, gap_=20, width=560, grow=999)]
+    if right is not None:
+        kids.append(right)
+    return section(name, kids, pad=pad or dims("clamp(56px,7vw,96px)", 24, "clamp(96px,10vw,140px)", 24), bg=bg,
+                   row=True, wrap=True, gap_=gap(48, 64), align="center", cls=f"jm-page-hero {cls}".strip())
+
+
+def sand_cta(name, title, body, *, email_label="Email Jennifer", stone_above=False, center=True, kids=None):
+    inner = kids or [
+        h2(f"{name}-h", title, size="clamp(34px, 4.2vw, 52px)", lh=1.06, align="center"),
+        para(f"{name}-p", body, 18, BODY_DK, 1.7, align="center"),
+        call_email(f"{name}-btns", email_label, center=True),
+    ]
+    box = container(f"{name}-inner", inner, gap_=20, align="center" if center else None, width=820, grow=0,
+                    _flex_align_self="center")
+    return section(name, [box], pad=dims("clamp(96px,10vw,136px)", 24, "clamp(72px,8vw,112px)", 24),
+                   cls="jm-cta jm-page-cta" + (" jm-cta-stone" if stone_above else ""), **sand_bg())
+
+
+def label_value(name, label, value, last=False):
+    return container(name, [
+        heading(f"{name}-l", label, "p", SANS, 12, TEAL, weight=600, lh=1.3, ls=0.12, transform="uppercase"),
+        text(f"{name}-v", f"<p>{value}</p>", 16, INK, lh=1.5),
+    ], gap_=2, pad=dims(0, 0, 0 if last else 10, 0),
+        **({} if last else {"border_border": "solid", "border_width": dims(0, 0, 1, 0), "border_color": LINE}))
+
+
+def pop(mid, title, paras, extra=None):
+    body = "".join(f"<p>{p}</p>" for p in paras)
+    return modal(mid, title, [pop_text(f"{mid}-body", body), *(extra or [])])
+
+
+def icon_circle(name, key, size=26, pad_=15):
+    return icon(name, key, size, view="stacked", shape="circle", primary_color=TEAL, secondary_color="#ffffff",
+                icon_padding=px(pad_), _flex_size="none")
+
+
+# ---------------------------------------------------------------- inner-page header
+
+def build_inner_header():
+    crisis = container("ih-crisis", [
+        text("ih-crisis-left", '<p><strong class="jm-urgent">Need urgent help?</strong><span>Emergency '
+                               '<a href="tel:000">000</a></span><span>Lifeline <a href="tel:131114">13 11 14</a>'
+                               f'</span><a href="{URL["support"]}">All support lines →</a></p>',
+             14, SAND, lh=1.4, cls="jm-crisis-line", _flex_size="shrink"),
+        icon_list("ih-crisis-right", [(PHONE, PHONE_URL), (EMAIL, EMAIL_URL)], inline=True, size=14, color="#ffffff",
+                  hover=OCHRE, weight=600, lh=1.4, space=20, hide_mobile="hidden-mobile", _flex_size="none"),
+    ], boxed=True, row=True, wrap=True, justify="space-between", align="center", gap_=gap(6, 24),
+        pad=dims(10, 24), cls="jm-topbar jm-inner-topbar", background_background="classic", background_color=TEAL)
+
+    bar = container("ih-bar", [
+        image("ih-logo", "logo_dark", height=72, url=URL["home"], _flex_size="none", cls="jm-inner-logo",
+              height_mobile=px(56)),
+        html("ih-buttons", f'<div class="jm-rounds"><a class="jm-round" href="{PHONE_URL}" aria-label="Call {PHONE}">'
+                           '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>'
+                           '<a class="jm-round jm-round-solid" href="#jm-pop-menu" aria-label="Open menu" aria-haspopup="dialog">'
+                           '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 9h14M5 15h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a></div>'),
+    ], boxed=True, row=True, justify="space-between", align="center", gap_=16, pad=dims(10, 24),
+        flex_wrap="nowrap", flex_wrap_mobile="nowrap", cls="jm-inner-bar",
+        background_background="classic", background_color="rgba(247,245,239,0.94)",
+        border_border="solid", border_width=dims(0, 0, 1, 0), border_color=LINE)
+
+    nav = widget("ih-nav", "navigation-menu", {
+        "menu": "main-menu", "layout": "vertical", "dropdown": "none", "_css_classes": "jm-menu-nav",
+        "color_menu_item": SAND, "color_menu_item_hover": OCHRE, "color_menu_item_active": OCHRE,
+        "bg_color_menu_item": "", "bg_color_menu_item_hover": "", "bg_color_menu_item_active": "",
+        **{f"menu_typography_{k}": v for k, v in {"typography": "custom", "font_family": SERIF,
+                                                   "font_size": px("clamp(30px,3.6vw,46px)"),
+                                                   "font_weight": "600", "line_height": px(1.15, "em")}.items()},
+        "padding_horizontal_menu_item": px(0), "padding_vertical_menu_item": px(4), "menu_space_between": px(6),
+    })
+    overlay = container("jm-pop-menu", [
+        container("ih-menu-panel", [
+            container("ih-menu-top", [
+                image("ih-menu-logo", "logo_light", height=72, _flex_size="none", height_mobile=px(56)),
+                html("ih-menu-close", '<button type="button" class="jm-modal-close jm-round jm-round-light" '
+                                      'aria-label="Close menu"><svg viewBox="0 0 24 24" width="20" height="20" '
+                                      'aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" '
+                                      'stroke-width="2" stroke-linecap="round"/></svg></button>'),
+            ], row=True, justify="space-between", align="center", gap_=16, flex_wrap="nowrap",
+                flex_wrap_mobile="nowrap"),
+            heading("ih-menu-title", "Site menu", "h2", SANS, 13, MIST, weight=600, ls=0.16, transform="uppercase",
+                    cls="jm-modal-title jm-sr-title"),
+            nav,
+            container("ih-menu-cta", [
+                button("ih-menu-call", f"Call {PHONE}", PHONE_URL, "ochre"),
+                button("ih-menu-email", EMAIL, EMAIL_URL, "light"),
+            ], row=True, wrap=True, gap_=12, pad=dims(24, 0, 0, 0),
+                border_border="solid", border_width=dims(1, 0, 0, 0), border_color="rgba(235,231,219,0.2)"),
+            text("ih-menu-crisis", '<p>Need urgent help? Emergency <a href="tel:000">000</a> · Lifeline '
+                                   '<a href="tel:131114">13 11 14</a></p>', 14, MUTED, lh=1.5, cls="jm-menu-crisis"),
+        ], boxed=True, gap_=32, pad=dims(18, 24, 48, 24), cls="jm-modal-panel jm-menu-panel"),
+    ], cls="jm-modal jm-pop-menu jm-menu-overlay", _element_id="jm-pop-menu")
+    return [crisis, bar, overlay]
+
+
+# ---------------------------------------------------------------- About
+
+AREAS = ["Alcohol Use", "Anger Management", "Anxiety", "Behavioural Issues", "Bipolar Disorder", "Body Image",
+         "Depression", "Dissociative Disorders (DID)", "Domestic Violence", "Drug Abuse", "Emotional Disturbance",
+         "Grief", "Impulse Control Disorders", "Mood Disorders", "Narcissistic Personality (NPD)",
+         "Personality Disorders", "Psychosis", "Self-Harming", "Sexual Abuse", "Suicidal Ideation",
+         "Thinking Disorders", "Veterans"]
+
+
+def about_page():
+    hero = page_hero("ab-hero", [
+        eyebrow("ab-eyebrow", "About"),
+        h1("ab-h1", NAME_TITLE),
+        heading("ab-role", "Principal Psychologist | AAPi (General Psychologist)", "p", SANS, 18, TEAL, weight=600,
+                lh=1.4),
+        para("ab-lede", "I invite you to reach out by email or phone for a confidential chat. I am here to listen and "
+                        "support your next step.", "clamp(17px, 1.4vw, 19px)", BODY_DK, 1.7, maxw=640),
+        call_email("ab-hero-btns"),
+    ], container("ab-hero-art", [figure("ab-hero-fig", "art_ocean", "Original artwork © Jennifer Malecki",
+                                        "jm-ar-45 jm-arch")], width=340, grow=1, _element_custom_width=px(440),
+                 cls="jm-fig-col jm-fig-col-440"))
+
+    practice = section("ab-practice", [
+        container("ab-practice-head", [eyebrow("ab-practice-eyebrow", "The practice"),
+                                       h2("ab-practice-h", "About the Practice")], gap_=14, width=300, grow=1),
+        container("ab-practice-body", [
+            para("ab-practice-p1", "The clinic is located in the heart of Mooloolaba, where I offer a high-quality, "
+                                   "personalised approach to mental health care. You will receive active, one-to-one "
+                                   "care from an experienced psychologist dedicated to assessing and treating a range of "
+                                   "mental health concerns, including PTSD, depression, anxiety, personality dynamics, "
+                                   "and eating disorders.", 19, BODY_DK, 1.8),
+            para("ab-practice-p2", "I treat adults from all walks of life. I have also published research on how early "
+                                   "life experiences affect our experience of the body.", 17, GREY_BODY, 1.8),
+            para("ab-practice-p3", "My goal is to assist you to make sense of the origins of your difficulties, helping "
+                                   "you build practical skills and make the changes needed to work towards a more "
+                                   "meaningful life.", 17, GREY_BODY, 1.8),
+            container("ab-practice-more", [more("ab-qual", "Qualifications &amp; registration", "#jm-pop-qual"),
+                                           more("ab-research", "Research &amp; publications", "#jm-pop-research")],
+                      row=True, wrap=True, gap_=10, pad=dims(6, 0, 0, 0)),
+        ], gap_=18, width=600, grow=999),
+    ], pad=dims("clamp(56px,7vw,96px)", 24), row=True, wrap=True, gap_=gap(32, 64), cls="jm-tide")
+
+    stops = [("01", "Schema Therapy", "Patterns, origins and root emotional wounds"),
+             ("02", "Cognitive Behavioural Therapy (CBT)", "Thoughts, feelings and behaviours"),
+             ("03", "Dialectical Behaviour Therapy (DBT)", "Mindfulness, emotional regulation and distress tolerance"),
+             ("04", "Body mapping", "Arts-based, embodied exploration of the self")]
+    stop_els = [container(f"ab-stop-{n}", [
+        heading(f"ab-stone-{n}", n, "span", SERIF, 20, TEAL, weight=700, lh=1, cls="jm-stone", _flex_size="none"),
+        container(f"ab-stop-text-{n}", [
+            heading(f"ab-stop-name-{n}", name, "span", SANS, 17, INK, weight=600, lh=1.25),
+            heading(f"ab-stop-sub-{n}", sub, "span", SANS, 14, GREY_BODY, lh=1.35),
+        ], gap_=2, grow=1, width=px(0, "%"), mobile_width=False),
+        icon(f"ab-stop-arrow-{n}", "i_arrow", 18, cls="jm-stop-arrow", _flex_size="none"),
+    ], row=True, align="center", gap_=16, pad=dims(6, 14, 6, 0), tag="a", link={"url": URL["services"]},
+        cls="jm-stop", min_height=px(72), border_radius=dims(16), flex_wrap="nowrap", flex_wrap_mobile="nowrap")
+        for n, name, sub in stops]
+    approach_art = container("ab-app-art", [
+        figure("ab-app-fig", "art_wave", "Original artwork © Jennifer Malecki", "jm-ar-45 jm-arch-wide",
+               cap_pos="top-center"),
+        heading("ab-app-quote", "“I aim to look beyond symptoms, asking holistic questions to understand your whole "
+                                "story.”", "p", SERIF, "clamp(20px, 1.9vw, 25px)", SAND, weight=500, lh=1.3,
+                style="italic", cls="jm-quote-card"),
+    ], width=380, grow=1, cls="jm-quote-wrap", _element_custom_width=px(500))
+    approach = section("ab-approach", [
+        approach_art,
+        container("ab-app-text", [
+            eyebrow("ab-app-eyebrow", "How I work"),
+            h2("ab-app-h", "About My Approach", size="clamp(36px, 4.2vw, 56px)", lh=1.05),
+            para("ab-app-p", "I use a range of evidence-based therapies to support clients on their journey towards "
+                             "healing and personal growth. My approach incorporates Schema Therapy, Cognitive "
+                             "Behavioural Therapy (CBT), and Dialectical Behaviour Therapy (DBT). I aim to look beyond "
+                             "symptoms, asking holistic questions to understand your whole story and help you truly "
+                             "reclaim your life.", 17, GREY_BODY, 1.8),
+            container("ab-app-path", stop_els, cls="jm-care-list jm-care-stone"),
+            container("ab-app-note", [
+                icon("ab-app-note-icon", "i_palette", 34, color=TEAL, _flex_size="none"),
+                para("ab-app-note-p", "To enrich the therapeutic process, you may choose to integrate arts-based "
+                                      "techniques into your sessions. Body mapping is used to explore and express "
+                                      "aspects of the self, supporting your therapy goals and fostering deep healing.",
+                     16, BODY_DK, 1.75),
+            ], row=True, gap_=16, align="flex-start", pad=dims(24, 26), border_radius=dims(22),
+                flex_wrap="nowrap", flex_wrap_mobile="nowrap", **sand_bg()),
+        ], gap_=20, width=520, grow=999),
+    ], pad=dims("clamp(64px,8vw,112px)", 24), bg=STONE, row=True, wrap=True, gap_=gap(48, 72), align="center",
+        cls="jm-tide")
+
+    areas = section("ab-areas", [
+        container("ab-areas-head", [
+            eyebrow("ab-areas-eyebrow", "What I can help with", color=MIST),
+            h2("ab-areas-h", "Practice Areas", size="clamp(36px, 4.2vw, 56px)", color="#ffffff", lh=1.05),
+            para("ab-areas-p", "I treat adults from all walks of life.", 17, MIST_LT, 1.75),
+            heading("ab-areas-num", "22", "p", SERIF, "clamp(64px, 7vw, 96px)", OCHRE, weight=700, lh=1),
+            heading("ab-areas-num-l", "Areas of practice", "p", SANS, 14, MIST, weight=600, lh=1.2, ls=0.12,
+                    transform="uppercase", _margin=dims(-8, 0, 0, 0)),
+            call_email("ab-areas-btns", call_style="ochre", email_style="light"),
+        ], gap_=16, width=300, grow=1),
+        icon_list("ab-areas-list", [(a, None, "i_wave_mini") for a in AREAS], size=17, color=SAND, weight=500, lh=1.3,
+                  icon_size=22, icon_color=OCHRE, cls="jm-areas", _element_width="initial",
+                  _element_custom_width=px(620), _flex_size="custom", _flex_grow=999, _flex_shrink=1),
+    ], pad=dims("clamp(64px,8vw,112px)", 24), bg=TEAL, row=True, wrap=True, gap_=gap(40, 64), align="flex-start",
+        cls="jm-gp jm-areas-section")
+
+    day = lambda n, label, title, sub, key, mon=False: container(f"ab-day-{n}", [
+        heading(f"ab-day-{n}-d", label, "p", SANS, 13, INK if mon else MIST, weight=700, ls=0.12, transform="uppercase"),
+        icon(f"ab-day-{n}-i", key, 26, color=INK if mon else "#ffffff"),
+        heading(f"ab-day-{n}-t", title, "p", SERIF, 24, INK if mon else "#ffffff", weight=700, lh=1.1),
+        heading(f"ab-day-{n}-s", sub, "p", SANS, 14, INK if mon else MIST_LT, lh=1.3),
+    ], gap_=8, pad=dims(20), justify="space-between", min_height=px(150), border_radius=dims(22),
+        background_background="classic", background_color=OCHRE if mon else TEAL)
+    days = [day("mon", "Monday", "Face-to-face", "In-Clinic", "i_map_pin", True)] + [
+        day(d.lower(), d, "Telehealth", "Online", "i_monitor") for d in ("Tuesday", "Wednesday", "Thursday", "Friday")]
+
+    in_person = container("ab-inperson", [
+        container("ab-inperson-cap", [
+            heading("ab-inperson-h", "In person at Mooloolaba", "p", SERIF, 28, INK, weight=600, lh=1.15),
+            text("ab-inperson-a", "<p>Unit 1, 38 Burnett Street, Mooloolaba QLD 4557</p>", 15, GREY_BODY, lh=1.5),
+        ], gap_=4, pad=dims(20, 22), border_radius=dims(20), background_background="classic",
+            background_color="rgba(247,245,239,0.94)"),
+    ], width=320, grow=1, min_height=px(360), justify="flex-end", pad=dims(16), border_radius=dims(28),
+        overflow="hidden", cls="jm-photo-card", background_background="classic",
+        background_image={"url": "https://jennifermalecki.wsdfy.com/wp-content/uploads/2026/10/"
+                                 "jm-photo-point-cartwright.jpg", "id": 48},
+        background_position="center center", background_size="cover", background_repeat="no-repeat")
+    telehealth = wave_card("ab-tele", [
+        icon_circle("ab-tele-i", "i_monitor"),
+        h3("ab-tele-h", "Telehealth", size="clamp(28px, 3vw, 38px)", lh=1.1),
+        para("ab-tele-p", "Telehealth allows clients to access psychological support from the comfort and privacy of "
+                          "their own home, reducing travel time and increasing accessibility for individuals with busy "
+                          "schedules, health concerns, caregiving responsibilities, or those living in rural and "
+                          "regional areas.", 17, GREY_BODY, 1.8),
+    ], radius=28, pad=dims("clamp(28px,3.4vw,44px)", "clamp(28px,3.4vw,44px)", 120, "clamp(28px,3.4vw,44px)"),
+        gap_=16, hover=False)
+    telehealth["settings"].update({"width": px(480), "_flex_size": "custom", "_flex_grow": 999, "_flex_shrink": 1,
+                                   "width_mobile": px(100, "%")})
+
+    week = section("ab-week", [
+        container("ab-week-head", [
+            container("ab-week-head-text", [
+                eyebrow("ab-week-eyebrow", "Your week"),
+                h2("ab-week-h", "In person and by Telehealth"),
+                para("ab-week-p", "I offer therapy sessions by Telehealth and in person at Mooloolaba in a supportive "
+                                  "environment.", 17, GREY_BODY, 1.75),
+            ], gap_=12, width=720, grow=0),
+            heading("ab-week-appt", "By Appointment Only", "p", SANS, 15, TEAL, weight=600, lh=1.2,
+                    cls="jm-appt-pill", _flex_size="none"),
+        ], row=True, wrap=True, justify="space-between", align="flex-end", gap_=gap(14, 40)),
+        grid("ab-days", days, 170, 12),
+        container("ab-week-cards", [in_person, telehealth], row=True, wrap=True, gap_=20, align="stretch"),
+    ], pad=dims("clamp(64px,8vw,112px)", 24, "clamp(64px,8vw,112px)", 24), gap_=28, cls="jm-tide")
+
+    next_ = sand_cta("ab-next", "", "", kids=[
+        eyebrow("ab-next-eyebrow", "Your next step"),
+        h2("ab-next-h", "What Next", size="clamp(36px, 4.4vw, 58px)", lh=1.06),
+        para("ab-next-p1", "In our initial sessions, we will work collaboratively to understand your unique needs and "
+                           "establish clear, meaningful treatment goals. Together, we will map out a personalised "
+                           "treatment plan—drawing on evidence-based therapies and embodied insights—to serve as a "
+                           "clear roadmap guiding our way forward on your journey to healing.", 18, BODY_DK, 1.8),
+        para("ab-next-p2", "Your therapeutic timeline is flexible and uniquely tailored to your pace and clinical needs. "
+                           "If you are accessing care under a Medicare Mental Health Care Plan, we will structure our "
+                           "initial timing around your allocated subsidised sessions, regularly reviewing your goals "
+                           "together to ensure your plan continues to support your ongoing healing.", 17, "#33475A",
+             1.8),
+        call_email("ab-next-btns"),
+    ], center=False)
+    next_["elements"][0]["settings"]["width"] = px(880)
+
+    qual = modal("jm-pop-qual", "Qualifications &amp; registration", [pop_text("qual-body", (
+        "<h3>Qualifications</h3><p>Bachelor of Social Science (Psychology)<br>Bachelor of Arts Honours (Psychology)"
+        "<br>Doctor of Philosophy (PhD)</p>"
+        "<h3>Registration</h3><p>General Psychologist, Psychology Board of Australia (AHPRA)<br>"
+        f"AHPRA {AHPRA_REG}</p>"
+        "<h3>Membership</h3><p>Australian Association of Psychologists Inc. (AAPi)</p>"
+        "<h3>Medicare</h3><p>Provider No. 1894363H</p>"))])
+    links = [("Google Scholar", "https://scholar.google.com/citations?user=Icxwr4UAAAAJ&hl=en"),
+             ("Psychology Today", "https://www.psychologytoday.com/au/counselling/jennifer-malecki-assoc-pty-ltd-"
+                                  "mooloolaba-qld/1722996"),
+             ("Trauma Support directory", "https://www.traumasupport.com.au/practitioner-directory/practitioner/"
+                                          "jennifer-malecki/"),
+             ("Sphere in the Know", "https://www.sphereintheknow.com/jennifer-malecki"),
+             ("AAPi Find a Psychologist", "https://www.aapi.org.au/Web/Shared_Content/Smart-Suite/Smart-Maps/Public/"
+                                          "Find_a_Psychologist_Profile.aspx?Practice=8094"),
+             ("LinkedIn", "https://www.linkedin.com/in/jennifer-malecki-97749095/")]
+    research = modal("jm-pop-research", "Research &amp; publications", [
+        pop_text("research-p", "<p>I have also published research on how early life experiences affect our experience "
+                               "of the body.</p>"),
+        icon_list("research-links", [(f'{t}<span aria-hidden="true">↗</span>', u) for t, u in links], size=15,
+                  color=TEAL, hover="#ffffff", weight=600, lh=1.2, cls="jm-link-pills"),
+    ])
+    for row in research["elements"][0]["elements"][-1]["settings"]["icon_list"]:
+        row["link"]["is_external"] = "on"
+        row["link"]["nofollow"] = ""
+    return [hero, practice, approach, areas, week, next_, qual, research]
+
+
+# ---------------------------------------------------------------- Services
+
+THERAPIES = [
+    ("trauma", "01", "Trauma Focused Therapy",
+     "Trauma can deeply disrupt your sense of safety, leaving your mind and body stuck in a constant state of survival.",
+     ["Trauma can deeply disrupt your sense of safety, leaving your mind and body stuck in a constant state of "
+      "survival. Together, we work at a pace that feels safe for you to gently process these overwhelming past "
+      "experiences, helping you resolve the root causes of distress so you can reconnect with yourself and move "
+      "forward."]),
+    ("schema", "02", "Schema therapy",
+     "When we experience complex stress or trauma early in life, we often develop deep, rigid patterns of thinking and "
+     "feeling—called 'schemas'—to help us cope.",
+     ["When we experience complex stress or trauma early in life, we often develop deep, rigid patterns of thinking "
+      "and feeling—called 'schemas'—to help us cope. While these patterns protected us back then, they can leave us "
+      "feeling stuck in repetitive loops of anxiety, self-doubt, or relationship difficulties as adults. Schema therapy "
+      "goes beneath surface-level symptom management. Together, we work to identify these underlying patterns, "
+      "understand their origins, and heal the root emotional wounds so you can break free from old cycles and build a "
+      "healthier, more fulfilling life."]),
+    ("dbt", "03", "Dialectical Behaviour Therapy (DBT)",
+     "When emotions feel overwhelmingly intense, it can be incredibly difficult to find your footing or navigate daily "
+     "life.",
+     ["When emotions feel overwhelmingly intense, it can be incredibly difficult to find your footing or navigate daily "
+      "life. Dialectical Behaviour Therapy (DBT) is a practical, skills-based approach designed to help you regain your "
+      "balance. The word 'dialectical' simply means balancing two opposite truths: accepting yourself exactly as you "
+      "are right now, while actively working to change the patterns that cause you pain. Together, we focus on "
+      "building practical tools for mindfulness, emotional regulation, and distress tolerance, empowering you to "
+      "navigate life’s challenges safely and with greater confidence."]),
+    ("cbt", "04", "Cognitive Behavioural Therapy (CBT)",
+     "Cognitive Behavioural Therapy (CBT) is a foundational, evidence-based approach that helps us look at the "
+     "practical connections between our thoughts, feelings, and behaviours.",
+     ["Cognitive Behavioural Therapy (CBT) is a foundational, evidence-based approach that helps us look at the "
+      "practical connections between our thoughts, feelings, and behaviours. While standard CBT is excellent for "
+      "identifying immediate habits and learning day-to-day symptom management, I view it as an entry point rather than "
+      "the final destination. In our sessions, we utilize these practical behavioural skills as a stable baseline, "
+      "allowing us to safely step deeper into holistic frameworks—like schema therapy and body mapping—to resolve the "
+      "underlying roots of complex trauma."]),
+]
+
+
+def services_page():
+    hero = page_hero("sv-hero", [
+        eyebrow("sv-eyebrow", "Services"),
+        h1("sv-h1", "What I do"),
+        para("sv-lede", "I use a range of evidence-based therapies to support clients in their journey towards healing "
+                        "and personal growth. My approach incorporates schema therapy, cognitive behavioural therapy "
+                        "(CBT), and dialectical behaviour therapy (DBT). I aim to look beyond symptoms, asking holistic "
+                        "questions to understand your whole story and help you truly reclaim your life.",
+             "clamp(17px, 1.4vw, 19px)", BODY_DK, 1.75),
+        call_email("sv-hero-btns"),
+    ], container("sv-hero-art", [figure("sv-hero-fig", "art_wave", "Original artwork © Jennifer Malecki",
+                                        "jm-ar-11 jm-arch-round")], width=340, grow=1, cls="jm-fig-col jm-fig-col-460"))
+
+    cards = [wave_card(f"sv-card-{key}", [
+        heading(f"sv-num-{key}", num, "span", SERIF, 48, "#6A8CA3", weight=600, lh=1),
+        h3(f"sv-h-{key}", title),
+        para(f"sv-p-{key}", short, 16, GREY_BODY, 1.7),
+        more(f"sv-more-{key}", "Read more", f"#jm-pop-{key}"),
+    ], radius=24, pad=dims(32, 32, 116, 32), gap_=12) for key, num, title, short, _ in THERAPIES]
+    therapies = section("sv-ther", [
+        container("sv-ther-head", [
+            eyebrow("sv-ther-eyebrow", "Therapies"),
+            h2("sv-ther-h", "Evidence-based therapies"),
+            para("sv-ther-p", "To enrich the therapeutic process, you may choose to integrate arts-based techniques into "
+                              "therapy. Body mapping is used to explore and express aspects of the self, enhancing "
+                              "treatment outcomes and supporting healing.", 17, GREY_BODY, 1.75),
+        ], gap_=14, width=700, grow=0),
+        grid("sv-ther-grid", cards, 380, 20, grid_columns_grid=px("repeat(2, minmax(0, 1fr))"),
+             grid_columns_grid_mobile={"unit": "fr", "size": 1, "sizes": []}),
+    ], pad=dims("clamp(56px,7vw,96px)", 24), gap_=36, cls="jm-tide")
+
+    body_map = section("sv-bm", [
+        container("sv-bm-art", [figure("sv-bm-fig", "art_ocean", "Original artwork © Jennifer Malecki",
+                                       "jm-ar-45 jm-r28", cap_pos="bottom-left")], width=340, grow=1,
+                  cls="jm-fig-col jm-fig-col-460"),
+        container("sv-bm-text", [
+            eyebrow("sv-bm-eyebrow", "05 · Arts-based practice", color=MIST),
+            h2("sv-bm-h", "Body Mapping &amp; Embodied Practice", color="#ffffff"),
+            para("sv-bm-p", "My trauma-informed practice recognises that complex stress lives in both the mind and the "
+                            "body. By moving beyond traditional talk therapy, we utilise embodied practices like body "
+                            "mapping—tracing an outline of the body to create a life-sized map representing aspects of "
+                            "your unique lived experiences—safely allowing your story to be visually shared and "
+                            "understood.", 18, MIST_LT, 1.8),
+            textlink("sv-bm-more", "About body mapping", "#jm-pop-bodymap", arrow=True, button_text_color=OCHRE,
+                     hover_color="#E8BE57"),
+        ], gap_=18, width=520, grow=999),
+    ], pad=dims("clamp(56px,7vw,96px)", 24), bg=TEAL, row=True, wrap=True, gap_=gap(40, 64), align="center",
+        cls="jm-tide")
+
+    sess_card = lambda n, d, t, s: container(f"sv-sess-{n}", [
+        eyebrow(f"sv-sess-{n}-d", d, ls=0.12),
+        h3(f"sv-sess-{n}-t", t, size=26, lh=1.15),
+        para(f"sv-sess-{n}-s", s, 15, GREY_BODY, 1.5),
+    ], gap_=8, pad=dims(26), background_background="classic", background_color="#ffffff",
+        **border(1, LINE, 20))
+    sessions = section("sv-sess", [
+        h2("sv-sess-h", "How sessions are offered", size="clamp(30px, 3.4vw, 44px)", lh=1.1),
+        grid("sv-sess-grid", [sess_card("mon", "Monday", "Face-to-face Consultations (In-Clinic)",
+                                        "Unit 1, 38 Burnett Street, Mooloolaba"),
+                              sess_card("tue", "Tuesday – Friday", "Telehealth Consultations (Online)",
+                                        "By Appointment Only")], 280, 16),
+    ], pad=dims("clamp(56px,7vw,96px)", 24), gap_=28, cls="jm-tide")
+
+    cta = sand_cta("sv-cta", "I am here to listen and support your next step",
+                   "I invite you to reach out by email or phone for a chat.")
+    pops = [pop(f"jm-pop-{key}", title, long) for key, _, title, _, long in THERAPIES]
+    from build import bodymap_modal
+    return [hero, therapies, body_map, sessions, cta, *pops, bodymap_modal()]
+
+
+# ---------------------------------------------------------------- Fees & Rebates
+
+def fees_page():
+    rebate = wave_card("fe-rebate", [
+        heading("fe-rebate-l", "Current Medicare Rebates (2026/2027)", "p", SANS, 13, MIST, weight=600, ls=0.14,
+                transform="uppercase", lh=1.3),
+        heading("fe-rebate-v", "$101.55", "p", SERIF, "clamp(56px, 6vw, 80px)", "#ffffff", weight=700, lh=1),
+        heading("fe-rebate-s", "Medicare Rebate per session", "p", SANS, 17, MIST_LT, lh=1.4),
+        para("fe-rebate-n", "For up to 10 sessions per calendar year with a valid Mental Health Care Plan.", 14,
+             MUTED, 1.6),
+    ], radius=28, pad=dims(36, 36, 110, 36), gap_=10, hover=False)
+    rebate["settings"].update({"background_background": "classic", "background_color": TEAL,
+                               "border_border": "none", "width": px(340), "_flex_size": "custom",
+                               "_flex_grow": 1, "_flex_shrink": 1, "width_mobile": px(100, "%"),
+                               "css_classes": rebate["settings"]["css_classes"] + " jm-rebate-card"})
+    hero = page_hero("fe-hero", [
+        eyebrow("fe-eyebrow", "Fees &amp; Rebates"),
+        h1("fe-h1", "Fees &amp; Rebates"),
+        para("fe-lede", "Sessions are charged at a standard consultation rate. If you have a valid Mental Health Care "
+                        "Plan from your GP, you will be eligible to claim a Medicare rebate per session (for up to 10 "
+                        "sessions per calendar year).", "clamp(17px, 1.4vw, 19px)", BODY_DK, 1.75, maxw=680),
+    ], rebate)
+
+    card = lambda n, key, title, kids: wave_card(f"fe-card-{n}", [
+        icon(f"fe-card-{n}-i", key, 36, color=TEAL), h3(f"fe-card-{n}-h", title), *kids,
+    ], radius=24, pad=dims(32, 32, 116, 32), gap_=14)
+    pay = section("fe-pay", [grid("fe-pay-grid", [
+        card("pay", "i_card", "Accepted Payment Methods", [
+            icon_list("fe-pay-list", ["Bank Transfer (Electronic Funds Transfer)", "Mastercard", "Visa"], inline=True,
+                      size=15, weight=500, lh=1.3, cls="jm-chips jm-chips-left jm-chips-outline")]),
+        card("phi", "i_shield", "Private Health Insurance", [
+            para("fe-phi-p", "Once your invoice is settled, we will issue a formal receipt so you can claim your private "
+                             "health insurance rebate directly with your fund. (Please note: Health insurance funds "
+                             "generally do not cover cancellation fees).", 16, GREY_BODY, 1.7)]),
+        card("change", "i_calendar", "Changing Your Appointment", [
+            para("fe-change-p", "Your session time is reserved exclusively for you.", 16, GREY_BODY, 1.7),
+            more("fe-change-more", "Cancellation policy", "#jm-pop-cancel")]),
+    ], 340, 20)], pad=dims("clamp(56px,7vw,96px)", 24), cls="jm-tide")
+
+    way = lambda n, title, sub, target=None: wave_card(f"fe-way-{n}", [
+        heading(f"fe-way-{n}-h", title, "p", SERIF, 26, INK, weight=600, lh=1.15),
+        para(f"fe-way-{n}-s", sub, 15, GREY_BODY, 1.5),
+        *([textlink(f"fe-way-{n}-more", "Details +", target, text_padding=dims(4, 0), typography_font_size=px(14))]
+          if target else []),
+    ], radius=20, pad=dims(26, 26, 76, 26), gap_=8, size="sm")
+    ways = section("fe-ways", [
+        container("fe-ways-head", [
+            eyebrow("fe-ways-eyebrow", "Referrals &amp; plans"),
+            h2("fe-ways-h", "Ways to access care"),
+            para("fe-ways-p", "I can provide services using Medicare Health Care Plan, ED Plan, DVA or NDIS Plan and "
+                              "supply receipts for clients who wish to claim rebates from private health.", 17,
+                 GREY_BODY, 1.75),
+        ], gap_=14, width=720, grow=0),
+        grid("fe-ways-grid", [way("medicare", "Medicare", "Mental Health Care Plans", "#jm-pop-medicare"),
+                              way("ed", "ED Plan", "Eating Disorder Plan"),
+                              way("dva", "DVA &amp; Open Arms", "Veterans and their families", "#jm-pop-dva-fees"),
+                              way("ndis", "NDIS", "Self-Managed or Plan-Managed", "#jm-pop-ndis"),
+                              way("private", "Private clients", "No GP referral needed", "#jm-pop-private")], 220, 16),
+    ], pad=dims("clamp(56px,7vw,96px)", 24), bg=STONE, gap_=32, cls="jm-tide")
+
+    cta = sand_cta("fe-cta", "Questions about fees or rebates?",
+                   "Feel free to reach out by email or phone to ask any questions or to discuss taking the next step "
+                   "toward your healing.", stone_above=True)
+
+    note = lambda n, t: text(n, f"<p>{t}</p>", 16, "#4E3A08", lh=1.7, cls="jm-modal-note")
+    open_arms = container("dva-openarms", [
+        heading("dva-oa-l", "Open Arms – Veterans &amp; Families Counselling", "p", SANS, 13, MIST, weight=600, ls=0.12,
+                transform="uppercase", lh=1.3),
+        text("dva-oa-p", "<p>An additional or after-hours resource for veterans and their families.</p>", 16,
+             MIST_LT, lh=1.6),
+        text("dva-oa-n", '<p><a href="tel:1800011046">1800 011 046</a></p>', 24, "#ffffff", weight=700, lh=1.2,
+             cls="jm-modal-bignum"),
+    ], gap_=6, pad=dims(20, 22), border_radius=dims(16), background_background="classic", background_color=TEAL)
+    pops = [
+        pop("jm-pop-cancel", "Changing Your Appointment", [
+            "Your session time is reserved exclusively for you. If you need to cancel or change your appointment, "
+            "please provide at least 2 full business days' notice. Regrettably, cancellations made within this "
+            "2-business-day window or on the day of the appointment will incur a cancellation fee."]),
+        pop("jm-pop-medicare", "Medicare Rebates (Mental Health Care Plans)", [
+            "To claim a Medicare rebate, you will need a valid Mental Health Care Plan (MHCP) and a referral letter from "
+            "your GP or psychiatrist prior to your first session.",
+            "Under this plan, eligible clients can receive a Medicare rebate for up to 10 individual psychology sessions "
+            "per calendar year."],
+            [note("medicare-note", "Please note: The rebate will cover a portion of the session cost, leaving a residual "
+                                   "out-of-pocket gap fee.")]),
+        pop("jm-pop-dva-fees", "DVA (Department of Veterans' Affairs)", [
+            "As a registered provider, I offer psychological support to eligible veterans and their families through "
+            "the DVA framework.",
+            "If you hold a Gold Card or an approved White Card for mental health conditions, your consultations may be "
+            "fully covered with no out-of-pocket expenses, provided you have a valid D904 referral from your GP."],
+            [open_arms]),
+        pop("jm-pop-ndis", "NDIS Participants (National Disability Insurance Scheme)", [
+            "I welcome clients who participate in the NDIS.",
+            "Services can be provided to participants whose funding is Self-Managed or Plan-Managed.",
+            "Sessions are focused on helping you build capacity, manage emotional distress, and work toward the personal "
+            "goals outlined in your NDIS plan."]),
+        pop("jm-pop-private", "Private clients", [
+            "If you do not have a GP referral or a Medicare plan, you can still attend sessions as a private client.",
+            "Once your invoice is settled, we will issue a formal receipt so you can claim your private health insurance "
+            "rebate directly with your fund. (Please note: Health insurance funds generally do not cover cancellation "
+            "fees)."]),
+    ]
+    return [hero, pay, ways, cta, *pops]
+
+
+# ---------------------------------------------------------------- For Referrers
+
+def referrers_page():
+    details = container("rf-details", [
+        h2("rf-details-h", "Referral details", size=30, lh=1.1),
+        container("rf-dl", [
+            label_value("rf-d-name", "Practitioner", NAME_TITLE),
+            label_value("rf-d-prov", "Medicare Provider No.", "1894363H"),
+            label_value("rf-d-ahpra", "AHPRA", AHPRA_REG),
+            label_value("rf-d-mo", "Medical Objects", "[Medical Objects ID — to be supplied]"),
+            label_value("rf-d-contact", "Phone / email", f'<a href="{PHONE_URL}">{PHONE}</a><br>'
+                                                         f'<a href="{EMAIL_URL}">{EMAIL}</a>'),
+            label_value("rf-d-addr", "Address", "Unit 1, 38 Burnett Street, Mooloolaba QLD 4557", last=True),
+        ], gap_=12),
+    ], gap_=16, pad=dims(32), width=340, grow=1, border_radius=dims(28), tag="aside", cls="jm-ref-details",
+        background_background="classic", background_color=SAND)
+    hero = page_hero("rf-hero", [
+        heading("rf-pill", "Immediate room for new referrals · no wait time", "p", SANS, 14, INK, weight=700, lh=1.2,
+                cls="jm-pill jm-pill-ochre"),
+        eyebrow("rf-eyebrow", "For GPs &amp; referring practitioners", color=MIST),
+        h1("rf-h1", "For Referrers", color="#ffffff"),
+        para("rf-lede", "Jennifer values collaboration with referring professionals to ensure continuity of care and "
+                        "coordinated treatment planning. Referrals are welcomed from GPs via Mental Health Care Plans, "
+                        "as well as through private arrangements.", "clamp(17px, 1.4vw, 19px)", MIST_LT, 1.75),
+        call_email("rf-hero-btns", "Email a referral", "ochre", "light"),
+    ], details, bg=TEAL, cls="jm-gp jm-ref-hero")
+    hero["settings"]["flex_align_items"] = "flex-start"
+
+    tcard = lambda n, t, p: wave_card(f"rf-type-{n}", [h3(f"rf-type-{n}-h", t, size=28, lh=1.15),
+                                                       para(f"rf-type-{n}-p", p, 16, GREY_BODY, 1.6)],
+                                      radius=22, pad=dims(28, 28, 104, 28), gap_=8)
+    types = section("rf-types", [
+        container("rf-types-head", [
+            eyebrow("rf-types-eyebrow", "Referral pathways"),
+            h2("rf-types-h", "Referral Types Accepted"),
+            para("rf-types-p", "She accepts referrals from your General Practitioner (GP) via Mental Health Care Plans, "
+                               "NDIS referrals, and works with clients supported by the Department of Veterans' Affairs "
+                               "(DVA). These can be made by phone or email.", 17, GREY_BODY, 1.75),
+        ], gap_=14, width=760, grow=0),
+        grid("rf-types-grid", [tcard("gp", "General Practitioner (GP)", "Mental Health Care Plan referrals."),
+                               tcard("ndis", "NDIS", "Self-managed and plan-managed NDIS referrals."),
+                               tcard("dva", "Department of Veterans' Affairs (DVA)",
+                                     "Referrals supported for eligible veterans."),
+                               tcard("mo", "Medical Objects", "Referrals can be made via Medical Objects.")], 260, 16),
+    ], pad=dims("clamp(56px,7vw,96px)", 24), gap_=32, cls="jm-tide")
+
+    step = lambda n, t, p: container(f"rf-step-{n}", [
+        heading(f"rf-step-{n}-n", str(n), "span", SERIF, 20, "#ffffff", weight=700, lh=1, cls="jm-step-num",
+                _flex_size="none"),
+        container(f"rf-step-{n}-t", [h3(f"rf-step-{n}-h", t, size=24, lh=1.2),
+                                     para(f"rf-step-{n}-p", p, 16, GREY_BODY, 1.5)], gap_=4, grow=1,
+                  width=px(0, "%"), mobile_width=False),
+    ], row=True, gap_=18, align="flex-start", pad=dims(22, 24), border_radius=dims(20), flex_wrap="nowrap",
+        flex_wrap_mobile="nowrap", background_background="classic", background_color=SAND)
+    delivery = section("rf-del", [
+        container("rf-del-head", [
+            eyebrow("rf-del-eyebrow", "Working together"),
+            h2("rf-del-h", "Service Delivery"),
+            para("rf-del-p", "Services are available in person at the Mooloolaba clinic and via secure telehealth for "
+                             "clients across the Sunshine Coast and surrounding areas. Referrers receive timely updates "
+                             "following assessment and at key review points.", 17, GREY_BODY, 1.75),
+            more("rf-del-more", "Presentations I work with", "#jm-pop-areas"),
+        ], gap_=16, width=320, grow=1),
+        container("rf-del-steps", [step(1, "In-Person Therapy", "Available at our Mooloolaba clinic."),
+                                   step(2, "Telehealth Services", "Secure online therapy for clients across the "
+                                                                  "Sunshine Coast and surrounding areas."),
+                                   step(3, "Referrer Communication", "Referrers receive timely updates following "
+                                                                     "assessment and at key review points.")],
+                  gap_=14, width=520, grow=999),
+    ], pad=dims("clamp(56px,7vw,96px)", 24), bg=STONE, row=True, wrap=True, gap_=gap(32, 64), align="flex-start",
+        cls="jm-tide")
+
+    cta = sand_cta("rf-cta", "Make a referral", "Referrals can be made by phone or email, or via Medical Objects.",
+                   email_label="Email a referral", stone_above=True)
+    areas = modal("jm-pop-areas", "Practice Areas", [
+        pop_text("areas-p", "<p>Extensive experience working with adults with PTSD, personality disorders, self-harming "
+                            "behaviours, depression, bipolar disorder, anxiety, mood disorders, schizophrenia, and other "
+                            "serious mental health conditions.</p>"),
+        icon_list("areas-pills", AREAS, inline=True, size=15, weight=500, lh=1.3,
+                  cls="jm-chips jm-chips-left jm-chips-outline"),
+    ])
+    areas["elements"][0]["settings"]["css_classes"] += " jm-modal-wide"
+    return [hero, types, delivery, cta, areas]
+
+
+# ---------------------------------------------------------------- Gallery
+
+GALLERY = [
+    ("art", "art_ocean", "[Artwork title]", "Acrylic, palette knife", "45"),
+    ("coast", "photo_beach", "Mooloolaba", "Photograph", "43"),
+    ("art", "art_wave", "[Artwork title]", "Acrylic, palette knife", "43"),
+    ("coast", "photo_cartwright", "Point Cartwright", "Photograph", "45"),
+    ("art", None, "[Artwork title]", "[Medium]", "11"),
+    ("coast", None, "[Rainforest image]", "Photograph", "43"),
+]
+
+
+def gallery_page():
+    filters = html("ga-filters", '<div class="jm-filters" role="group" aria-label="Filter gallery">'
+                                 '<button type="button" class="jm-filter" data-filter="all" aria-pressed="true">All</button>'
+                                 '<button type="button" class="jm-filter" data-filter="art" aria-pressed="false">Artworks</button>'
+                                 '<button type="button" class="jm-filter" data-filter="coast" aria-pressed="false">Coast &amp; landscape</button>'
+                                 '</div>')
+    filters["settings"]["_flex_size"] = "none"
+    hero = page_hero("ga-hero", [
+        eyebrow("ga-eyebrow", "Gallery"),
+        h1("ga-h1", "Art, ocean &amp; the Sunshine Coast"),
+        para("ga-lede", "Original artwork by Jennifer Malecki, alongside the beach and coastal landscapes of Mooloolaba. "
+                        "Select any image to view it larger.", "clamp(17px, 1.4vw, 19px)", BODY_DK, 1.7),
+    ], filters, pad=dims("clamp(56px,7vw,96px)", 24, "clamp(96px,10vw,130px)", 24))
+    hero["settings"].update({"flex_align_items": "flex-end", "flex_justify_content": "space-between",
+                             "flex_gap": gap(24, 56)})
+    hero["elements"][0]["settings"]["width"] = px(620)
+    hero["elements"][0]["settings"]["flex_gap"] = gap(18)
+
+    items = []
+    for i, (cat, key, title, kind, ratio) in enumerate(GALLERY, 1):
+        if key:
+            media_el = image(f"ga-item-{i}-img", key, cls=f"jm-g-img jm-ar-{ratio}")
+        else:
+            media_el = heading(f"ga-item-{i}-ph", "[Artwork — to be supplied, max 1200 px wide, watermarked]"
+                               if cat == "art" else "[Sunshine Coast hinterland or rainforest photo — to be supplied]",
+                               "p", SANS, 15, TEAL, weight=600, lh=1.4, align="center",
+                               cls=f"jm-g-placeholder jm-ar-{ratio}")
+        items.append(container(f"ga-item-{i}", [
+            media_el,
+            container(f"ga-item-{i}-cap", [
+                heading(f"ga-item-{i}-t", title, "p", SANS, 15, INK, weight=600, lh=1.5, cls="jm-g-title"),
+                heading(f"ga-item-{i}-k", kind, "p", SANS, 15, GREY_BODY, lh=1.5, cls="jm-g-kind",
+                        _flex_size="none"),
+            ], row=True, justify="space-between", gap_=12, flex_wrap="nowrap", flex_wrap_mobile="nowrap"),
+        ], gap_=12, cls=f"jm-g-item jm-g-{cat}"))
+    grid_ = section("ga-grid", [grid("ga-grid-inner", items, 340, 24, grid_columns_grid=px(
+        "repeat(auto-fill, minmax(min(340px, 100%), 1fr))"), css_classes="jm-gallery")], pad=dims("clamp(40px,5vw,72px)", 24, "clamp(56px,7vw,96px)", 24))
+    cta = sand_cta("ga-cta", "", "", kids=[
+        h2("ga-cta-h", "All images are protected by copyright", size="clamp(32px, 3.8vw, 48px)", align="center"),
+        para("ga-cta-p", "Artworks and photographs on this website are © Jennifer Malecki and are shown at reduced "
+                         "resolution with a watermark. They may not be copied, downloaded, reproduced or used in any "
+                         "form without written permission.", 17, BODY_DK, 1.7, align="center"),
+    ])
+    return [hero, grid_, cta]
+
+
+if __name__ == "__main__":
+    DIST.mkdir(exist_ok=True)
+    out = {"header-inner": build_inner_header(), "about": about_page(), "services": services_page(),
+           "fees": fees_page(), "referrers": referrers_page(), "gallery": gallery_page()}
+    for name, data in out.items():
+        path = DIST / f"{name}.json"
+        path.write_text(json.dumps(data, ensure_ascii=False, separators=(",", ":")))
+        print(f"{path.name}: {path.stat().st_size} bytes")

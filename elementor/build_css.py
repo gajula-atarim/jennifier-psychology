@@ -2,7 +2,7 @@
 (decorative waves, pill chips, hover motion, scroll reveal, the breathing exercise)."""
 from pathlib import Path
 
-from svg import (BREATH_W1, BREATH_W2, BREATH_W3, CARD_W1, CARD_W2, CARD_W3, CARE_LINE, CARE_PRINTS, CTA_EDGE,
+from svg import (data_uri, BREATH_W1, BREATH_W2, BREATH_W3, CARD_W1, CARD_W2, CARD_W3, CARE_LINE, CARE_PRINTS, CTA_EDGE, CTA_EDGE_STONE,
                  GP_MARK, HERO_EDGE, ICE_BELOW, ICE_TIP, PORTRAIT_LINES, SURF_W1, SURF_W2, SURF_W3)
 
 OUT = Path(__file__).resolve().parent.parent / "theme/hello-elementor-child/assets/css/jm-site.css"
@@ -265,11 +265,124 @@ body.jm-modal-open{overflow:hidden}
 /* In the Elementor editor, show pop-ups in place so their text can be edited. */
 body.elementor-editor-active .jm-modal{display:flex!important;padding:24px 16px;background:#12323F}
 
+/* ================================================================ Inner pages */
+/* Line icons draw with stroke only (some uploaded SVGs set fill on the root, which Elementor's colour would fill). */
+.elementor-icon svg,.elementor-icon-list-icon svg,.elementor-button-icon svg{fill:none!important}
+
+/* Inner-page header: teal crisis line, then a cream bar with the logo and two round buttons. */
+.jm-inner-topbar .jm-crisis-line p{margin:0;display:flex;flex-wrap:wrap;gap:4px 16px;align-items:center}
+.jm-inner-topbar .jm-urgent{color:#F4E6BF}
+.jm-inner-topbar .jm-crisis-line a{color:#fff;font-weight:700}.jm-inner-topbar .jm-crisis-line a:hover{color:#DDAA33}
+.jm-inner-bar{-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.jm-inner-logo img{width:auto!important;max-width:none}
+.jm-rounds{display:flex;align-items:center;gap:10px}
+.jm-round{width:48px;height:48px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;border:1.5px solid #1D5067;background:transparent;color:#1D5067;cursor:pointer;padding:0;text-decoration:none;flex:none;box-sizing:border-box;transition:background-color .25s,color .25s,transform .25s}
+.jm-round:hover,.jm-round:focus-visible{background:#1D5067;color:#fff;transform:scale(1.05)}
+.jm-round-solid{background:#1D5067;color:#fff}.jm-round-solid:hover,.jm-round-solid:focus-visible{background:#0d4c5c}
+.jm-round-light{border-color:#EBE7DB!important;color:#F7F5EF!important;background:transparent!important}
+.jm-round-light:hover,.jm-round-light:focus-visible{background:#EBE7DB!important;color:#12323F!important}
+
+/* Full-screen menu (a pop-up opened by the round menu button). */
+.jm-menu-overlay.is-open{background:#12323F!important;padding:0!important;align-items:stretch!important;overflow:auto;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+.jm-menu-overlay .jm-menu-panel{max-width:none!important;max-height:none!important;min-height:100%;width:100%!important;background:transparent!important;box-shadow:none!important;border-radius:0!important;overflow:visible;color:#F7F5EF}
+.jm-menu-panel .jm-modal-close{position:static;width:48px;height:48px;border:1.5px solid #EBE7DB}
+.jm-sr-title{position:absolute!important;width:1px!important;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.jm-menu-nav ul.hfe-nav-menu{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:6px 40px;margin:0!important}
+.jm-menu-nav ul.hfe-nav-menu>li{border:0!important;margin:0!important}
+.jm-menu-nav a.hfe-menu-item{display:inline-flex!important;align-items:center;min-height:44px;padding-left:0!important}
+.jm-menu-nav .hfe-menu-toggle,.jm-menu-nav .sub-arrow{display:none!important}
+.jm-menu-crisis a{color:#fff}
+
+/* Page hero: wave edge into the next section. */
+.jm-page-hero{position:relative}
+.jm-page-hero::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:clamp(36px,5vw,72px);background:HERO_EDGE center bottom/100% 100% no-repeat;z-index:3;pointer-events:none}
+.jm-page-hero>.e-con-inner{position:relative;z-index:2}
+.jm-ref-hero::after{background:HERO_EDGE center bottom/100% 100% no-repeat;right:0;top:auto;width:auto;height:clamp(36px,5vw,72px);opacity:1}
+.jm-ref-hero::before{content:"";position:absolute;right:-160px;top:-160px;width:620px;height:620px;opacity:.1;background:GP_MARK center/contain no-repeat;pointer-events:none}
+.jm-areas-section::after{right:auto;left:-180px;top:auto;bottom:-200px;opacity:.09}
+
+/* Artwork in shaped frames, with the copyright caption over it. */
+.jm-fig-col{margin-inline:auto}
+.jm-fig-col-440{max-width:440px}.jm-fig-col-460{max-width:460px}
+.jm-figure{position:relative}
+.jm-figure-img,.jm-figure-img img{width:100%;display:block}
+.jm-figure-img img,.jm-g-img img{object-fit:cover;max-width:none;pointer-events:none;user-select:none;-webkit-user-drag:none}
+.jm-ar-45 img,.jm-ar-45 .elementor-heading-title{aspect-ratio:4/5}
+.jm-ar-43 img,.jm-ar-43 .elementor-heading-title{aspect-ratio:4/3}
+.jm-ar-11 img,.jm-ar-11 .elementor-heading-title{aspect-ratio:1/1}
+.jm-arch img{border-radius:200px 200px 28px 28px}
+.jm-arch-wide img{border-radius:220px 220px 28px 28px}
+.jm-arch-round img{border-radius:50% 50% 28px 28px}
+.jm-r28 img{border-radius:28px}
+.jm-figure>.jm-fig-cap{position:absolute!important;z-index:2;width:auto!important;margin:0}
+.jm-fig-cap .elementor-heading-title{display:inline-block;white-space:nowrap;background:rgba(18,50,63,.82);padding:8px 14px;border-radius:999px}
+.jm-fig-cap-bottom-center{left:50%;bottom:18px;transform:translateX(-50%)}
+.jm-fig-cap-top-center{left:50%;top:22px;transform:translateX(-50%)}
+.jm-fig-cap-bottom-left{left:18px;bottom:18px}
+@media (max-width:767px){.jm-fig-cap .elementor-heading-title{white-space:normal;text-align:center}}
+
+/* About: quote card over the artwork. */
+.jm-quote-wrap{position:relative;padding-bottom:56px!important;max-width:500px}
+.jm-quote-wrap>.jm-quote-card{position:absolute!important;right:-12px;bottom:0;width:min(78%,360px)!important;margin:0;z-index:2}
+.jm-quote-card .elementor-heading-title{background:#1D5067;border-radius:24px;padding:24px 26px;box-shadow:0 24px 50px rgba(18,50,63,.28)}
+@media (max-width:767px){.jm-quote-wrap>.jm-quote-card{right:0}}
+.jm-care-stone .jm-stone .elementor-heading-title{background:#EBE7DB;box-shadow:0 0 0 3px #EBE7DB}
+.jm-care-stone .jm-stop:hover,.jm-care-stone .jm-stop:focus-visible{background:rgba(247,245,239,.7)}
+
+/* About: practice areas in columns. */
+.jm-areas .elementor-icon-list-items{display:block!important;columns:3 210px;column-gap:28px}
+.jm-areas .elementor-icon-list-item{break-inside:avoid;display:flex!important;align-items:center;gap:6px;padding:14px 10px!important;margin:0!important;border-bottom:1px solid rgba(162,195,211,.28);border-radius:10px;transition:background-color .25s,padding-left .25s}
+.jm-areas .elementor-icon-list-item:hover{background:rgba(247,245,239,.08);padding-left:16px!important}
+.jm-areas .elementor-icon-list-item::after{display:none!important}
+.jm-appt-pill .elementor-heading-title{display:inline-flex;align-items:center;gap:10px;background:#fff;border:1px solid #E2DCCD;border-radius:999px;padding:10px 18px}
+.jm-appt-pill .elementor-heading-title::before{content:"";width:18px;height:18px;flex:none;background:CLOCK_ICON center/contain no-repeat}
+.jm-photo-card{background-position:center 30%!important}
+
+/* Pills, steps and pop-up extras. */
+.jm-chips-left .elementor-icon-list-items{justify-content:flex-start}
+.jm-chips-outline .elementor-icon-list-items .elementor-icon-list-item{border:1px solid #CFDCE3;min-height:40px;box-sizing:border-box}
+.jm-step-num .elementor-heading-title{width:44px;height:44px;border-radius:50%;background:#1D5067;display:flex;align-items:center;justify-content:center}
+.jm-rebate-card{max-width:440px;box-shadow:0 24px 60px rgba(18,50,63,.22)}
+.jm-modal-wide{max-width:720px}
+.jm-modal-note{background:#F4E6BF;border-radius:14px;padding:14px 18px}
+.jm-modal-note p{margin:0}
+.jm-modal-bignum a{color:#fff;text-decoration:none}
+.jm-modal-text h3{font:600 13px 'Figtree',system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#1D5067;margin:16px 0 4px}
+.jm-modal-text h3:first-child{margin-top:0}
+.jm-link-pills .elementor-icon-list-items{display:flex;flex-direction:column;gap:10px}
+.jm-link-pills .elementor-icon-list-item{margin:0!important;padding:0!important}
+.jm-link-pills .elementor-icon-list-item::after{display:none!important}
+.jm-link-pills .elementor-icon-list-item a{display:flex!important;width:100%;min-height:44px;padding:0 18px;border:1.5px solid #1D5067;border-radius:999px;box-sizing:border-box;align-items:center;transition:background-color .25s,color .25s}
+.jm-link-pills .elementor-icon-list-text{display:flex;justify-content:space-between;width:100%}
+.jm-link-pills .elementor-icon-list-item a:hover,.jm-link-pills .elementor-icon-list-item a:focus-visible{background:#1D5067}
+.jm-link-pills .elementor-icon-list-item a:hover .elementor-icon-list-text{color:#fff}
+.jm-cta-stone::after{background-image:CTA_EDGE_STONE}
+
+/* Gallery: filters, tiles, placeholders and the lightbox (jm-site.js). */
+.jm-filters{display:flex;flex-wrap:wrap;gap:8px}
+.jm-filter{min-height:44px;padding:0 20px;border-radius:999px;font:600 15px 'Figtree',system-ui,sans-serif;cursor:pointer;border:1.5px solid #1D5067;background:transparent;color:#1D5067;transition:background-color .2s,color .2s}
+.jm-filter[aria-pressed="true"],.jm-filter:hover{background:#1D5067;color:#fff}
+.jm-gallery{align-items:start}
+.jm-g-item.is-hidden{display:none!important}
+.jm-g-img{position:relative;border-radius:24px;overflow:hidden;background:#DCE8EE;cursor:zoom-in}
+.jm-g-img img{width:100%;display:block;transition:transform .5s ease}
+.jm-g-img:hover img{transform:scale(1.04)}
+.jm-g-img::after{content:"";position:absolute;right:14px;bottom:14px;width:40px;height:40px;border-radius:50%;background:rgba(18,50,63,.75) EXPAND_ICON center/18px no-repeat;pointer-events:none}
+.jm-g-img:focus-visible{outline:3px solid #DDAA33;outline-offset:3px}
+.jm-g-placeholder .elementor-heading-title{display:flex;align-items:center;justify-content:center;border-radius:24px;background:#DCE8EE;border:2px dashed #6A8CA3;padding:24px;box-sizing:border-box}
+.jm-lightbox{position:fixed;inset:0;z-index:10001;background:rgba(18,50,63,.88);display:flex;align-items:center;justify-content:center;padding:24px;box-sizing:border-box;animation:jmModalIn .25s ease}
+.jm-lightbox figure{margin:0;max-width:1000px;width:100%;max-height:90vh;display:flex;flex-direction:column;gap:14px;align-items:center}
+.jm-lightbox img{max-width:100%;max-height:72vh;object-fit:contain;border-radius:18px;display:block;pointer-events:none;user-select:none;-webkit-user-drag:none}
+.jm-lightbox figcaption{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;justify-content:space-between;width:100%;color:#F7F5EF;font-size:16px}
+.jm-lightbox .jm-lb-btns{display:flex;gap:10px}
+
 /* Motion preferences */
 @media (prefers-reduced-motion:reduce){
  .jm-rise,.jm-tide,.jm-chips-dark .elementor-icon-list-item,.jm-wave-card::after,.jm-ice-top::after,.jm-breath-waves{animation:none!important}
  .jm-swap-a{animation:none;opacity:1}.jm-swap-b{animation:none;opacity:0}
  .jm-prints svg{animation:none;opacity:.85}
+ .jm-g-img img,.jm-round,.jm-areas .elementor-icon-list-item{transition:none!important}
+ .jm-g-img:hover img{transform:none}
  .jm-card,.jm-tile,.jm-card .elementor-widget-icon svg,.jm-wave-card::after,.jm-stop,.jm-stone .elementor-heading-title,.jm-stop-arrow{transition:none}
  .jm-card:hover,.jm-tile:hover,.jm-card:hover .elementor-widget-icon svg{transform:none}
  .elementor-button,.elementor-button:hover,.elementor-button:focus-visible,.jm-textlink .elementor-button-icon{transform:none!important}
@@ -277,7 +390,12 @@ body.elementor-editor-active .jm-modal{display:flex!important;padding:24px 16px;
 """
 
 TOKENS = {
-    "HERO_EDGE": HERO_EDGE, "CTA_EDGE": CTA_EDGE, "GP_MARK": GP_MARK, "PORTRAIT_LINES": PORTRAIT_LINES,
+    "HERO_EDGE": HERO_EDGE, "CTA_EDGE": CTA_EDGE, "CTA_EDGE_STONE": CTA_EDGE_STONE,
+    "CLOCK_ICON": data_uri("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231D5067' "
+                           "stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='9'/>"
+                           "<path d='M12 7v5l3 2'/></svg>".replace("%23", "#")),
+    "EXPAND_ICON": data_uri("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='#ffffff' "
+                            "stroke-width='2' stroke-linecap='round'><path d='M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7'/></svg>"), "GP_MARK": GP_MARK, "PORTRAIT_LINES": PORTRAIT_LINES,
     "ICE_TIP": ICE_TIP, "ICE_BELOW": ICE_BELOW, "CARE_LINE": CARE_LINE, "CARE_PRINTS": CARE_PRINTS,
     "CARD_W1": CARD_W1, "CARD_W2": CARD_W2, "CARD_W3": CARD_W3,
     "SURF_W1": SURF_W1, "SURF_W2": SURF_W2, "SURF_W3": SURF_W3,
