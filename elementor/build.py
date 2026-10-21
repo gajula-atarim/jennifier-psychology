@@ -92,6 +92,9 @@ def dims(t, r=None, b=None, l=None, unit="px"):
     vals = [t, r, b, l]
     if any(isinstance(v, str) and not v.lstrip("-").isdigit() for v in vals):
         unit = "custom"
+        # Custom units are written as-is, so plain numbers need their own "px".
+        t, r, b, l = (f"{v}px" if str(v).lstrip("-").replace(".", "", 1).isdigit() and str(v) != "0" else v
+                      for v in vals)
     return {"unit": unit, "top": str(t), "right": str(r), "bottom": str(b), "left": str(l),
             "isLinked": len(set(map(str, vals))) == 1}
 
